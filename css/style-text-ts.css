@@ -1,0 +1,39 @@
+   .w-space-nowrap {
+       white-space: nowrap;
+   }
+   
+   .font-bold {
+       font-weight: bold;
+   }
+   
+   .font-bolder {
+       font-weight: bolder;
+   }
+   
+   .f-size-x {
+       font-size: x-large;
+   }
+   
+   .f-size-xx {
+       font-size: xx-large;
+   }
+   
+   .f-size-08 {
+       font-size: 0.8em;
+   }
+   
+   .text-center {
+       text-align: center;
+   }
+   
+   .text-deco-underline {
+       text-decoration: underline;
+   }
+   
+   .text-deco-none {
+       text-decoration: none;
+   }
+   
+   .text-uppercase {
+       text-transform: uppercase;
+   }

@@ -1,0 +1,199 @@
+         .color-black {
+             color: black;
+         }
+         
+         .color-lightgrey {
+             color: lightgrey;
+         }
+         
+         .color-grey {
+             color: grey;
+         }
+         
+         .color-darktgrey {
+             color: darkgrey;
+         }
+         
+         .color-darkergrey {
+             color: #0A3847;
+         }
+         
+         .color-white {
+             color: white;
+         }
+         
+         .color-violet {
+             color: violet;
+         }
+         
+         .color-darkviolet {
+             color: darkviolet;
+         }
+         
+         .color-lightpink {
+             color: lightpink;
+         }
+         
+         .color-pink {
+             color: pink;
+         }
+         
+         .color-red {
+             color: red;
+         }
+         
+         .color-darkred {
+             color: darkred;
+         }
+         
+         .color-darkorange {
+             color: darkorange;
+         }
+         
+         .color-orange {
+             color: orange;
+         }
+         
+         .color-yellow {
+             color: yellow;
+         }
+         
+         .color-lightgreen {
+             color: lightgreen;
+         }
+         
+         .color-green {
+             color: green;
+         }
+         
+         .color-darkgreen {
+             color: darkgreen;
+         }
+         
+         .color-darkturquoise {
+             color: darkturquoise;
+         }
+         
+         .color-turquoise {
+             color: turquoise;
+         }
+         
+         .color-darkblue {
+             color: darkblue;
+         }
+         
+         .color-blue {
+             color: blue;
+         }
+         
+         .color-lightblue {
+             color: lightblue;
+         }
+         
+         .b-color-black {
+             background-color: black;
+         }
+         
+         .b-color-lightgrey {
+             background-color: lightgrey;
+         }
+         
+         .b-color-grey {
+             background-color: grey;
+         }
+         
+         .b-color-darktgrey {
+             background-color: darkgrey;
+         }
+         
+         .b-color-darkergrey {
+             background-color: #0A3847;
+         }
+         
+         .b-color-white {
+             background-color: white;
+         }
+         
+         .b-color-violet {
+             background-color: violet;
+         }
+         
+         .b-color-darkviolet {
+             background-color: darkviolet;
+         }
+         
+         .b-color-lightpink {
+             background-color: lightpink;
+         }
+         
+         .b-color-pink {
+             background-color: pink;
+         }
+         
+         .b-color-red {
+             background-color: red;
+         }
+         
+         .b-color-darkred {
+             background-color: darkred;
+         }
+         
+         .b-color-darkorange {
+             background-color: darkorange;
+         }
+         
+         .b-color-orange {
+             background-color: orange;
+         }
+         
+         .b-color-yellow {
+             background-color: yellow;
+         }
+         
+         .b-color-lightgreen {
+             background-color: lightgreen;
+         }
+         
+         .b-color-green {
+             background-color: green;
+         }
+         
+         .b-color-darkgreen {
+             background-color: darkgreen;
+         }
+         
+         .b-color-darkturquoise {
+             background-color: darkturquoise;
+         }
+         
+         .b-color-turquoise {
+             background-color: turquoise;
+         }
+         
+         .b-color-darkblue {
+             background-color: darkblue;
+         }
+         
+         .b-color-blue {
+             background-color: blue;
+         }
+         
+         .b-color-lightblue {
+             background-color: lightblue;
+         }
+         
+         .border-blue {
+             border: 2px solid #4169E1;
+         }
+         
+         .border-orange {
+             border: 2px solid #ffa500;
+         }
+         
+         .border-white {
+             border: 2px solid white;
+         }
+         
+         .border-black {
+             border: 2px solid black;
+         }

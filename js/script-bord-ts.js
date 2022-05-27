@@ -4,7 +4,9 @@ let tasks = [];
 
 screenWidth();
 
-
+/**
+ * screen width under 600px draggable disable
+ */
 function screenWidth() {
     let draggableCart = document.getElementsByClassName('cart');
     setInterval(() => {
@@ -12,7 +14,11 @@ function screenWidth() {
     }, 200);
 }
 
-
+/**
+ * check the width
+ * 
+ * @param {string} draggableCart - content of the class to be deactivated
+ */
 function checkWidth(draggableCart) {
     let width = window.innerWidth;
     if (width <= 600) {

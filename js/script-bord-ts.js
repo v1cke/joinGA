@@ -1,114 +1,35 @@
-// let tasks = [{
-//         "id": 1,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "todo",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "low",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 2,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "todo",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "low",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 3,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "inProgress",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "mid",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 4,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "inProgress",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "low",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 5,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "inProgress",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "hight",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 6,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "testing",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "low",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 7,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "done",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "mid",
-//         "OpenMenu": false
-//     },
-//     {
-//         "id": 8,
-//         "title": "Irgendwas",
-//         "name": 'Tony Schroeder',
-//         "category": "done",
-//         "department": "Management",
-//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-//         "email": "email.email@eamil.com",
-//         "date": "30.05.2022",
-//         "urgency": "hight",
-//         "OpenMenu": false
-//     },
-// ]
 let currentDraggedElementId;
 let tasks = [];
 
 
+screenWidth();
 
 
+function screenWidth() {
+    let draggableCart = document.getElementsByClassName('cart');
+    setInterval(() => {
+        checkWidth(draggableCart);
+    }, 200);
+}
 
-async function loadTasks() {
-    let respons = await fetch('./tasks.json');
-    tasks = await respons.json();
+
+function checkWidth(draggableCart) {
+    let width = window.innerWidth;
+    if (width <= 600) {
+        for (let i = 0; i < draggableCart.length; i++) {
+            const element = draggableCart[i];
+            element.draggable = false;
+        }
+    } else if (width > 600) {
+        for (let i = 0; i < draggableCart.length; i++) {
+            const element = draggableCart[i];
+            element.draggable = true;
+        }
+    }
 }
 
 /**
- * endering of each category and order of urgency
+ * load the json and render the board
  */
 function fillBord() {
     loadTasks();
@@ -117,7 +38,17 @@ function fillBord() {
     }, 100);
 }
 
+/**
+ * load the json
+ */
+async function loadTasks() {
+    let respons = await fetch('./tasks.json');
+    tasks = await respons.json();
+}
 
+/**
+ * rendering of each category and order of urgency
+ */
 function renderBord() {
     checkHightUrgency();
     checkLowUrgency();
@@ -126,7 +57,6 @@ function renderBord() {
     dispalyTesting();
     dispalyDone();
 }
-
 
 /**
  * check of the highest urgency

@@ -1,106 +1,123 @@
-let tasks = [{
-        "id": 1,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "todo",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "low",
-        "OpenMenu": false
-    },
-    {
-        "id": 2,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "todo",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "low",
-        "OpenMenu": false
-    },
-    {
-        "id": 3,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "inProgress",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "mid",
-        "OpenMenu": false
-    },
-    {
-        "id": 4,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "inProgress",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "low",
-        "OpenMenu": false
-    },
-    {
-        "id": 5,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "inProgress",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "hight",
-        "OpenMenu": false
-    },
-    {
-        "id": 6,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "testing",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "low",
-        "OpenMenu": false
-    },
-    {
-        "id": 7,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "done",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "mid",
-        "OpenMenu": false
-    },
-    {
-        "id": 8,
-        "title": "Irgendwas",
-        "name": 'Tony Schroeder',
-        "category": "done",
-        "department": "Management",
-        "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
-        "email": "email.email@eamil.com",
-        "date": "30.05.2022",
-        "urgency": "hight",
-        "OpenMenu": false
-    },
-]
+// let tasks = [{
+//         "id": 1,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "todo",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "low",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 2,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "todo",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "low",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 3,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "inProgress",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "mid",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 4,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "inProgress",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "low",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 5,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "inProgress",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "hight",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 6,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "testing",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "low",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 7,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "done",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "mid",
+//         "OpenMenu": false
+//     },
+//     {
+//         "id": 8,
+//         "title": "Irgendwas",
+//         "name": 'Tony Schroeder',
+//         "category": "done",
+//         "department": "Management",
+//         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
+//         "email": "email.email@eamil.com",
+//         "date": "30.05.2022",
+//         "urgency": "hight",
+//         "OpenMenu": false
+//     },
+// ]
 let currentDraggedElementId;
+let tasks = [];
 
+
+
+
+
+async function loadTasks() {
+    let respons = await fetch('./tasks.json');
+    tasks = await respons.json();
+}
 
 /**
  * endering of each category and order of urgency
  */
+function fillBord() {
+    loadTasks();
+    setTimeout(() => {
+        renderBord();
+    }, 100);
+}
+
+
 function renderBord() {
     checkHightUrgency();
     checkLowUrgency();
@@ -109,6 +126,7 @@ function renderBord() {
     dispalyTesting();
     dispalyDone();
 }
+
 
 /**
  * check of the highest urgency

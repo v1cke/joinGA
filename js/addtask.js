@@ -3,11 +3,11 @@ let allTasks = [];
 
 function createTask() {
     let title = document.getElementById('title').value;
+    let category = document.getElementById('category').value;
     let date = document.getElementById('date').value;
     let dateAsString = date.toString();
-    let category = document.getElementById('category').value;
     let urgency = document.getElementById('urgency').value;
-    let description = document.getElementById('description').value;
+    let text = document.getElementById('description').value;
 
     if (title && date && description && email) {
         let task = {
@@ -15,7 +15,7 @@ function createTask() {
             'date': dateAsString,
             'category': category,
             'urgency': urgency,
-            'description': description,
+            'description': text,
         };
         allTasks.push(task);
         console.log(allTasks);

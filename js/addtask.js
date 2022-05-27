@@ -19,19 +19,22 @@ function createTask() {
     let dateAsString = date.toString();
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
+    let id = allTasks.length + 1;
 
-    if (title && date && description && email) {
+    if (title && date && description) {
         let task = {
             'title': title,
             'date': dateAsString,
             'category': category,
             'urgency': urgency,
             'description': text,
+            'taskID': id,
         };
         allTasks.push(task);
+        confirmTask(id);
         console.log(allTasks);
         let allTasksAsString = JSON.stringify(allTasks);
-        localStorage.setItem('allTasks', allTasksAsString);
+        backend.setItem('allTasks', allTasksAsString);
     }
 }
 
@@ -43,7 +46,18 @@ function cancelTask() {
 }
 
 
-function loadAllTasks() {
-    let allTasksAsString = localStorage.getItem('allTasks');
+async function loadAllTasks() {
+    await downloadFromServer();
+    let allTasksAsString = await backend.getItem('allTasks');
     allTasks = JSON.parse(allTasksAsString);
+}
+
+
+function confirmTask(taskID) {
+    document.getElementById('TaskID').innerHTML = taskID;
+    document.getElementById('confirmMessage').style.display = "block";
+    
+    setTimeout(() => {
+        document.getElementById('confirmMessage').style.display = "none";
+    }, 3000);
 }

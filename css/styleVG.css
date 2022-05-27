@@ -137,3 +137,23 @@ body {
     border-radius: 10px;
     height: 50px;
 }
+
+#confirmMessage {
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    right: 20%;
+    left: 20%;
+    background-color: rgba(0, 0, 0, 0.55);
+    color: white;
+    font-size: 36px;
+    display: none;
+}
+
+#userMessage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

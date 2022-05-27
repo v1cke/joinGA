@@ -10,6 +10,11 @@ let allTasks = [];
  * @param {urgency} title - Value of the field urgency
  * @param {text} title - Value of the field description
  * @param {id} title - id of the created task
+ * 
+ * <script>
+        setURL('https://gruppe-213.developerakademie.net/smallest_backend_ever');
+
+    </script>
  * */
 
 function createTask() {
@@ -31,10 +36,10 @@ function createTask() {
             'taskID': id,
         };
         allTasks.push(task);
-        confirmTask(id);
         console.log(allTasks);
         let allTasksAsString = JSON.stringify(allTasks);
-        backend.setItem('allTasks', allTasksAsString);
+        localStorage.setItem('allTasks', allTasksAsString);
+        confirmTask(id);
     }
 }
 
@@ -47,17 +52,17 @@ function cancelTask() {
 
 
 async function loadAllTasks() {
-    await downloadFromServer();
-    let allTasksAsString = await backend.getItem('allTasks');
+    //await downloadFromServer();
+    let allTasksAsString = await localStorage.getItem('allTasks');
     allTasks = JSON.parse(allTasksAsString);
 }
 
 
-function confirmTask(taskID) {
+async function confirmTask(taskID) {
     document.getElementById('TaskID').innerHTML = taskID;
     document.getElementById('confirmMessage').style.display = "block";
     
     setTimeout(() => {
         document.getElementById('confirmMessage').style.display = "none";
-    }, 3000);
+    }, 30000);
 }

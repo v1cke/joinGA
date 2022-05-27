@@ -1,0 +1,149 @@
+/* open-sans-regular - latin */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/open-sans-v29-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/open-sans-v29-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/open-sans-v29-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/open-sans-v29-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/open-sans-v29-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/open-sans-v29-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
+  /* open-sans-800 - latin */
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/open-sans-v29-latin-800.eot'); /* IE9 Compat Modes */
+    src: local(''),
+         url('../fonts/open-sans-v29-latin-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/open-sans-v29-latin-800.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/open-sans-v29-latin-800.woff') format('woff'), /* Modern Browsers */
+         url('../fonts/open-sans-v29-latin-800.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/open-sans-v29-latin-800.svg#OpenSans') format('svg'); /* Legacy iOS */
+  }
+
+
+
+
+body {
+    margin: 0;
+    font-family: 'Open Sans';
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.task-container {
+    width: 1024px;
+}
+
+.headline {
+    margin-left: 6.66%;
+}
+
+.headline h1 {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.headline p {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.task-content-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 24px;
+    height: 70vh;
+    background-color: rgb(240, 255, 217);
+    border-radius: 20px;
+}
+
+.task-content-box {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.input-field {
+    width: 100%;
+    height: 70px;
+    font-size: 20px;
+}
+
+.input-field-big {
+    width: 100%;
+    text-align: start;
+    height: 200px;
+    font-size: 20px;
+}
+
+.drop-down-field {
+    width: 100%;
+    height: 70px;
+    font-size: 20px;
+}
+
+.assigned-to {
+    display: flex;
+    width: 80px;
+    height: 100px;
+}
+
+.assigned-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.assigned-to p {
+    font-size: 16px;
+    margin: 0px;
+    font-weight: 700;
+    align-items: center;
+}
+
+.assigned-to img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.cancel-create-box {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.cancel-task {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 36px;
+    font-size: 20px;
+}
+
+.create-task {
+    cursor: pointer;
+    background-color: blue;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    border-color: transparent;
+    border-radius: 10px;
+    height: 50px;
+}

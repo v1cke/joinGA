@@ -1,6 +1,17 @@
 let allTasks = [];
 
 
+/**
+ * function to put values of the task as a JSON in an array and save it in storage
+ * 
+ * @param {string} title - Value of the field title
+ * @param {category} title - Value of the field category
+ * @param {date} title - Value of the field date
+ * @param {urgency} title - Value of the field urgency
+ * @param {text} title - Value of the field description
+ * @param {id} title - id of the created task
+ * */
+
 function createTask() {
     let title = document.getElementById('title').value;
     let category = document.getElementById('category').value;

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/addtask.js"></script>
+    <link rel="stylesheet" href="css/styleVG.css">
+    <link rel="stylesheet" href="css/style-fonts-ts.css">
+</head>
+
+<body onload="loadAllTasks()">
+    <div class="container">
+        <div id="taskContainer" class="task-container">
+            <div class="headline">
+                <h1>Add Task</h1>
+                <p>To-Do-List 4.0</p>
+            </div>
+            <form class="task-content-container">
+                <div class="task-content-box">
+                    <h2>TITLE</h2>
+                    <input required id="title" class="input-field" placeholder="insert title..." type="text">
+                </div>
+                <div class="task-content-box">
+                    <h2>DUE DATE</h2>
+                    <input required id="date" class="input-field" placeholder="insert deadline..." type="date">
+                </div>
+                <div class="task-content-box">
+                    <h2>CATEGORY</h2>
+                    <select id="category" class="drop-down-field">
+                        <option>marketing</option>
+                        <option>development</option>
+                        <option>sales</option>
+                        <option>design</option>
+                    </select>
+                </div>
+                <div class="task-content-box">
+                    <h2>URGENCY</h2>
+                    <select id="urgency" class="drop-down-field">
+                        <option>low</option>
+                        <option>standard</option>
+                        <option>high</option>
+                    </select>
+                </div>
+                <div class="task-content-box">
+                    <h2>DESCRIPTION</h2>
+                    <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
+                </div>
+                <div class="task-content-box">
+                    <h2>ASSIGNED TO</h2>
+                    <div class="assigned-to">
+                        <div class="assigned-person">
+                            <p id="name">Nina</p>
+                            <img src="img/person1.jpg">
+                        </div>
+                        <div class="assigned-person">
+                            <p id="name">Hans</p>
+                            <img src="img/person2.jpg">
+                        </div>
+                        <div class="assigned-person">
+                            <p id="name">Mike</p>
+                            <img src="img/person3.jpg">
+                        </div>
+                        <div class="assigned-person">
+                            <p id="name">Kieran</p>
+                            <img src="img/person4.jpg">
+                        </div>
+                    </div>
+                    <div class="cancel-create-box">
+                        <a href="#" onclick="cancelTask()" class="cancel-task">cancel</a>
+                        <button onclick="createTask()" class="create-task">create task</button>
+                    </div>
+                    <form action=""></form>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

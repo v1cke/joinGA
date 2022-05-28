@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Join - Add Task</title>
     <script src="js/addtask.js"></script>
     <script src="js/mini_backend.js"></script>
     <link rel="stylesheet" href="css/styleVG.css">
     <link rel="stylesheet" href="css/style-fonts-ts.css">
-    
+
 </head>
 
 <body onload="loadAllTasks()">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="task-content-box">
                     <h2>DUE DATE</h2>
-                    <input required id="date" class="input-field" placeholder="insert deadline..." type="date">
+                    <input required id="date" class="input-field" placeholder="insert deadline..." onfocus="(this.type='date')">
                 </div>
                 <div class="task-content-box">
                     <h2>CATEGORY</h2>
@@ -48,8 +48,7 @@
                 </div>
                 <div class="task-content-box">
                     <h2>DESCRIPTION</h2>
-                    <textarea required minlength="5" id="description" class="input-field-big"
-                        placeholder="insert description..." type="text"></textarea>
+                    <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
                 </div>
                 <div class="task-content-box">
                     <h2>ASSIGNED TO</h2>
@@ -72,14 +71,13 @@
                         </div>
                     </div>
                     <div class="cancel-create-box">
-                        <a href="#" onclick="cancelTask()" class="cancel-task">cancel</a>
+                        <button onclick="cancelTask()" class="cancel-task"><a href="#">cancel</a></button>
                         <button onclick="createTask()" class="create-task">create task</button>
                     </div>
                     <form action=""></form>
                     <div id="confirmMessage" class="d-none">
                         <div id="userMessage">
-                            <p>Task mit der ID: <span id="TaskID"></span> erfasst.<br>
-                                Siehe Backlog.
+                            <p>Task mit der ID: <span id="TaskID"></span> erfasst.<br> Siehe Backlog.
                             </p>
                         </div>
                     </div>

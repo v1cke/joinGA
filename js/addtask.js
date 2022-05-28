@@ -61,7 +61,7 @@ async function loadAllTasks() {
 async function confirmTask(taskID) {
     document.getElementById('TaskID').innerHTML = taskID;
     document.getElementById('confirmMessage').style.display = "block";
-    
+
     setTimeout(() => {
         document.getElementById('confirmMessage').style.display = "none";
     }, 30000);

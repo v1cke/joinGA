@@ -11,7 +11,6 @@
         .bord_under_container {
             max-height: 80vh;
             overflow-y: auto;
-            /* height: fit-content; */
         }
     }
     
@@ -22,8 +21,5 @@
         }
         .selection {
             border-radius: 0;
-        }
-        #todo  {
-            
         }
     }

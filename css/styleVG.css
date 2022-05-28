@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     box-sizing: border-box;
@@ -39,6 +38,7 @@ body {
     font-weight: bold;
     margin-bottom: 8px;
 }
+
 .headline p {
     font-weight: bold;
     margin-top: 8px;
@@ -51,7 +51,7 @@ body {
     width: 100%;
     margin-top: 24px;
     height: 70vh;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
@@ -67,6 +67,14 @@ body {
     width: 100%;
     height: 70px;
     font-size: 20px;
+    padding: 0 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 2px solid #0097e6;
+}
+
+.input-field:hover {
+    transform: scale(1.05);
 }
 
 .input-field-big {
@@ -74,12 +82,34 @@ body {
     text-align: start;
     height: 200px;
     font-size: 20px;
+    resize: none;
+    padding: 10px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    border: 2px solid #0097e6;
+}
+
+.input-field-big:hover {
+    transform: scale(1.05);
 }
 
 .drop-down-field {
     width: 100%;
     height: 70px;
     font-size: 20px;
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 2px solid #0097e6;
+    appearance: none;
+    background: white url(/img/select-arrow.png) no-repeat 90% center;
+}
+
+.drop-down-field:hover {
+    transform: scale(1.05);
+}
+
+.drop-down-field:focus {
+    transform: scale(1.05);
 }
 
 .assigned-to {
@@ -118,13 +148,42 @@ body {
     margin-top: 24px;
 }
 
-.cancel-task {
+
+/* .cancel-task {
     cursor: pointer;
     color: blue;
     text-decoration: none;
     font-weight: bold;
     margin-right: 36px;
     font-size: 20px;
+} */
+
+.cancel-task {
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    height: 50px;
+    padding: 0 20px;
+    margin-right: 36px;
+    transition: 125ms;
+}
+
+.cancel-task a {
+    text-decoration: none;
+    color: blue;
+}
+
+.cancel-task:hover {
+    background-color: blue;
+    border: 2px solid blue;
+    transition: 125ms;
+}
+
+.cancel-task:hover a {
+    color: white;
 }
 
 .create-task {
@@ -133,9 +192,16 @@ body {
     font-weight: bold;
     color: white;
     font-size: 16px;
-    border-color: transparent;
+    border: 2px solid blue;
     border-radius: 10px;
     height: 50px;
+    transition: 125ms;
+}
+
+.create-task:hover {
+    background-color: transparent;
+    color: blue;
+    transition: 125ms;
 }
 
 #confirmMessage {

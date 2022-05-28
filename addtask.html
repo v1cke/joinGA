@@ -9,6 +9,8 @@
     <script src="js/addtask.js"></script>
     <script src="js/mini_backend.js"></script>
     <link rel="stylesheet" href="css/styleVG.css">
+    <link rel="stylesheet" href="css/style-display-flex-ts.css">
+    <link rel="stylesheet" href="css/style-responsiv-VG.css">
     <link rel="stylesheet" href="css/style-fonts-ts.css">
 
 </head>
@@ -53,22 +55,27 @@
                 <div class="task-content-box">
                     <h2>ASSIGNED TO</h2>
                     <div class="assigned-to">
-                        <div class="assigned-person">
-                            <p id="name">Nina</p>
-                            <img src="img/person1.jpg">
+                        <div class="d-flex">
+                            <div class="assigned-person">
+                                <p id="name">Nina</p>
+                                <img src="img/person1.jpg">
+                            </div>
+                            <div class="assigned-person">
+                                <p id="name">Hans</p>
+                                <img src="img/person2.jpg">
+                            </div>
                         </div>
-                        <div class="assigned-person">
-                            <p id="name">Hans</p>
-                            <img src="img/person2.jpg">
+                        <div class="d-flex">
+                            <div class="assigned-person">
+                                <p id="name">Mike</p>
+                                <img src="img/person3.jpg">
+                            </div>
+                            <div class="assigned-person">
+                                <p id="name">Kieran</p>
+                                <img src="img/person4.jpg">
+                            </div>
                         </div>
-                        <div class="assigned-person">
-                            <p id="name">Mike</p>
-                            <img src="img/person3.jpg">
-                        </div>
-                        <div class="assigned-person">
-                            <p id="name">Kieran</p>
-                            <img src="img/person4.jpg">
-                        </div>
+
                     </div>
                     <div class="cancel-create-box">
                         <button onclick="cancelTask()" class="cancel-task"><a href="#">cancel</a></button>

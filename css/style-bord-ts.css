@@ -133,6 +133,7 @@ body {
     font-weight: bold;
     margin: 0px 5px 15px 5px;
     border-radius: 20px;
+    border: 2px solid blue;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     transition: 125ms;

@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+.footer {
+    padding: 40px;
+    background-color: #545454;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-child {
+    width: 30%;
+    color: white;
+}

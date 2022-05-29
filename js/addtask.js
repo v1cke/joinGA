@@ -60,9 +60,18 @@ async function loadAllTasks() {
 
 async function confirmTask(taskID) {
     document.getElementById('TaskID').innerHTML = taskID;
-    document.getElementById('confirmMessage').style.display = "block";
-
+    showConfirmMessage();
+    
     setTimeout(() => {
-        document.getElementById('confirmMessage').style.display = "none";
-    }, 30000);
+        hideConfirmMessage();
+    }, 50000);
+}
+
+
+function showConfirmMessage() {
+    document.getElementById('confirmMessage').style.display = "block";
+}
+
+function hideConfirmMessage() {
+    document.getElementById('confirmMessage').style.display = "none";
 }

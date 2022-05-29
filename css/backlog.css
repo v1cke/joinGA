@@ -1,16 +1,24 @@
+body {
+    background-image: url('img/pexels-fauxels-3183197.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
 main {
     margin: 3em 10em;
 }
 
 :root {
-    --c-marketing: red; 
+    --c-marketing: red;
     --c-management: royalblue;
     --c-sale: green;
     --c-product: fuchsia;
 }
 
 .backlog-headline p {
-   color: darkblue;
+    color: darkblue;
 }
 
 .content-titles {
@@ -23,6 +31,7 @@ main {
 }
 
 .backlog-container {
+    background: rgba(255, 255, 255, 0.95);
     box-shadow: rgba(0, 0, 0, 0.212) 0px 1px 4px;
     border-radius: 12px;
     padding: 1em;
@@ -80,7 +89,9 @@ main {
     justify-content: flex-end;
 }
 
-.category-title, .details-title, .assigned-title{
-    min-width: 33.33%;  
-    text-align: center;  
+.category-title,
+.details-title,
+.assigned-title {
+    min-width: 33.33%;
+    text-align: center;
 }

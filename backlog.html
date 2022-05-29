@@ -11,6 +11,40 @@
 </head>
 <body onload="includeHTML()">
     <div w3-include-html="./templates/header.html"></div>
-    <div w3-include-html="./templates/backlog.html"></div>
+
+    <main>
+        <div class="backlog-page">
+            <div class="backlog-headline">
+                <h1>Backlog</h1>
+                <p>Learning Management System Project</p>
+            </div>
+            <div class="content-titles">
+                <div class="assigned-title">ASSIGNED TO</div>
+                <div class="category-title">CATEGORY</div>
+                <div class="details-title">DETAILS</div>
+            </div>
+            <div class="backlog-content">
+                <div class="backlog-container">
+                    <div class="color-stripe"></div>
+                    <div class="identification">
+                        <img id="profile-picture" src="./img/man3.jpg" alt="">
+                        <div>
+                            <span id="name">Thomas Mauer</span><br>
+                            <a href="" id="mail">thomas@mail.com</a>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div id="category">Marketing</div>
+                    </div>
+                    <div class="details">
+                        <span id="details"> Lt consectetur adipisicing Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Culpa unde odit deleniti quaerat, ipsam sit aut accusamus excepturi rem quae voluptatem
+                            itaque cum ex non accusantium sequi fugiat eaque illo?</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
 </body>
 </html>

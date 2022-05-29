@@ -1,0 +1,25 @@
+@media screen and (max-width: 850px) {
+    .logout {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .header-inside {
+        width: 100%;
+        padding: 0 20px 0 30px;
+    }
+    .link-container {
+        flex-direction: column-reverse;
+    }
+    .header-inside img:first-child {
+        height: 40px;
+        margin-top: -40px;
+    }
+    .logout {
+        justify-content: end;
+    }
+    .logout img {
+        display: none;
+    }
+}

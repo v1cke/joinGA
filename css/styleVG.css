@@ -149,15 +149,6 @@ body {
 }
 
 
-/* .cancel-task {
-    cursor: pointer;
-    color: blue;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 36px;
-    font-size: 20px;
-} */
-
 .cancel-task {
     cursor: pointer;
     background-color: transparent;

@@ -7,15 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Add Task</title>
     <script src="js/addtask.js"></script>
+    <script src="js/includeHTML.js"></script>
     <script src="js/mini_backend.js"></script>
     <link rel="stylesheet" href="css/styleVG.css">
     <link rel="stylesheet" href="css/style-display-flex-ts.css">
     <link rel="stylesheet" href="css/style-responsiv-VG.css">
     <link rel="stylesheet" href="css/style-fonts-ts.css">
-
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style-responsiv-backlog-jk.css">
 </head>
 
-<body onload="loadAllTasks()">
+<body onload="loadAllTasks(); includeHTML()">
+    <div w3-include-html="./templates/header.html"></div>
+
     <div class="container">
         <div id="taskContainer" class="task-container">
             <div class="headline">

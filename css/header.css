@@ -20,7 +20,8 @@ body {
     width: 80%;
 }
 
-.menu {
+.menu,
+.logout {
     color: white;
     font-weight: bold;
     font-size: 1.2em;
@@ -28,13 +29,24 @@ body {
     align-items: center;
 }
 
-.menu a {
+.menu a,
+.logout a {
     text-decoration: none;
     margin-right: 1em;
     border-bottom: 5px solid transparent;
+    white-space: nowrap;
 }
 
-.menu a:hover {
+.menu a {
+    padding-top: 30px;
+}
+
+.logout a {
+    padding-bottom: 20px;
+}
+
+.menu a:hover,
+.logout a:hover {
     border-bottom: 5px solid white;
     cursor: pointer;
 }

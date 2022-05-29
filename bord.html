@@ -13,11 +13,17 @@
     <link rel="stylesheet" href="css/style-padding-margin-ts.css">
     <link rel="stylesheet" href="css/style-responsiv-ts.css">
     <link rel="stylesheet" href="css/style-text-ts.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="icon" type="image/x-icon" href="icon/bull.png">
     <script src="js/script-bord-ts.js"></script>
+    <script src="js/includeHTML.js"></script>
+    <link rel="stylesheet" href="css/style-responsiv-backlog-jk.css">
+
 </head>
 
-<body onload="fillBord()">
+<body onload="fillBord(); includeHTML()">
+    <div w3-include-html="./templates/header.html"></div>
+
     <div class="selection d-none">
         <div class="slider d-flex text-uppercase text-center">
             <a href="#todo">to do</a>

@@ -1,9 +1,17 @@
 body {
+<<<<<<< HEAD
+    background-image: url('img/pexels-fauxels-3183197.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Open Sans', sans-serif;
+=======
     margin: 0;
     background-image: url(img/pexels-fauxels-3183197.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+>>>>>>> f94a00d8425806181f16c9da526e3c2fd27e6a00
 }
 
 main {
@@ -20,9 +28,14 @@ main {
     --c-product: fuchsia;
 }
 
+<<<<<<< HEAD
+.backlog-headline p {
+    color: darkblue;
+=======
 
 .backlog-headline p, h1 {
     color: white;
+>>>>>>> f94a00d8425806181f16c9da526e3c2fd27e6a00
 }
 
 .content-titles {
@@ -38,6 +51,7 @@ main {
 }
 
 .backlog-container {
+    background: rgba(255, 255, 255, 0.95);
     box-shadow: rgba(0, 0, 0, 0.212) 0px 1px 4px;
     border-radius: 12px;
     padding: 1em;
@@ -96,7 +110,13 @@ main {
     justify-content: flex-end;
 }
 
+<<<<<<< HEAD
+.category-title,
+.details-title,
+.assigned-title {
+=======
 .category-title, .details-title, .assigned-title {
+>>>>>>> f94a00d8425806181f16c9da526e3c2fd27e6a00
     min-width: 33.33%;
     text-align: center;
 }

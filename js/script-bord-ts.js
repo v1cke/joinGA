@@ -149,9 +149,8 @@ function todoHtml(todoArray) {
                 <h4 class="text-center">${todoArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <p>${todoArray['name']}</p>
+                    <span>${todoArray['name']}</span>
                     </div>
-                    <span class="word_break_all">${todoArray['email']}</span>
                 </div>
                 <p class="text_container">${todoArray['text']}</p>
                 <div class="d-flex j-space-betwen">
@@ -196,9 +195,8 @@ function inProgressHtml(inProgressArray) {
                 <h4 class="text-center">${inProgressArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <p>${inProgressArray['name']}</p>
+                    <span>${inProgressArray['name']}</span>
                     </div>
-                    <span class="word_break_all">${inProgressArray['email']}</span>
                 </div>
                 <p class="text_container">${inProgressArray['text']}</p>
                 <div class="d-flex j-space-betwen">
@@ -243,9 +241,8 @@ function testingHtml(testingArray) {
                 <h4 class="text-center">${testingArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <p>${testingArray['name']}</p>
+                    <span>${testingArray['name']}</span>
                     </div>
-                    <span class="word_break_all">${testingArray['email']}</span>
                 </div>
                 <p class="text_container">${testingArray['text']}</p>
                 <div class="d-flex j-space-betwen">
@@ -289,9 +286,8 @@ function doneHtml(doneArray) {
                 </div>
                 <h4 class="text-center">${doneArray['title']}</h4><div>
                 <div class="d-flex">
-                    <p>${doneArray['name']}</p>
+                    <span>${doneArray['name']}</span>
                 </div>
-                    <span class="word_break_all">${doneArray['email']}</span>
                 </div>
                 <p class="text_container">${doneArray['text']}</p>
                 <div class="d-flex j-space-betwen">

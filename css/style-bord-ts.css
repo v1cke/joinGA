@@ -277,7 +277,7 @@ body {
 }
 
 .text_container {
-    height: 20px;
+    height: 40px;
     overflow: hidden;
     transition: 125ms;
 }

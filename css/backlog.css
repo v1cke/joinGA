@@ -20,8 +20,13 @@ main {
     --c-product: fuchsia;
 }
 
+<<<<<<< HEAD
 
 .backlog-headline p, h1 {
+=======
+.backlog-headline p,
+h1 {
+>>>>>>> be31b59a5a6521f499cf72c318ec7147ab33c9db
     color: white;
 }
 
@@ -97,7 +102,13 @@ main {
     justify-content: flex-end;
 }
 
+<<<<<<< HEAD
 .category-title, .details-title, .assigned-title {
+=======
+.category-title,
+.details-title,
+.assigned-title {
+>>>>>>> be31b59a5a6521f499cf72c318ec7147ab33c9db
     min-width: 33.33%;
     text-align: center;
 }

@@ -34,6 +34,7 @@ function createTask() {
             'urgency': urgency,
             'description': text,
             'taskID': id,
+            'menu': false,
         };
         allTasks.push(task);
         console.log(allTasks);

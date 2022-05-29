@@ -1,7 +1,5 @@
 let Tasks = [];
 
-setURL('http://gruppe-237.developerakademie.com/smallest_backend_ever');
-
 
 /**
  * function to put values of the task as a JSON in an array and save it in storage
@@ -13,10 +11,7 @@ setURL('http://gruppe-237.developerakademie.com/smallest_backend_ever');
  * @param {text} title - Value of the field description
  * @param {id} title - id of the created task
  * 
- * <script>
-        setURL('https://gruppe-213.developerakademie.net/smallest_backend_ever');
-
-    </script>
+ * 
  * */
 
 async function createTask() {
@@ -29,21 +24,26 @@ async function createTask() {
     let id = allTasks.length + 1;
 
     if (title && date && description) {
-        let task = {
-            'title': title,
-            'date': dateAsString,
-            'category': category,
-            'urgency': urgency,
-            'description': text,
-            'taskID': id,
-            'menu': false,
-        };
-        Tasks.push(task);
-        console.log(Tasks);
+        await generateTask(title, dateAsString, category, urgency, text, id);
         let TasksAsString = JSON.stringify(Tasks);
         await backend.setItem('Tasks', TasksAsString);
         confirmTask(id);
     }
+}
+
+
+function generateTask(title, dateAsString, category, urgency, text, id){
+    let task = {
+        'title': title,
+        'date': dateAsString,
+        'category': category,
+        'urgency': urgency,
+        'description': text,
+        'taskID': id,
+        'menu': false,
+    }
+    Tasks.push(task);
+    console.log(Tasks);
 }
 
 

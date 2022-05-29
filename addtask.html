@@ -6,9 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Add Task</title>
+    <script src="js/mini_backend.js"></script>
+    <script>
+        setURL('https://gruppe-213.developerakademie.net/smallest_backend_ever');
+    </script>
     <script src="js/addtask.js"></script>
     <script src="js/includeHTML.js"></script>
-    <script src="js/mini_backend.js"></script>
     <link rel="stylesheet" href="css/style-addtask.css">
     <link rel="stylesheet" href="css/style-display-flex-ts.css">
     <link rel="stylesheet" href="css/style-responsiv-VG.css">
@@ -28,7 +31,8 @@
                 </div>
                 <div class="task-content-box">
                     <h2>DUE DATE</h2>
-                    <input required id="date" class="input-field" placeholder="insert deadline..." onfocus="(this.type='date')">
+                    <input required id="date" class="input-field" placeholder="insert deadline..."
+                        onfocus="(this.type='date')">
                 </div>
                 <div class="task-content-box">
                     <h2>CATEGORY</h2>
@@ -49,7 +53,8 @@
                 </div>
                 <div class="task-content-box">
                     <h2>DESCRIPTION</h2>
-                    <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
+                    <textarea required minlength="5" id="description" class="input-field-big"
+                        placeholder="insert description..." type="text"></textarea>
                 </div>
                 <div class="task-content-box">
                     <h2>ASSIGNED TO</h2>

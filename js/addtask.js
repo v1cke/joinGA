@@ -1,4 +1,6 @@
-let allTasks = [];
+let Tasks = [];
+
+setURL('http://gruppe-237.developerakademie.com/smallest_backend_ever');
 
 
 /**
@@ -17,7 +19,7 @@ let allTasks = [];
     </script>
  * */
 
-function createTask() {
+async function createTask() {
     let title = document.getElementById('title').value;
     let category = document.getElementById('category').value;
     let date = document.getElementById('date').value;
@@ -36,10 +38,10 @@ function createTask() {
             'taskID': id,
             'menu': false,
         };
-        allTasks.push(task);
-        console.log(allTasks);
-        let allTasksAsString = JSON.stringify(allTasks);
-        localStorage.setItem('allTasks', allTasksAsString);
+        Tasks.push(task);
+        console.log(Tasks);
+        let TasksAsString = JSON.stringify(Tasks);
+        await backend.setItem('Tasks', TasksAsString);
         confirmTask(id);
     }
 }
@@ -53,8 +55,8 @@ function cancelTask() {
 
 
 async function loadAllTasks() {
-    //await downloadFromServer();
-    let allTasksAsString = await localStorage.getItem('allTasks');
+    await downloadFromServer();
+    let allTasksAsString = await backend.getItem('allTasks');
     allTasks = JSON.parse(allTasksAsString);
 }
 

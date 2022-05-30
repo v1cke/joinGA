@@ -18,24 +18,22 @@ async function createTask() {
     let title = document.getElementById('title').value;
     let category = document.getElementById('category').value;
     let date = document.getElementById('date').value;
-    let dateAsString = date.toString();
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
-    let id = allTasks.length + 1;
+    let id = Tasks.length + 1;
 
     if (title && date && description) {
-        await generateTask(title, dateAsString, category, urgency, text, id);
-        let TasksAsString = JSON.stringify(Tasks);
-        await backend.setItem('Tasks', TasksAsString);
+        generateTask(title, date, category, urgency, text, id);
+        await backend.setItem('Tasks', JSON.stringify(Tasks));
         confirmTask(id);
     }
 }
 
 
-function generateTask(title, dateAsString, category, urgency, text, id){
+function generateTask(title, date, category, urgency, text, id){
     let task = {
         'title': title,
-        'date': dateAsString,
+        'date': date,
         'category': category,
         'urgency': urgency,
         'description': text,
@@ -54,10 +52,14 @@ function cancelTask() {
 }
 
 
-async function loadAllTasks() {
+async function loadTasks() {
     await downloadFromServer();
-    let allTasksAsString = await backend.getItem('allTasks');
-    allTasks = JSON.parse(allTasksAsString);
+    let TasksAsString = await backend.getItem('Tasks');
+    if (TasksAsString){
+    Tasks = JSON.parse(Tasks);
+    } else {
+        Tasks = [];
+    }
 }
 
 

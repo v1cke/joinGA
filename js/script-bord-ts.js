@@ -136,7 +136,8 @@ function dispalyTodo() {
  */
 function todoHtml(todoArray) {
     return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${todoArray['id']})" class="word_break_all cart padding-20 ${todoArray['urgency']}">
+            <div draggable="true" ondragstart="startDragging(${todoArray['id']})" class="word_break_all cart padding-20">
+                <div class="color-stripe ${todoArray['urgency']}"></div>   
                 <div id="menu${todoArray['id']}" onclick="openMenu(${todoArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
                     <div class="menu_btn_burger "></div>
                     <ul id="list${todoArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
@@ -182,7 +183,8 @@ function dispalyInProgress() {
  */
 function inProgressHtml(inProgressArray) {
     return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${inProgressArray['id']})" class="word_break_all cart padding-20 ${inProgressArray['urgency']}">
+            <div draggable="true" ondragstart="startDragging(${inProgressArray['id']})" class="word_break_all cart padding-20">
+                <div class="color-stripe ${inProgressArray['urgency']}"></div>      
                 <div id="menu${inProgressArray['id']}" onclick="openMenu(${inProgressArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
                     <div class="menu_btn_burger "></div>
                     <ul id="list${inProgressArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
@@ -228,7 +230,8 @@ function dispalyTesting() {
  */
 function testingHtml(testingArray) {
     return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${testingArray['id']})" class="word_break_all cart padding-20 ${testingArray['urgency']}">
+            <div draggable="true" ondragstart="startDragging(${testingArray['id']})" class="word_break_all cart padding-20">
+                <div class="color-stripe ${testingArray['urgency']}"></div>     
                 <div id="menu${testingArray['id']}" onclick="openMenu(${testingArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
                     <div class="menu_btn_burger "></div>
                     <ul id="list${testingArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
@@ -274,7 +277,8 @@ function dispalyDone() {
  */
 function doneHtml(doneArray) {
     return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${doneArray['id']})" class="word_break_all cart padding-20 ${doneArray['urgency']}">
+            <div draggable="true" ondragstart="startDragging(${doneArray['id']})" class="word_break_all cart padding-20">
+                <div class="color-stripe ${doneArray['urgency']}"></div>   
                 <div id="menu${doneArray['id']}" onclick="openMenu(${doneArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
                     <div class="menu_btn_burger "></div>
                     <ul id="list${doneArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">

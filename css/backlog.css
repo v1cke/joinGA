@@ -11,6 +11,8 @@ main {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     padding: 20px;
+    box-sizing: border-box;
+    min-height: calc((100vh - 300px) - 6em);
 }
 
 :root {
@@ -61,7 +63,7 @@ h1 {
 }
 
 .color-stripe {
-    width: 10px;
+    width: 15px;
     height: 100%;
     background-color: red;
     position: absolute;

@@ -108,32 +108,43 @@ body {
 }
 
 .bord_under_container {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.6);
     min-width: 250px;
     min-height: 80vh;
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
+    box-sizing: border-box;
 }
 
 .bord_under_container.drag_area_highlight {
-    background: rgb(190, 188, 188);
+    background: rgb(190, 190, 190, 0.6);
     min-width: 250px;
     min-height: 80vh;
     border-radius: 20px;
-    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
 }
 
 .cart {
     position: relative;
     font-weight: bold;
-    margin: 0px 5px 15px 5px;
+    margin: 0px 6px 15px 6px;
     border-radius: 20px;
-    border: 2px solid blue;
+    background: white;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     transition: 125ms;
+    box-sizing: border-box;
+}
+
+.color-stripe {
+    width: 15px;
+    height: 100%;
+    /* background-color: red; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
 }
 
 .cart_menu_btn {
@@ -147,7 +158,7 @@ body {
 .menu_btn_burger {
     width: 25px;
     height: 3px;
-    background: #fff;
+    background: #000;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(207, 101, 47, .2);
     transition: all 0.5s ease-in-out;
@@ -159,7 +170,7 @@ body {
     position: absolute;
     width: 25px;
     height: 3px;
-    background: #fff;
+    background: #000;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(207, 101, 47, .2);
     transition: all 0.5s ease-in-out;
@@ -195,10 +206,11 @@ body {
 }
 
 .drop_menu li {
+    color: white;
     list-style-type: none;
     text-align: end;
     padding: 2px 5px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.9);
     transition: all 0.3s ease-in-out;
     opacity: 0;
     transform: rotateY(-100deg);
@@ -230,52 +242,19 @@ body {
 }
 
 .low {
-    /* ff 3.6+ */
-    background: -moz-linear-gradient(90deg, rgba(98, 255, 105, 1) 0%, rgba(0, 190, 130, 1) 100%);
-    /* safari 5.1+,chrome 10+ */
-    background: -webkit-linear-gradient(90deg, rgba(98, 255, 105, 1) 0%, rgba(0, 190, 130, 1) 100%);
-    /* opera 11.10+ */
-    background: -o-linear-gradient(90deg, rgba(98, 255, 105, 1) 0%, rgba(0, 190, 130, 1) 100%);
-    /* ie 6-9 */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#00BE82', endColorstr='#62FF69', GradientType=0);
-    /* ie 10+ */
-    background: -ms-linear-gradient(90deg, rgba(98, 255, 105, 1) 0%, rgba(0, 190, 130, 1) 100%);
-    /* global 94%+ browsers support */
-    background: linear-gradient(90deg, rgba(98, 255, 105, 1) 0%, rgba(0, 190, 130, 1) 100%);
+    background: green;
 }
 
 .mid {
-    /* ff 3.6+ */
-    background: -moz-linear-gradient(90deg, rgba(255, 230, 0, 1) 0%, rgba(207, 109, 0, 1) 100%);
-    /* safari 5.1+,chrome 10+ */
-    background: -webkit-linear-gradient(90deg, rgba(255, 230, 0, 1) 0%, rgba(207, 109, 0, 1) 100%);
-    /* opera 11.10+ */
-    background: -o-linear-gradient(90deg, rgba(255, 230, 0, 1) 0%, rgba(207, 109, 0, 1) 100%);
-    /* ie 6-9 */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#CF6D00', endColorstr='#FFE600', GradientType=0);
-    /* ie 10+ */
-    background: -ms-linear-gradient(90deg, rgba(255, 230, 0, 1) 0%, rgba(207, 109, 0, 1) 100%);
-    /* global 94%+ browsers support */
-    background: linear-gradient(90deg, rgba(255, 230, 0, 1) 0%, rgba(207, 109, 0, 1) 100%);
+    background: yellow;
 }
 
 .hight {
-    /* ff 3.6+ */
-    background: -moz-linear-gradient(90deg, rgba(255, 0, 176, 1) 0%, rgba(190, 0, 0, 1) 100%);
-    /* safari 5.1+,chrome 10+ */
-    background: -webkit-linear-gradient(90deg, rgba(255, 0, 176, 1) 0%, rgba(190, 0, 0, 1) 100%);
-    /* opera 11.10+ */
-    background: -o-linear-gradient(90deg, rgba(255, 0, 176, 1) 0%, rgba(190, 0, 0, 1) 100%);
-    /* ie 6-9 */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#BE0000', endColorstr='#FF00B0', GradientType=0);
-    /* ie 10+ */
-    background: -ms-linear-gradient(90deg, rgba(255, 0, 176, 1) 0%, rgba(190, 0, 0, 1) 100%);
-    /* global 94%+ browsers support */
-    background: linear-gradient(90deg, rgba(255, 0, 176, 1) 0%, rgba(190, 0, 0, 1) 100%);
+    background: red;
 }
 
 .text_container {
-    height: 40px;
+    height: 45px;
     overflow: hidden;
     transition: 125ms;
 }
@@ -293,6 +272,7 @@ h3 {
     margin-bottom: 10px;
     background: white;
     border-radius: 20px;
+    padding: 5px 0;
 }
 
 h4 {

@@ -24,78 +24,79 @@
 
 <body onload="loadAllTasks(); includeHTML()">
     <div w3-include-html="./templates/header.html"></div>
-    <div class="container">
-        <div id="taskContainer" class="task-container">
-            <form class="task-content-container">
-                <div class="task-content-box">
-                    <h2>TITLE</h2>
-                    <input required id="title" class="input-field" placeholder="insert title..." type="text">
-                </div>
-                <div class="task-content-box">
-                    <h2>DUE DATE</h2>
-                    <input required id="date" class="input-field" placeholder="insert deadline..." onfocus="(this.type='date')">
-                </div>
-                <div class="task-content-box">
-                    <h2>CATEGORY</h2>
-                    <select id="category" class="drop-down-field">
+    <div class="main-container">
+        <div class="container">
+            <div id="taskContainer" class="task-container">
+                <form class="task-content-container">
+                    <div class="task-content-box">
+                        <h2>TITLE</h2>
+                        <input required id="title" class="input-field" placeholder="insert title..." type="text">
+                    </div>
+                    <div class="task-content-box">
+                        <h2>DUE DATE</h2>
+                        <input required id="date" class="input-field" placeholder="insert deadline..." onfocus="(this.type='date')">
+                    </div>
+                    <div class="task-content-box">
+                        <h2>CATEGORY</h2>
+                        <select id="category" class="drop-down-field">
                         <option>marketing</option>
                         <option>management</option>
                         <option>sale</option>
                         <option>product</option>
                     </select>
-                </div>
-                <div class="task-content-box">
-                    <h2>URGENCY</h2>
-                    <select id="urgency" class="drop-down-field">
+                    </div>
+                    <div class="task-content-box">
+                        <h2>URGENCY</h2>
+                        <select id="urgency" class="drop-down-field">
                         <option>low</option>
                         <option>mid</option>
                         <option>high</option>
                     </select>
-                </div>
-                <div class="task-content-box">
-                    <h2>DESCRIPTION</h2>
-                    <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
-                </div>
-                <div class="task-content-box">
-                    <h2>ASSIGNED TO</h2>
-                    <div class="assigned-to">
-                        <div class="d-flex">
-                            <div class="assigned-person">
-                                <p id="name">Nina</p>
-                                <img src="img/person1.jpg">
+                    </div>
+                    <div class="task-content-box">
+                        <h2>DESCRIPTION</h2>
+                        <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
+                    </div>
+                    <div class="task-content-box">
+                        <h2>ASSIGNED TO</h2>
+                        <div class="assigned-to">
+                            <div class="d-flex">
+                                <div class="assigned-person">
+                                    <p id="name">Nina</p>
+                                    <img src="img/person1.jpg">
+                                </div>
+                                <div class="assigned-person">
+                                    <p id="name">Hans</p>
+                                    <img src="img/person2.jpg">
+                                </div>
                             </div>
-                            <div class="assigned-person">
-                                <p id="name">Hans</p>
-                                <img src="img/person2.jpg">
+                            <div class="d-flex">
+                                <div class="assigned-person">
+                                    <p id="name">Mike</p>
+                                    <img src="img/person3.jpg">
+                                </div>
+                                <div class="assigned-person">
+                                    <p id="name">Kieran</p>
+                                    <img src="img/person4.jpg">
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-flex">
-                            <div class="assigned-person">
-                                <p id="name">Mike</p>
-                                <img src="img/person3.jpg">
-                            </div>
-                            <div class="assigned-person">
-                                <p id="name">Kieran</p>
-                                <img src="img/person4.jpg">
-                            </div>
-                        </div>
 
-                    </div>
-                    <div class="cancel-create-box">
-                        <button onclick="cancelTask()" class="cancel-task"><a href="#">cancel</a></button>
-                        <button onclick="createTask()" class="create-task">create task</button>
-                    </div>
-                    <form action=""></form>
-                    <div id="confirmMessage" class="d-none">
-                        <div id="userMessage">
-                            <p>Task mit der ID: <span id="TaskID"></span> erfasst.<br> Siehe Backlog.
-                            </p>
+                        </div>
+                        <div class="cancel-create-box">
+                            <button onclick="cancelTask()" class="cancel-task"><a href="#">cancel</a></button>
+                            <button onclick="createTask()" class="create-task">create task</button>
+                        </div>
+                        <form action=""></form>
+                        <div id="confirmMessage" class="d-none">
+                            <div id="userMessage">
+                                <p>Task mit der ID: <span id="TaskID"></span> erfasst.<br> Siehe Backlog.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-
     </div>
     <div w3-include-html="templates/footer.html"></div>
 </body>

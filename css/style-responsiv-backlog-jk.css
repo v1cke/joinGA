@@ -22,4 +22,7 @@
     .logout img {
         display: none;
     }
+    .logout a {
+        margin-bottom: 20px;
+    }
 }

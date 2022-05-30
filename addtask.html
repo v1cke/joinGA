@@ -12,12 +12,14 @@
     </script>
     <script src="js/addtask.js"></script>
     <script src="js/includeHTML.js"></script>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="css/style-addtask.css">
     <link rel="stylesheet" href="css/style-display-flex-ts.css">
     <link rel="stylesheet" href="css/style-responsiv-VG.css">
     <link rel="stylesheet" href="css/style-fonts-ts.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/style-responsiv-backlog-jk.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body onload="loadAllTasks(); includeHTML()">
@@ -31,8 +33,7 @@
                 </div>
                 <div class="task-content-box">
                     <h2>DUE DATE</h2>
-                    <input required id="date" class="input-field" placeholder="insert deadline..."
-                        onfocus="(this.type='date')">
+                    <input required id="date" class="input-field" placeholder="insert deadline..." onfocus="(this.type='date')">
                 </div>
                 <div class="task-content-box">
                     <h2>CATEGORY</h2>
@@ -53,8 +54,7 @@
                 </div>
                 <div class="task-content-box">
                     <h2>DESCRIPTION</h2>
-                    <textarea required minlength="5" id="description" class="input-field-big"
-                        placeholder="insert description..." type="text"></textarea>
+                    <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
                 </div>
                 <div class="task-content-box">
                     <h2>ASSIGNED TO</h2>
@@ -97,7 +97,7 @@
         </div>
 
     </div>
-
+    <div w3-include-html="templates/footer.html"></div>
 </body>
 
 </html>

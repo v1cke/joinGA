@@ -5,30 +5,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="css/style-help.css">
     <link rel="stylesheet" href="css/style-fonts-ts.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/style-display-flex-ts.css">
     <script src="js/includeHTML.js"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="css/footer.css">
+    <title>Join - Help</title>
 </head>
 
 <body onload="includeHTML()">
-    <div class="header-help-container">
-        <div w3-include-html="./templates/header.html"></div>
-    </div>
+    <div w3-include-html="./templates/header.html"></div>
     <div class="help-container">
         <h1>Kanban</h1>
-        <h2>Was ist Kanban und wofür wird es benutzt?</h2>
-        <p> Kanban ist ein System für agiles Projektmanagement . Es kommt Ursprünglich aus Japan- genauer gesagt von der
-            Toyota Motor Corporation. Bekannt wurde das System besonders durch Microsoft, die das Kanban Prinzip
-            adaptierten. Kanban bedeutet ungefähr
-            so was wie Signalschild. </p>
-        <h2>Wie benutzte ich ein Kanban ?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugiat facere error! At sint, ad fugit
-            debitis eveniet iusto quo similique unde error voluptate nesciunt eum cupiditate suscipit fugiat dolorem.
-        </p>
-        <div w3-include-html="templates/footer.html"></div>
+        <div class="help-text-container">
+            <h2>Was ist Kanban und wofür wird es benutzt?</h2>
+            <p> Kanban ist ein System für agiles Projektmanagement . Es kommt Ursprünglich aus Japan- genauer gesagt von der Toyota Motor Corporation. Bekannt wurde das System besonders durch Microsoft, die das Kanban Prinzip adaptierten. Kanban bedeutet
+                ungefähr so was wie Signalschild. </p>
+        </div>
+        <div class="help-text-container">
+            <h2>Wie benutzte ich ein Kanban ?</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam fugiat facere error! At sint, ad fugit debitis eveniet iusto quo similique unde error voluptate nesciunt eum cupiditate suscipit fugiat dolorem.
+            </p>
+        </div>
     </div>
+    <div w3-include-html="templates/footer.html"></div>
 </body>
 
 </html>

@@ -16,22 +16,13 @@ body {
 }
 
 .container {
-    width: 100%;
+    margin: 3em 0;
     display: flex;
     justify-content: center;
 }
 
 .task-container {
     width: 1024px;
-}
-
-.headline {
-    margin-left: 6.66%;
-    letter-spacing: 1.5px;
-    font-weight: bolder;
-    color: blue;
-    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
-    border-radius: 20px;
 }
 
 .headline h1 {
@@ -49,8 +40,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 24px;
-    min-height: 70vh;
+    min-height: 60vh;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);

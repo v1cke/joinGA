@@ -4,6 +4,12 @@ body {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+    scroll-behavior: smooth;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 main {
@@ -16,15 +22,21 @@ main {
 }
 
 :root {
-    --c-marketing: red;
+    --c-marketing: darkorange;
     --c-management: royalblue;
-    --c-sale: green;
+    --c-sale: darkcyan;
     --c-product: fuchsia;
+    --c-hight: red;
+    --c-mid: yellow;
+    --c-low: green;
 }
 
-.backlog-headline p,
-h1 {
-    color: white;
+.headline-container {
+    width: fit-content;
+    background: white;
+    border-radius: 12px;
+    padding: 0.1em 1em;
+    margin-bottom: 1em;
 }
 
 .content-titles {

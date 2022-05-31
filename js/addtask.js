@@ -32,7 +32,7 @@ async function createTask() {
  * @param {task} task - creates new JSON with data from function createTask
  * JSON task gets pushed into array Tasks
  * */
-function generateTask(title, date, category, urgency, text, id){
+function generateTask(title, date, category, urgency, text, id) {
     let task = {
         'title': title,
         'date': date,
@@ -64,7 +64,7 @@ async function loadTasks() {
 async function confirmTask(taskID) {
     document.getElementById('TaskID').innerHTML = taskID;
     showConfirmMessage();
-    
+
     setTimeout(() => {
         hideConfirmMessage();
     }, 3000);

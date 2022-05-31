@@ -9,6 +9,12 @@
     <script src="js/mini_backend.js"></script>
     <script>
         setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
+        let users = [{}];
+
+        async function loadTasks() {
+            await downloadFromServer();
+            users = JSON.parse(backend.getItem('users')) || [];
+        }
     </script>
     <script src="js/addtask.js"></script>
     <script src="js/includeHTML.js"></script>

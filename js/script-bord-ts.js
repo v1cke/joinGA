@@ -37,11 +37,9 @@ function checkWidth(draggableCart) {
 /**
  * load the json and render the board
  */
-function fillBord() {
-    loadTasks();
-    setTimeout(() => {
-        renderBord();
-    }, 100);
+async function fillBord() {
+    await loadTasks();
+    renderBord();
 }
 
 /**

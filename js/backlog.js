@@ -6,11 +6,9 @@ let backlogTask = [];
 /**
  * load the json and render the backlog
  */
-function renderBacklog() {
-    loadTasks();
-    setTimeout(() => {
-        renderBord();
-    }, 200);
+async function renderBacklog() {
+    await loadTasks();
+    renderBord();
 }
 
 /**
@@ -22,7 +20,7 @@ async function loadTasks() {
 }
 
 /**
- * rendering of each category and order of urgency
+ * rendering of each task in backlog
  */
 function renderBord() {
     document.getElementById('idBacklogContainer').innerHTML = '';

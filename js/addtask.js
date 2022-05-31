@@ -1,4 +1,5 @@
-let Tasks = [];
+let Tasks = [{}];
+let users = [];
 
 
 /**
@@ -17,14 +18,12 @@ async function createTask() {
     let date = document.getElementById('date').value;
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
-    let id = Tasks.length + 1;
+    let id = 1;
     // generateTask only when title & date & description are filled
-    if (title && date && description) {
-        generateTask(title, date, category, urgency, text, id);
-        //let TasksAsString = JSON.stringify(Tasks);
-        await backend.setItem('Tasks', JSON.stringify(Tasks));
-        confirmTask(id);
-    }
+    generateTask(title, date, category, urgency, text, id);
+    //let TasksAsString = JSON.stringify(Tasks);
+    await backend.setItem('Tasks', JSON.stringify(Tasks));
+    confirmTask(id);
 }
 
 
@@ -53,7 +52,8 @@ function generateTask(title, date, category, urgency, text, id) {
 async function loadTasks() {
     await downloadFromServer();
     //let TasksAsString = JSON.parse(Tasks);
-    Tasks = await backend.getItem('Tasks', JSON.parse(Tasks));
+    Tasks = await JSON.parse(backend.getItem('Tasks' || []));
+    users = JSON.parse(backend.getItem('users')) || [];
 }
 
 

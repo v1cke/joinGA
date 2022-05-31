@@ -49,7 +49,8 @@ function generateTask(title, date, category, urgency, text, id) {
  */
 async function loadTasks() {
     await downloadFromServer();
-    Tasks = await JSON.parse(backend.getItem('Tasks')) || [];
+    let TasksAsString = await backend.getItem('Tasks');
+    Tasks = JSON.parse(TasksAsString);
 
 }
 

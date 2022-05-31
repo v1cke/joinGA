@@ -1,4 +1,4 @@
-let Tasks = [{}];
+let Tasks = [];
 let users = [];
 
 
@@ -18,7 +18,7 @@ async function createTask() {
     let date = document.getElementById('date').value;
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
-    let id = 1;
+    let id = Tasks.length + 1;
     // generateTask only when title & date & description are filled
     generateTask(title, date, category, urgency, text, id);
     //let TasksAsString = JSON.stringify(Tasks);

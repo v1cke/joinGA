@@ -19,9 +19,7 @@ async function createTask() {
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
     let id = Tasks.length + 1;
-    // generateTask only when title & date & description are filled
     generateTask(title, date, category, urgency, text, id);
-    //let TasksAsString = JSON.stringify(Tasks);
     await backend.setItem('Tasks', JSON.stringify(Tasks));
     confirmTask(id);
 }
@@ -51,9 +49,8 @@ function generateTask(title, date, category, urgency, text, id) {
  */
 async function loadTasks() {
     await downloadFromServer();
-    //let TasksAsString = JSON.parse(Tasks);
-    Tasks = await JSON.parse(backend.getItem('Tasks' || []));
-    users = JSON.parse(backend.getItem('users')) || [];
+    Tasks = await JSON.parse(backend.getItem('Tasks')) || [];
+
 }
 
 

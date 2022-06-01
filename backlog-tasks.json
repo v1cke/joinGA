@@ -1,6 +1,6 @@
 [{
         "id": 1,
-        "title": "Irgendwas",
+        "title": "Style anpassen",
         "name": "Tony Schroeder",
         "category": "todo",
         "department": "marketing",
@@ -11,7 +11,7 @@
     },
     {
         "id": 2,
-        "title": "Irgendwas",
+        "title": "Fehler suche",
         "name": "Viktor Grünwald",
         "category": "todo",
         "department": "management",
@@ -22,7 +22,7 @@
     },
     {
         "id": 3,
-        "title": "Irgendwas",
+        "title": "Anpassungen vornehmen",
         "name": "Joanna Kahloun",
         "category": "inProgress",
         "department": "sale",
@@ -33,7 +33,7 @@
     },
     {
         "id": 4,
-        "title": "Irgendwas",
+        "title": "impressum erstellen",
         "name": "Hakan Akpinar",
         "category": "inProgress",
         "department": "product",

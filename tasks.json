@@ -1,6 +1,6 @@
 [{
         "id": 9,
-        "title": "Irgendwas",
+        "title": "Bord erstellen",
         "name": "Tony Schroeder",
         "category": "todo",
         "department": "marketing",
@@ -11,7 +11,7 @@
     },
     {
         "id": 10,
-        "title": "Irgendwas",
+        "title": "add Task erstellen",
         "name": "Viktor Grünwald",
         "category": "todo",
         "department": "management",
@@ -22,7 +22,7 @@
     },
     {
         "id": 11,
-        "title": "Irgendwas",
+        "title": "Backlog erstellen",
         "name": "Joanna Kahloun",
         "category": "inProgress",
         "department": "sale",
@@ -33,7 +33,7 @@
     },
     {
         "id": 12,
-        "title": "Irgendwas",
+        "title": "Start Seite erstellen",
         "name": "Hakan Akpinar",
         "category": "inProgress",
         "department": "product",
@@ -44,7 +44,7 @@
     },
     {
         "id": 5,
-        "title": "Irgendwas",
+        "title": "Script erstellen",
         "name": "Tony Schroeder",
         "category": "inProgress",
         "department": "marketing",
@@ -55,7 +55,7 @@
     },
     {
         "id": 6,
-        "title": "Irgendwas",
+        "title": "Daten speichern",
         "name": "Viktor Grünwald",
         "category": "testing",
         "department": "management",
@@ -66,7 +66,7 @@
     },
     {
         "id": 7,
-        "title": "Irgendwas",
+        "title": "Header erstellen",
         "name": "Joanna Kahloun",
         "category": "done",
         "department": "sale",
@@ -77,7 +77,7 @@
     },
     {
         "id": 8,
-        "title": "Irgendwas",
+        "title": "Help erstellen",
         "name": "Hakan Akpinar",
         "category": "done",
         "department": "product",

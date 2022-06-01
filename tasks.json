@@ -12,7 +12,7 @@
     {
         "id": 10,
         "title": "Irgendwas",
-        "name": "Tony Schroeder",
+        "name": "Viktor Grünwald",
         "category": "todo",
         "department": "management",
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
@@ -23,7 +23,7 @@
     {
         "id": 11,
         "title": "Irgendwas",
-        "name": "Tony Schroeder",
+        "name": "Joanna Kahloun",
         "category": "inProgress",
         "department": "sale",
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
@@ -34,7 +34,7 @@
     {
         "id": 12,
         "title": "Irgendwas",
-        "name": "Tony Schroeder",
+        "name": "Hakan Akpinar",
         "category": "inProgress",
         "department": "product",
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
@@ -56,7 +56,7 @@
     {
         "id": 6,
         "title": "Irgendwas",
-        "name": "Tony Schroeder",
+        "name": "Viktor Grünwald",
         "category": "testing",
         "department": "management",
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
@@ -67,7 +67,7 @@
     {
         "id": 7,
         "title": "Irgendwas",
-        "name": "Tony Schroeder",
+        "name": "Joanna Kahloun",
         "category": "done",
         "department": "sale",
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",
@@ -78,7 +78,7 @@
     {
         "id": 8,
         "title": "Irgendwas",
-        "name": "Tony Schroeder",
+        "name": "Hakan Akpinar",
         "category": "done",
         "department": "product",
         "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla perspiciatis, itaque atque et ut quasi. Deleniti ipsum facilis similique at.",

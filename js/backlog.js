@@ -43,7 +43,7 @@ function generateBacklogHTML(element) {
         </div>
     </div>
     <div class="category">
-        <div id="category" style="color: --c-${element['department']}">${element['department']}</div>
+        <div id="category" class="text-capitalize" style="color: --c-${element['department']}">${element['department']}</div>
     </div>
     <div class="details">
         <span id="details">${element['text']}</span>

@@ -54,6 +54,7 @@ async function loadTasks() {
     await downloadFromServer();
     //let TasksAsString = JSON.parse(Tasks);
     Tasks = await backend.getItem('Tasks', JSON.parse(Tasks));
+    // Tasks = await backend.getItem('Tasks', JSON.parse(Tasks)) || [];
 }
 
 

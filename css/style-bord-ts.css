@@ -26,17 +26,17 @@ body {
 
  ::-webkit-scrollbar-track {
     background-color: #F8F5F2;
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
  ::-webkit-scrollbar-thumb {
     background-color: #dddddd;
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
  ::-webkit-scrollbar-thumb:active {
     background-color: rgb(128, 128, 128);
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
 .cursor-pointer {
@@ -66,7 +66,7 @@ body {
     max-width: 590px;
     width: 100%;
     min-height: 30px;
-    border-radius: 20px;
+    border-radius: 12px;
     overflow-x: auto;
 }
 
@@ -128,7 +128,7 @@ body {
     position: relative;
     font-weight: bold;
     margin: 0px 6px 15px 6px;
-    border-radius: 20px;
+    border-radius: 12px;
     background: white;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
@@ -271,7 +271,7 @@ h3 {
     margin-top: 30px;
     margin-bottom: 10px;
     background: white;
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 5px 0;
 }
 

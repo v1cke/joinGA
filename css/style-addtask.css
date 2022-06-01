@@ -48,7 +48,7 @@ body {
     justify-content: space-evenly;
     min-height: calc((100vh - 340px) - 6em);
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
+    border-radius: 12px;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
 }
@@ -64,7 +64,7 @@ body {
     height: 70px;
     font-size: 20px;
     padding: 0 10px;
-    border-radius: 20px;
+    border-radius: 12px;
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.8);
 }
@@ -80,7 +80,7 @@ body {
     font-size: 20px;
     resize: none;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 12px;
     box-sizing: border-box;
     border: 2px solid rgba(0, 0, 0, 0.8);
     margin-bottom: 20px;
@@ -95,7 +95,7 @@ body {
     height: 70px;
     font-size: 20px;
     padding: 0 10px;
-    border-radius: 20px;
+    border-radius: 12px;
     border: 2px solid rgba(0, 0, 0, 0.8);
     appearance: none;
     /* background: white url(/img/select-arrow.png) no-repeat 90% center; */
@@ -152,7 +152,7 @@ body {
     font-weight: bold;
     font-size: 16px;
     border: 2px solid rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
+    border-radius: 12px;
     height: 50px;
     padding: 0 20px;
     margin-right: 36px;
@@ -181,7 +181,7 @@ body {
     color: white;
     font-size: 16px;
     border: 2px solid rgba(0, 0, 0, 0.8);
-    border-radius: 10px;
+    border-radius: 12px;
     height: 50px;
     transition: 125ms;
 }

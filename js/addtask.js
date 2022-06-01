@@ -1,5 +1,6 @@
 let Tasks = [];
 let users = [];
+//let taskID = 0;
 
 
 /**
@@ -18,10 +19,10 @@ async function createTask() {
     let date = document.getElementById('date').value;
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
-    let id = Tasks.length + 1;
-    generateTask(title, date, category, urgency, text, id);
+    //taskID = taskID ++;
+    generateTask(title, date, category, urgency, text);
     backend.setItem('Tasks', JSON.stringify(Tasks));
-    confirmTask(id);
+    confirmTask();
 }
 
 
@@ -29,14 +30,14 @@ async function createTask() {
  * @param {task} task - creates new JSON with data from function createTask
  * JSON task gets pushed into array Tasks
  * */
-function generateTask(title, date, category, urgency, text, id) {
+function generateTask(title, date, category, urgency, text) {
     let task = {
         'title': title,
         'date': date,
         'category': category,
         'urgency': urgency,
         'description': text,
-        'taskID': id,
+     //   'taskID': taskID,
         'menu': false,
     }
     Tasks.push(task);
@@ -58,13 +59,13 @@ async function loadTasks() {
  * 
  * @param {taskID} taskID - shows confirmMessage container with actual ID of the task, closes container after 3 seconds
  */
-async function confirmTask(taskID) {
-    document.getElementById('TaskID').innerHTML = taskID;
+function confirmTask() {
+    //document.getElementById('TaskID').innerHTML = taskID;
     document.getElementById('confirmMessage').style.display = "block";
 
-    setTimeout(() => {
+    setTimeout(function() {
         document.getElementById('confirmMessage').style.display = "none";
-    }, 3000);
+    }, 5000);
 }
 
 

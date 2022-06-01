@@ -28,6 +28,7 @@
 .menu a,
 .logout a {
     text-decoration: none;
+    color: white;
     margin-right: 1em;
     border-bottom: 5px solid transparent;
     white-space: nowrap;

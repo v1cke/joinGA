@@ -37,7 +37,7 @@ function generateTask(title, date, category, urgency, text) {
         'category': category,
         'urgency': urgency,
         'description': text,
-     //   'taskID': taskID,
+        //   'taskID': taskID,
         'menu': false,
     }
     Tasks.push(task);

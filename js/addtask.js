@@ -20,7 +20,7 @@ async function createTask() {
     let text = document.getElementById('description').value;
     let id = Tasks.length + 1;
     generateTask(title, date, category, urgency, text, id);
-    await backend.setItem('Tasks', JSON.stringify(Tasks));
+    backend.setItem('Tasks', JSON.stringify(Tasks));
     confirmTask(id);
 }
 
@@ -49,9 +49,8 @@ function generateTask(title, date, category, urgency, text, id) {
  */
 async function loadTasks() {
     await downloadFromServer();
-    let TasksAsString = await backend.getItem('Tasks');
-    Tasks = JSON.parse(TasksAsString);
-
+    Tasks = JSON.parse(backend.getItem('Tasks')) || [];
+    users = JSON.parse(backend.getItem('user')) || [];
 }
 
 
@@ -61,20 +60,11 @@ async function loadTasks() {
  */
 async function confirmTask(taskID) {
     document.getElementById('TaskID').innerHTML = taskID;
-    showConfirmMessage();
+    document.getElementById('confirmMessage').style.display = "block";
 
     setTimeout(() => {
-        hideConfirmMessage();
+        document.getElementById('confirmMessage').style.display = "none";
     }, 3000);
-}
-
-
-function showConfirmMessage() {
-    document.getElementById('confirmMessage').style.display = "block";
-}
-
-function hideConfirmMessage() {
-    document.getElementById('confirmMessage').style.display = "none";
 }
 
 

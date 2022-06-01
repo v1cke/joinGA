@@ -1,6 +1,5 @@
 let Tasks = [];
-let users = [];
-//let taskID = 0;
+let Users = [];
 
 
 /**
@@ -19,7 +18,6 @@ async function createTask() {
     let date = document.getElementById('date').value;
     let urgency = document.getElementById('urgency').value;
     let text = document.getElementById('description').value;
-    //taskID = taskID ++;
     generateTask(title, date, category, urgency, text);
     backend.setItem('Tasks', JSON.stringify(Tasks));
     confirmTask();
@@ -37,7 +35,6 @@ function generateTask(title, date, category, urgency, text) {
         'category': category,
         'urgency': urgency,
         'description': text,
-     //   'taskID': taskID,
         'menu': false,
     }
     Tasks.push(task);
@@ -51,7 +48,8 @@ function generateTask(title, date, category, urgency, text) {
 async function loadTasks() {
     await downloadFromServer();
     Tasks = JSON.parse(backend.getItem('Tasks')) || [];
-    users = JSON.parse(backend.getItem('user')) || [];
+    Users = JSON.parse(backend.getItem('Users')) || [];
+    console.log(Users)
 }
 
 
@@ -60,10 +58,9 @@ async function loadTasks() {
  * @param {taskID} taskID - shows confirmMessage container with actual ID of the task, closes container after 3 seconds
  */
 function confirmTask() {
-    //document.getElementById('TaskID').innerHTML = taskID;
     document.getElementById('confirmMessage').style.display = "block";
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById('confirmMessage').style.display = "none";
     }, 5000);
 }
@@ -73,4 +70,25 @@ function cancelTask() {
     document.getElementById('title').innerHTML = "";
     document.getElementById('date').innerHTML = "";
     document.getElementById('description').innerHTML = "";
+}
+
+
+function chooseUser() {
+    document.getElementById("chooseUserContainer").innerHTML = "";
+    document.getElementById("chooseUserContainer").classList.remove("d-none");
+    for (let i = 0; i < Users.length; i++) {
+        let userName = Users[i]["name"];
+        let userImg = Users[i]["img"];
+
+        //add data to ChooseUserContainer
+        document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
+        <!-- <div class="assigned-person" onclick="addUser(${i}, '${userName}')"> -->
+        <div class="assigned-person" onclick="addUser(${i}, '${userName}')>
+            <p>${userName}</p>
+            <img src="${userImg}">
+            <!-- div for check symbol -->
+            <div id="checked_${i}"></div>
+        </div>`;
+    }
+    showCheckUp();
 }

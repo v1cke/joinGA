@@ -1,4 +1,4 @@
-let Tasks = [];
+let tasks = [];
 let users = [];
 //let taskID = 0;
 
@@ -21,14 +21,14 @@ async function createTask() {
     let text = document.getElementById('description').value;
     //taskID = taskID ++;
     generateTask(title, date, category, urgency, text);
-    backend.setItem('Tasks', JSON.stringify(Tasks));
+    backend.setItem('tasks', JSON.stringify(tasks));
     confirmTask();
 }
 
 
 /**
  * @param {task} task - creates new JSON with data from function createTask
- * JSON task gets pushed into array Tasks
+ * JSON task gets pushed into array tasks
  * */
 function generateTask(title, date, category, urgency, text) {
     let task = {
@@ -40,17 +40,18 @@ function generateTask(title, date, category, urgency, text) {
         //   'taskID': taskID,
         'menu': false,
     }
-    Tasks.push(task);
-    console.log(Tasks);
+    tasks.push(task);
+    console.log(tasks);
+    console.log(users);
 }
 
 
 /**
- * @param {Tasks} Tasks - JSON from backend-server loaded and added to array Tasks when loading addtasks.html
+ * @param {tasks} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
  */
 async function loadTasks() {
     await downloadFromServer();
-    Tasks = JSON.parse(backend.getItem('Tasks')) || [];
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(backend.getItem('user')) || [];
 }
 

@@ -26,9 +26,15 @@
 //     }
 // }
 
+let bordLinks = false;
+let backlogLinks = false;
+let addTaskLinks = false;
+let helpLinks = false;
 
 
-setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
+
+
+// setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
 
 async function init() {
     await downloadFromServer();
@@ -56,11 +62,12 @@ async function includeHTML() {
 }
 
 
-function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
+function hightlightHeaderLink(id) {
+
+
+    if (id == 'bordLink') {
+        bordLinks = true;
+        console.log(bordLinks)
+        document.getElementById('bordLink').classList.add('selectet');
     }
 }

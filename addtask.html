@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Add Task</title>
+    <script src="js/includeHTML.js"></script>
     <script src="js/mini_backend.js"></script>
     <script>
         setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
     </script>
     <script src="js/addtask.js"></script>
-    <script src="js/includeHTML.js"></script>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="css/style-addtask.css">
     <link rel="stylesheet" href="css/style-display-flex-ts.css">
@@ -24,6 +24,7 @@
 
 <body onload="loadTasks(); includeHTML()">
     <div w3-include-html="./templates/header.html"></div>
+
     <div class="main-container">
         <div class="container">
             <div id="taskContainer" class="task-container">
@@ -98,6 +99,7 @@
             </div>
         </div>
     </div>
+
     <div w3-include-html="templates/footer.html"></div>
 </body>
 

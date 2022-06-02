@@ -151,23 +151,24 @@ body {
     background-color: transparent;
     font-weight: bold;
     font-size: 16px;
-    border: 2px solid rgba(0, 0, 0, 0.8);
+    border: 2px solid transparent;
     border-radius: 12px;
     height: 50px;
     padding: 0 20px;
     margin-right: 36px;
-    transition: 125ms;
+    transition: 250ms;
 }
 
 .cancel-task a {
     text-decoration: none;
     color: black;
+    transition: 250ms;
 }
 
 .cancel-task:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border: 2px solid rgba(0, 0, 0, 0.8);
-    transition: 125ms;
+    transition: 400ms;
 }
 
 .cancel-task:hover a {
@@ -176,20 +177,20 @@ body {
 
 .create-task {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     font-weight: bold;
     color: white;
     font-size: 16px;
-    border: 2px solid rgba(0, 0, 0, 0.8);
+    border: 2px solid;
     border-radius: 12px;
     height: 50px;
-    transition: 125ms;
+    transition: 500ms;
 }
 
 .create-task:hover {
-    background-color: transparent;
-    color: black;
-    transition: 125ms;
+    border-color: black;
+    background: rgba(0, 0, 0, 0.8);
+    transition: 700ms;
 }
 
 #confirmMessage {

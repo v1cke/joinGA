@@ -12,7 +12,7 @@ let selectedUser = [];
  * @param {urgency} urgency - Value of the field urgency
  * @param {text} text - Value of the field description
  * */
- async function createTask() {
+async function createTask() {
     let title = document.getElementById('title').value;
     let category = document.getElementById('category').value;
     let date = document.getElementById('date').value;
@@ -91,81 +91,49 @@ function chooseUser() {
     showCheckUp();
 }
 
-
-function addUser(i) {
+/**
+ * @param {i} i - VAR from function chooseUser()
+ * @param {userName} userName - VAR userName from function chooseUser()
+ * 
+ * This function adds user to selectedUser Array. In Case, the user allready added, the function removes the user.
+ * return ist used in case for removing user that the function finishes
+ * */
+function addUser(i, userName) {
     let userInfo = users[i];
-    let userName = users[i].name;
     for (let j = 0; j < selectedUser.length; j++) {
         let selection = selectedUser[j];
-        showCheckUp();
-        // if statement compares the user in array all users "users" with user in the selected users array "selectedUser" if 
-        // user exists warning is logged --- with return we get out of the function.
         if (userName == selection.name) {
             selectedUser.splice(j, 1);
-            console.log('removed', selectedUser);
-            document.getElementById(`checked_${i}`).innerHTML = '';
-            showCheckUp();
             loadSelectedUsers();
-          //  return;
+            return;
         }
     }
-    //pushes details (JSON) for the selected user to array "selectedUser" --- 
-    //this will be the user array to be added to the task in function "loadSelectedUser"
     selectedUser.push(userInfo);
     loadSelectedUsers();
-    showCheckUp();
 }
 
 
-function showCheckUp() {
-    for (let i = 0; i < users.length; i++) {
-        const userName = users[i].name;
-        for (let j = 0; j < selectedUser.length; j++) {
-            const selectedUserName = selectedUser[j].name;
-            if (userName == selectedUserName) {
-                document.getElementById(`checked_${i}`).innerHTML = /*html*/ `<img src="img/checkmark.png" class="checkmark">`;
-            } else if (userName !== selectedUserName) {
-                document.getElementById(`checked_${i}`).innerHTML = ''
-            }
-        }
+function removeUser(i) {
+    selectedUser.splice(i, 1);
+    loadSelectedUsers();
+}
+
+
+function loadSelectedUsers() {
+    document.getElementById("selectedUserContainer").innerHTML = "";
+    for (let i = 0; i < selectedUser.length; i++) {
+        let userName = selectedUser[i].name;
+        let userImg = selectedUser[i].img;
+        document.getElementById("selectedUserContainer").innerHTML += `                                    
+                <div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
+                    <p>${userName}</p>
+                    <img src="img/${userImg}">
+                </div>`;
     }
+    document.getElementById("selectedUserContainer").innerHTML += `                                    
+        <a href="#" onclick="chooseUser()"><img src="img/icon plus.png"></a>`
 }
 
-/**
- * function loadSelectedUsers() {
-  // if the delected user array is not empty ---
-  if (selectUser != []) {
-    document.getElementById("user-img").innerHTML = "";
-    for (let i = 0; i < selectUser.length; i++) {
-      let userName = selectUser[i].name;
-      let userPic = selectUser[i].img;
-      document.getElementById("user-img").innerHTML += `                                    
-      <div class="added-user">
-      <img class="avatar" src=${userPic}>
-      <span>${userName}</span>
-      </div>`;
-    }
-  }
-}
-
-
-
-function removeCheckUp() {
-  for (let i = 0; i < users.length; i++) {
-    const userName = users[i].name;
-    for (let j = 0; j < selectUser.length; j++) {
-      const selectedUserName = selectUser[j].name;
-      if (userName !== selectedUserName) {
-        document.getElementById(
-          `checked_${i}`
-        ).innerHTML = '';
-      }
-    }
-  }
-}
-
-
- */
 
 function closeUserContainer() {
     document.getElementById("chooseUserContainer").classList.add("d-none");

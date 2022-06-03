@@ -29,7 +29,6 @@
 .logout a {
     text-decoration: none;
     color: white;
-    margin-right: 1em;
     /* border-bottom: 5px solid transparent; */
     background: transparent;
     padding: 3px 10px;
@@ -40,6 +39,7 @@
 }
 
 .menu a {
+    margin-right: 1em;
     margin-top: 30px;
 }
 
@@ -69,12 +69,46 @@
 }
 
 .menu a.selectet {
-    /* text-decoration: none; */
-    /* margin-right: 1em; */
     background: white;
     color: black;
-    /* padding: 3px 10px; */
-    /* border-radius: 12px; */
-    /* white-space: nowrap; */
-    /* cursor: pointer; */
+}
+
+@media screen and (max-width: 970px) {
+    .header-inside {
+        width: 100% !important;
+    }
+    .menu a {
+        margin-right: 0 !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .task-content-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    h2 {
+        text-align: center !important;
+    }
+    .task-content-box {
+        width: 80% !important;
+    }
+    .assigned-to {
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    .cancel-create-box {
+        justify-content: center !important;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .assigned-to {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: auto !important;
+        height: auto !important;
+    }
 }

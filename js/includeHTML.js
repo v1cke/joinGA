@@ -70,5 +70,4 @@ function hightlightHeader(linkId) {
     if (linkId == 'helpLink') {
         document.getElementById('helpLink').classList.add('selectet');
     }
-
 }

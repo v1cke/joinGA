@@ -32,13 +32,14 @@ main {
     --c-low: green;
 }
 
-.headline-container {
+
+/* .headline-container {
     width: fit-content;
     background: white;
     border-radius: 12px;
     padding: 0.1em 1em;
     margin-bottom: 1em;
-}
+} */
 
 .content-titles {
     display: flex;

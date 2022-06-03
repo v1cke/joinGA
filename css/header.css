@@ -69,13 +69,12 @@
 }
 
 .menu a.selectet {
-    text-decoration: none;
-    margin-right: 1em;
+    /* text-decoration: none; */
+    /* margin-right: 1em; */
     background: white;
     color: black;
-    padding: 3px 10px;
-    border-radius: 12px;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: 125ms;
+    /* padding: 3px 10px; */
+    /* border-radius: 12px; */
+    /* white-space: nowrap; */
+    /* cursor: pointer; */
 }

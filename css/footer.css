@@ -9,6 +9,10 @@
 }
 
 .footer-child {
-    width: 30%;
+    /* width: 30%; */
     color: white;
+}
+
+.footer-child:last-child {
+    text-align: end;
 }

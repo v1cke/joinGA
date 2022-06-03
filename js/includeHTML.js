@@ -27,15 +27,6 @@
 // }
 
 
-
-
-let bordLinks = false;
-let backlogLinks = false;
-let addTaskLinks = false;
-let helpLinks = false;
-
-
-
 async function init() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
@@ -47,7 +38,7 @@ async function init() {
     await includeHTML();
 }
 
-async function includeHTML() {
+async function includeHTML(linkId) {
     let includeElements = document.querySelectorAll("[w3-include-html]");
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -59,15 +50,25 @@ async function includeHTML() {
             element.innerHTML = "Page not found";
         }
     }
+    hightlightHeader(linkId);
+    if (linkId == 'bordLink') {
+        document.getElementById('bordLink').classList.add('selectet');
+    }
 }
 
 
-function hightlightHeaderLink(id) {
-
-
-    if (id == 'bordLink') {
-        bordLinks = true;
-        console.log(bordLinks)
+function hightlightHeader(linkId) {
+    if (linkId == 'bordLink') {
         document.getElementById('bordLink').classList.add('selectet');
     }
+    if (linkId == 'backlogLink') {
+        document.getElementById('backlogLink').classList.add('selectet');
+    }
+    if (linkId == 'addTaskLink') {
+        document.getElementById('addTaskLink').classList.add('selectet');
+    }
+    if (linkId == 'helpLink') {
+        document.getElementById('helpLink').classList.add('selectet');
+    }
+
 }

@@ -30,7 +30,7 @@
 async function init() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    users = JSON.parse(backend.getItem('user')) || [];
+    users = JSON.parse(backend.getItem('users')) || [];
 
     console.log(tasks);
     console.log(users);

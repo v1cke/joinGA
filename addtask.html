@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Add Task</title>
+    <!-- <script>
+        setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
+    </script> -->
     <script src="js/includeHTML.js"></script>
     <script src="js/mini_backend.js"></script>
-    <script>
-        setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
-    </script>
     <script src="js/addtask.js"></script>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="css/style-addtask.css">
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
-<body onload="loadTasks(); includeHTML()">
+<body onload="includeHTML()">
     <div w3-include-html="./templates/header.html"></div>
 
     <div class="main-container">
@@ -84,10 +84,11 @@
 
                         </div>
                         <div class="cancel-create-box">
-                            <button onclick="cancelTask()" class="cancel-task"><a href="#">cancel</a></button>
+                            <button onclick="cancelTask()" class="cancel-task">cancel</button>
                             <button onclick="createTask()" class="create-task">create task</button>
+
                         </div>
-                        <form action=""></form>
+                        <!-- <form action=""></form> -->
                         <div id="confirmMessage" class="d-none">
                             <div id="userMessage">
                                 <p>Task wurde erfasst.<br> Siehe Backlog.

@@ -26,15 +26,15 @@
 //     }
 // }
 
+
+
+
 let bordLinks = false;
 let backlogLinks = false;
 let addTaskLinks = false;
 let helpLinks = false;
 
 
-
-
-// setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
 
 async function init() {
     await downloadFromServer();

@@ -36,6 +36,7 @@ function generateTask(title, date, category, urgency, text) {
         'urgency': urgency,
         'description': text,
         'menu': false,
+        'assignedPerson': selectedUser,
     }
     tasks.push(task);
 }
@@ -53,11 +54,12 @@ async function loadTasks() {
 
 
 function confirmTask() {
-    document.getElementById('confirmMessage').style.display = "block";
+    document.getElementById('confirmContainer').style.display = "flex";
+}
 
-    setTimeout(function () {
-        document.getElementById('confirmMessage').style.display = "none";
-    }, 2000);
+
+function hideConfirmContainer() {
+    document.getElementById('confirmContainer').style.display = "none";
 }
 
 
@@ -88,7 +90,6 @@ function chooseUser() {
             <div id="checked_${i}"></div>
         </div>`;
     }
-    showCheckUp();
 }
 
 /**

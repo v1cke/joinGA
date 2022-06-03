@@ -66,7 +66,6 @@
                         <div class="assigned-to">
                             <div id="chooseUserContainer" class="choose-user-container d-none"></div>
                             <div id="selectedUserContainer" class="d-flex">
-
                                 <a href="#" onclick="chooseUser()"><img src="img/icon plus.png"></a>
                             </div>
 
@@ -76,9 +75,13 @@
                             <button type="submit" class="create-task">create task</button>
                         </div>
                         <form action=""></form>
-                        <div id="confirmMessage" class="d-none">
+                        <div id="confirmContainer" class="d-none">
                             <div id="userMessage">
                                 <p>Task assigned succesfully.<br> check backlog.</p>
+                            </div>
+                            <div class="confirmButtons">
+                                <a href="addtask.html" onclick="hideConfirmContainer()"><button>Create new Task</button></a>
+                                <a href="backlog.html" onclick="hideConfirmContainer()"><button>Check Task in Backlog</button></a>
                             </div>
                         </div>
                     </div>

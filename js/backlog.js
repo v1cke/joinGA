@@ -1,6 +1,4 @@
 let backlogTask = [];
-let users = [];
-
 
 
 /**
@@ -17,7 +15,6 @@ async function renderBacklog() {
 async function loadTasks() {
     await downloadFromServer();
     backlogTask = JSON.parse(backend.getItem('tasks')) || [];
-    users = JSON.parse(backend.getItem('user')) || [];
 }
 
 /**
@@ -27,26 +24,37 @@ function renderBord() {
     document.getElementById('idBacklogContainer').innerHTML = '';
     for (let i = 0; i < backlogTask.length; i++) {
         const element = backlogTask[i];
-
-        document.getElementById('idBacklogContainer').innerHTML += generateBacklogHTML(element);
+        document.getElementById('idBacklogContainer').innerHTML += generateBacklogHTML(element, i);
+        let currentTask = document.getElementById(`assignedPersonImgBacklog${i}`);
+        for (let j = 0; j < element.assignedPerson.length; j++) {
+            const assignedWorker = element.assignedPerson[j];
+            currentTask.innerHTML += `
+            <img src="img/${assignedWorker.img}">
+            ` 
+        }
     }
 }
 
 
-function generateBacklogHTML(element) {
+function generateBacklogHTML(element, i, assignedWorker) {
     return `  <div class="backlog-container">
-    <div class="color-stripe" style="background-color: --c-${element['urgency']}"></div>
+    <div class="color-stripe" style="background-color:--c-${element['urgency'].toLowerCase()}"></div>
     <div class="identification">
-        <img id="profile-picture" src="img/man3.jpg" alt="">
-        <div>
-            <span id="name">${element.assignedPerson[0].name}</span><br>
+        <div id="assignedPersonImgBacklog${i}">
+            
         </div>
     </div>
-    <div class="category">
-        <div id="category" class="text-capitalize" style="color: --c-${element['category']}">${element['category']}</div>
+    <div class="title">
+        <div>${element['title']}</div>
+    </div>
+    <div class="due-date">
+        <div>${element['date']}</div>
+    </div>
+    <div class="urgency">
+        <div style="color: --c-${element.urgency}">${element['urgency']}</div>
     </div>
     <div class="details">
-        <span id="details">${element['text']}</span>
+        <span>${element['description']}</span>
     </div>
 </div>
     `

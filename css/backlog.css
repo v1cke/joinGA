@@ -27,7 +27,7 @@ main {
     --c-management: royalblue;
     --c-sale: darkcyan;
     --c-product: fuchsia;
-    --c-hight: red;
+    --c-high: red;
     --c-mid: yellow;
     --c-low: green;
 }
@@ -43,13 +43,13 @@ main {
 
 .content-titles {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     font-weight: bold;
     background-color: white;
     margin-bottom: 1em;
     color: black;
     font-size: x-large;
-    padding: 0.5em 0.1em;
+    padding: 0.1em;
     border-radius: 12px;
 }
 
@@ -68,18 +68,18 @@ main {
 }
 
 .backlog-container img {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
     border-radius: 100%;
-    margin-right: 1em;
-    border: 3px solid white;
+    margin-right: 8px;
+    border: 2px solid white;
 }
 
 .color-stripe {
     width: 15px;
     height: 100%;
-    background-color: red;
+    background-color: white;
     position: absolute;
     top: 0;
     left: 0;
@@ -90,34 +90,57 @@ main {
 .identification {
     display: flex;
     align-items: center;
-    min-width: 33.33%;
-    max-width: 33.33%;
+    justify-content: space-evenly;
+    width: 25%;
 }
 
-#name {
+.title {
     font-weight: bold;
+    width: 15%;
+    display: flex;
+    justify-content: left;
+    text-align: center;
 }
 
-.category {
+.due-date {
     font-weight: bold;
-    color: red;
-    min-width: 33.33%;
-    max-width: 33.33%;
+    width: 10%;
+    display: flex;
+    justify-content: left;
+    text-align: center;
+}
+
+.urgency {
+    font-weight: bold;
+    width: 10%;
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
 .details {
-    min-width: 33.33%;
-    max-width: 33.33%;
+    width: 40%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: left;
 }
 
-.category-title,
-.details-title,
 .assigned-title {
-    min-width: 33.33%;
+    width: 25%;
+    text-align: center;
+}
+.title-title{
+    width: 15%;
+    text-align: center;
+}
+.date-title{
+    width: 10%;
+    text-align: center;
+}
+.urgency-title{
+    width: 10%;
+    text-align: center;
+}
+.details-title{
+    width: 40%;
     text-align: center;
 }

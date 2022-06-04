@@ -51,9 +51,6 @@ async function includeHTML(linkId) {
         }
     }
     hightlightHeader(linkId);
-    if (linkId == 'bordLink') {
-        document.getElementById('bordLink').classList.add('selectet');
-    }
 }
 
 

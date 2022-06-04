@@ -35,8 +35,7 @@
                     </div>
                     <div class="task-content-box">
                         <h2>DUE DATE</h2>
-                        <input required id="date" class="input-field" placeholder="insert deadline..."
-                            onfocus="(this.type='date')">
+                        <input required id="date" class="input-field" placeholder="insert deadline..." onfocus="(this.type='date')">
                     </div>
                     <div class="task-content-box">
                         <h2>CATEGORY</h2>
@@ -57,16 +56,15 @@
                     </div>
                     <div class="task-content-box">
                         <h2>DESCRIPTION</h2>
-                        <textarea required minlength="5" id="description" class="input-field-big"
-                            placeholder="insert description..." type="text"></textarea>
+                        <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
                     </div>
-                    <a href=""></a>
+
                     <div class="task-content-box">
                         <h2>ASSIGNED TO</h2>
                         <div class="assigned-to">
                             <div id="chooseUserContainer" class="choose-user-container d-none"></div>
                             <div id="selectedUserContainer" class="d-flex">
-                                <a href="#" onclick="chooseUser()"><img src="img/icon plus.png"></a>
+                                <div href="#" onclick="chooseUser()"><img src="img/icon plus.png"></div>
                             </div>
 
                         </div>
@@ -80,8 +78,8 @@
                                 <p>Task assigned succesfully.<br> check backlog.</p>
                             </div>
                             <div class="confirmButtons">
-                                <a href="addtask.html" onclick="hideConfirmContainer()"><button>Create new Task</button></a>
-                                <a href="backlog.html" onclick="hideConfirmContainer()"><button>Check Task in Backlog</button></a>
+                                <a href="../addtask.html">Create new Task</a>
+                                <a href="../backlog.html">Check Task in Backlog</a>
                             </div>
                         </div>
                     </div>

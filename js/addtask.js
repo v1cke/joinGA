@@ -4,6 +4,17 @@ let selectedUser = [];
 
 
 /**
+ * @param {tasks} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
+ * @param {users} users - JSON from backend-server loaded and added to array tasks when loading addtasks.html
+ */
+async function loadTasks() {
+    await downloadFromServer();
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    users = JSON.parse(backend.getItem('user')) || [];
+}
+
+
+/**
  * function to put values of the task as a JSON in an array and save it in storage
  * 
  * @param {string} title - Value of the field title
@@ -42,14 +53,10 @@ function generateTask(title, date, category, urgency, text) {
 }
 
 
-/**
- * @param {tasks} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
- * @param {users} users - JSON from backend-server loaded and added to array tasks when loading addtasks.html
- */
-async function loadTasks() {
-    await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
-    users = JSON.parse(backend.getItem('user')) || [];
+function cancelTask() {
+    document.getElementById('title').innerHTML = "";
+    document.getElementById('date').innerHTML = "";
+    document.getElementById('description').innerHTML = "";
 }
 
 
@@ -57,17 +64,8 @@ function confirmTask() {
     document.getElementById('confirmContainer').classList.add('d-flex');
 }
 
-
-
 function hideConfirmContainer() {
     document.getElementById('confirmContainer').style.display = "none";
-}
-
-
-function cancelTask() {
-    document.getElementById('title').innerHTML = "";
-    document.getElementById('date').innerHTML = "";
-    document.getElementById('description').innerHTML = "";
 }
 
 

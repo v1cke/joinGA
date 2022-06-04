@@ -1,5 +1,5 @@
 let backlogTask = [];
-
+let users = [];
 
 
 
@@ -15,8 +15,9 @@ async function renderBacklog() {
  * load the json
  */
 async function loadTasks() {
-    let respons = await fetch('./backlog-tasks.json');
-    backlogTask = await respons.json();
+    await downloadFromServer();
+    backlogTask = JSON.parse(backend.getItem('tasks')) || [];
+    users = JSON.parse(backend.getItem('user')) || [];
 }
 
 /**
@@ -29,21 +30,20 @@ function renderBord() {
 
         document.getElementById('idBacklogContainer').innerHTML += generateBacklogHTML(element);
     }
-
 }
+
 
 function generateBacklogHTML(element) {
     return `  <div class="backlog-container">
     <div class="color-stripe" style="background-color: --c-${element['urgency']}"></div>
     <div class="identification">
-        <img id="profile-picture" src="./img/man3.jpg" alt="">
+        <img id="profile-picture" src="img/man3.jpg" alt="">
         <div>
-            <span id="name">${element['name']}</span><br>
-            <a href="" id="mail">thomas@mail.com</a>
+            <span id="name">${element.assignedPerson[0].name}</span><br>
         </div>
     </div>
     <div class="category">
-        <div id="category" class="text-capitalize" style="color: --c-${element['department']}">${element['department']}</div>
+        <div id="category" class="text-capitalize" style="color: --c-${element['category']}">${element['category']}</div>
     </div>
     <div class="details">
         <span id="details">${element['text']}</span>

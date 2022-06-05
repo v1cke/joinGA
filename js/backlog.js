@@ -1,5 +1,5 @@
 let backlogTask = [];
-
+let bordTasks = [];
 
 /**
  * load the json and render the backlog

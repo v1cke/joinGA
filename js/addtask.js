@@ -5,7 +5,7 @@ let selectedUser = [];
 
 /**
  * @param {tasks} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
- * @param {users} users - JSON from backend-server loaded and added to array tasks when loading addtasks.html
+ * @param {users} users - JSON from backend-server loaded and added to array users when loading addtasks.html
  */
 async function loadTasks() {
     await downloadFromServer();
@@ -23,6 +23,8 @@ async function loadTasks() {
  * @param {date} date - Value of the field date
  * @param {urgency} urgency - Value of the field urgency
  * @param {text} text - Value of the field description
+ * 
+ * This functions generates a JSON (task) and pushes it in the Tasks-Array. The complete updated Array gets pushed on a backendServer.JSON
  * */
 async function createTask() {
     let title = document.getElementById('title').value;
@@ -37,7 +39,7 @@ async function createTask() {
 
 
 /**
- * @param {task} task - creates new JSON with data from function createTask
+ * @param {task} task - creates new JSON with data from function createTask and selectedUser
  * JSON task gets pushed into array tasks
  * */
 function generateTask(title, date, category, urgency, text) {
@@ -56,6 +58,9 @@ function generateTask(title, date, category, urgency, text) {
 }
 
 
+/**
+ * Cleaning all fields for restarting task
+ */
 function cancelTask() {
     document.getElementById('title').innerHTML = "";
     document.getElementById('date').innerHTML = "";
@@ -63,6 +68,9 @@ function cancelTask() {
 }
 
 
+/**
+ * displays confirmation-container when task finished and saved
+ */
 function confirmTask() {
     document.getElementById('confirmContainer').classList.add('d-flex');
 }
@@ -72,6 +80,11 @@ function hideConfirmContainer() {
 }
 
 
+/**
+ * @param {userName} userName - element name in task users
+ * @param {userImg} userImg - element image in task users
+ * displays container with registrated users to choose for assignement
+ */
 function chooseUser() {
     document.getElementById("chooseUserContainer").innerHTML = "";
     document.getElementById("chooseUserContainer").classList.remove("d-none");
@@ -83,7 +96,7 @@ function chooseUser() {
         let userName = users[i]["name"];
         let userImg = users[i]["img"];
 
-        //add data to ChooseUserContainer
+        //fills ChooseUserContainer with data from Array "users"
         document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
         <div class="choose-person">
             <div class="d-flex a-center">
@@ -96,12 +109,13 @@ function chooseUser() {
     }
 }
 
+
 /**
- * @param {i} i - VAR from function chooseUser()
- * @param {userName} userName - VAR userName from function chooseUser()
+ * @param {selection} selection - selectedUser from function chooseUser()
+ * @param {userName} userName - element name of VAR selection()
  * 
  * This function adds user to selectedUser Array. In Case, the user allready added, the function removes the user.
- * return ist used in case for removing user that the function finishes
+ * return is used in case for removing user, that function finishes
  * */
 function addUser(i, userName) {
     let userInfo = users[i];
@@ -120,12 +134,11 @@ function addUser(i, userName) {
 }
 
 
-function removeUser(i) {
-    selectedUser.splice(i, 1);
-    loadSelectedUsers();
-}
-
-
+/**
+ * @param {userName} userName - element name in task selectedUser
+ * @param {userImg} userImg - element image in task slectedUser
+ * adds assigned user to container slectedUserContainer
+ */
 function loadSelectedUsers() {
     document.getElementById("selectedUserContainer").innerHTML = "";
     for (let i = 0; i < selectedUser.length; i++) {
@@ -133,12 +146,20 @@ function loadSelectedUsers() {
         let userImg = selectedUser[i].img;
         document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
                 <div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
-                <img src="img/${userImg}">
+                    <img src="img/${userImg}">
                     <p>${userName}</p>
                 </div>`;
     }
-    // document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
-    //     <div href="#" onclick="chooseUser()"><img src="img/icon plus.png"></div>`
+}
+
+
+/**
+ * 
+ * @param {selectedUser} selectedUser - deletes selected user (element) from selectedUser Array
+ */
+function removeUser(i) {
+    selectedUser.splice(i, 1);
+    loadSelectedUsers();
 }
 
 

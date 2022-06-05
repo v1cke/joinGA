@@ -11,6 +11,7 @@ async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(backend.getItem('user')) || [];
+    console.log(users);
 }
 
 
@@ -136,8 +137,8 @@ function loadSelectedUsers() {
                     <p>${userName}</p>
                 </div>`;
     }
-    document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
-        <div href="#" onclick="chooseUser()"><img src="img/icon plus.png"></div>`
+    // document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
+    //     <div href="#" onclick="chooseUser()"><img src="img/icon plus.png"></div>`
 }
 
 

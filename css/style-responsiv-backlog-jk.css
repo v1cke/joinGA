@@ -26,3 +26,9 @@
         margin-bottom: 20px;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .footer {
+        font-size: 12px;
+    }
+}

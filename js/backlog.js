@@ -54,7 +54,7 @@ function generateBacklogHTML(element, i) {
                         <div class="${element.category}">${element['category']}</div>
                     </div>
                     <div class="add-to-board">
-                        <span><img onclick="" src="img/icon plus.png"></span>
+                        <span><img onclick="addToBoard()" src="img/icon plus.png"></span>
                     </div>
                     <div class="backlog-text ">
                     <span>${element['description']}</span>
@@ -62,4 +62,8 @@ function generateBacklogHTML(element, i) {
                 </div>
             </div>
     `
+}
+
+function addToBoard() {
+    
 }

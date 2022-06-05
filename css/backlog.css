@@ -179,3 +179,17 @@ main {
     width: 40%;
     text-align: center;
 } */
+
+
+@media screen and (max-width: 500px) {
+
+    .backlog-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .content-titles {
+        display: none;
+    }
+    
+}

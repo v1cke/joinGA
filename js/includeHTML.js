@@ -36,6 +36,7 @@ async function init() {
     console.log(users);
 
     await includeHTML();
+    updateActivePage();
 }
 
 async function includeHTML(linkId) {

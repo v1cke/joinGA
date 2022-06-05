@@ -10,14 +10,18 @@ async function renderBacklog() {
 }
 
 /**
- * load the json
+ * @param {backlogTask} backlogTask - Load JSON from BackendServer to backlogTask Array
  */
 async function loadTasks() {
     await downloadFromServer();
     backlogTask = JSON.parse(backend.getItem('tasks')) || [];
 }
 
+
 /**
+ * @param {element} element - each JSON from backlogTask Array
+ * @param {currentTask} currenTask - replaces innerHTML of assignedPersonImgBacklog
+ * @param {assignedPerson} assignedPerson - JSON with assigned users in JSON from backlogTask Array
  * rendering of each task in backlog
  */
 function renderBord() {
@@ -35,8 +39,11 @@ function renderBord() {
     }
 }
 
-/* <div class="color-stripe" style="background-color:--c-${element['urgency'].toLowerCase()}"></div> */
 
+/**
+ * 
+ * creates container with data from Array backlogTask / function renderBord() 
+ */
 function generateBacklogHTML(element, i) {
     return /* html */ `  <div class="backlog-container">
                 <div class="color-stripe ${element['urgency']}"></div>

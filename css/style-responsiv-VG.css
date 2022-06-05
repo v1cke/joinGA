@@ -1,3 +1,17 @@
+@media screen and (max-width: 880px) {
+    .assigned-to {
+        flex-direction: column;
+    }
+    .assigned-person {
+        width: 60px;
+        height: 80px;
+    }
+    .assigned-person img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .task-content-container {
         display: flex;

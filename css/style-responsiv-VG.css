@@ -1,6 +1,7 @@
 @media screen and (max-width: 880px) {
     .assigned-to {
         flex-direction: column;
+        align-items: flex-start;
     }
     .assigned-person {
         width: 60px;
@@ -26,6 +27,7 @@
     }
     .assigned-to {
         justify-content: center;
+        align-items: center;
         width: 100%;
     }
     .cancel-create-box {

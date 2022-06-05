@@ -46,8 +46,10 @@ function generateTask(title, date, category, urgency, text) {
         'category': category,
         'urgency': urgency,
         'description': text,
-        'menu': false,
+        'OpenMenu': false,
         'assignedPerson': selectedUser,
+        'id': 0,
+        'process': 'todo'
     }
     tasks.push(task);
 }

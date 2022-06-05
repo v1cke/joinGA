@@ -30,32 +30,36 @@ function renderBord() {
             const assignedWorker = element.assignedPerson[j];
             currentTask.innerHTML += `
             <img src="img/${assignedWorker.img}">
-            ` 
+            `
         }
     }
 }
 
+/* <div class="color-stripe" style="background-color:--c-${element['urgency'].toLowerCase()}"></div> */
 
-function generateBacklogHTML(element, i, assignedWorker) {
-    return `  <div class="backlog-container">
-    <div class="color-stripe" style="background-color:--c-${element['urgency'].toLowerCase()}"></div>
-    <div class="identification">
-        <div id="assignedPersonImgBacklog${i}">
-            
-        </div>
-    </div>
-    <div class="title">
-        <div>${element['title']}</div>
-    </div>
-    <div class="due-date">
-        <div>${element['date']}</div>
-    </div>
-    <div class="urgency">
-        <div style="color: --c-${element.urgency}">${element['urgency']}</div>
-    </div>
-    <div class="details">
-        <span>${element['description']}</span>
-    </div>
-</div>
+function generateBacklogHTML(element, i) {
+    return /* html */ `  <div class="backlog-container">
+                <div class="color-stripe ${element['urgency']}"></div>
+             
+                    <div class="identification">
+                        <div id="assignedPersonImgBacklog${i}"></div>
+                    </div>
+                    <div class="title">
+                        <div>${element['title']}</div>
+                    </div>
+                    <div class="due-date">
+                        <div>${element['date']}</div>
+                    </div>
+                    <div class="urgency">
+                        <div class="${element.category}">${element['category']}</div>
+                    </div>
+                    <div class="add-to-board">
+                        <span><img onclick="" src="img/icon plus.png"></span>
+                    </div>
+                    <div class="backlog-text ">
+                    <span>${element['description']}</span>
+                    </div>
+                </div>
+            </div>
     `
 }

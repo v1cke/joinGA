@@ -51,7 +51,7 @@ async function loadTasks() {
 }
 
 /**
- * rendering of each category and order of urgency
+ * rendering of each process and order of urgency
  */
 function renderBord() {
     checkHightUrgency();
@@ -117,7 +117,7 @@ function urgencyIsLow(index, filterId, i) {
  * display the items in the todo area
  */
 function dispalyTodo() {
-    let todo = tasks.filter(t => t['category'] == 'todo');
+    let todo = tasks.filter(t => t['process'] == 'todo');
     document.getElementById('todo').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
     for (let i = 0; i < todo.length; i++) {
@@ -129,7 +129,7 @@ function dispalyTodo() {
 /**
  * generate the html for todo
  * 
- * @param {array} todoArray - array with all elements with category todo
+ * @param {array} todoArray - array with all elements with process todo
  * @returns 
  */
 function todoHtml(todoArray) {
@@ -164,7 +164,7 @@ function todoHtml(todoArray) {
  * display the items in the inProgress area
  */
 function dispalyInProgress() {
-    let inProgress = tasks.filter(t => t['category'] == 'inProgress');
+    let inProgress = tasks.filter(t => t['process'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>in Progress</h3></span>`;
     for (let i = 0; i < inProgress.length; i++) {
@@ -176,7 +176,7 @@ function dispalyInProgress() {
 /**
  * generate the html for inProgress
  * 
- * @param {array} inProgressArray - array with all elements with category inProgress
+ * @param {array} inProgressArray - array with all elements with process inProgress
  * @returns 
  */
 function inProgressHtml(inProgressArray) {
@@ -211,7 +211,7 @@ function inProgressHtml(inProgressArray) {
  * display the items in the testing area
  */
 function dispalyTesting() {
-    let testing = tasks.filter(t => t['category'] == 'testing');
+    let testing = tasks.filter(t => t['process'] == 'testing');
     document.getElementById('testing').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>testing</h3></span>`;
     for (let i = 0; i < testing.length; i++) {
@@ -223,7 +223,7 @@ function dispalyTesting() {
 /**
  * generate the html for testing
  * 
- * @param {array} testingArray - array with all elements with category testing
+ * @param {array} testingArray - array with all elements with process testing
  * @returns 
  */
 function testingHtml(testingArray) {
@@ -258,7 +258,7 @@ function testingHtml(testingArray) {
  * display the items in the done area
  */
 function dispalyDone() {
-    let done = tasks.filter(t => t['category'] == 'done');
+    let done = tasks.filter(t => t['process'] == 'done');
     document.getElementById('done').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>done</h3></span>`;
     for (let i = 0; i < done.length; i++) {
@@ -270,7 +270,7 @@ function dispalyDone() {
 /**
  * generate the html for done
  * 
- * @param {array} doneArray - array with all elements with category done
+ * @param {array} doneArray - array with all elements with process done
  * @returns 
  */
 function doneHtml(doneArray) {
@@ -319,33 +319,33 @@ function allowDrop(ev) {
 }
 
 /**
- * moves an object to another category
+ * moves an object to another process
  * 
- * @param {string} category - new category of the object to be moved
+ * @param {string} process - new process of the object to be moved
  * @param {number} id - id of the object to be moved
  */
-function moveTo(category, id) {
+function moveTo(process, id) {
     if (id) {
         currentDraggedElementId = id;
     }
     let filterId = tasks.filter(t => t['id'] == currentDraggedElementId);
-    filterId[0]['category'] = category;
+    filterId[0]['process'] = process;
     renderBord();
 }
 
 /**
- * Highlight the category to move the item to
+ * Highlight the process to move the item to
  * 
- * @param {string} id - name of the category to which the element should be moved 
+ * @param {string} id - name of the process to which the element should be moved 
  */
 function hightlight(id) {
     document.getElementById(id).classList.add('drag_area_highlight');
 }
 
 /**
- * remove the highlight of the category to move the item to
+ * remove the highlight of the process to move the item to
  * 
- * @param {string} id - name of the category to which the element should be moved 
+ * @param {string} id - name of the process to which the element should be moved 
  */
 function removehightlight(id) {
     document.getElementById(id).classList.remove('drag_area_highlight');

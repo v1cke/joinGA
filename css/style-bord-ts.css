@@ -261,6 +261,7 @@ body {
 
 .cart:hover .text_container {
     height: auto;
+    transition: 125ms;
 }
 
 h3 {
@@ -276,6 +277,7 @@ h3 {
 }
 
 h4 {
+    margin-top: -5px;
     text-transform: uppercase;
     text-decoration: underline;
 }

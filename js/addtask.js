@@ -128,13 +128,13 @@ function loadSelectedUsers() {
     for (let i = 0; i < selectedUser.length; i++) {
         let userName = selectedUser[i].name;
         let userImg = selectedUser[i].img;
-        document.getElementById("selectedUserContainer").innerHTML += `                                    
+        document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
                 <div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
                 <img src="img/${userImg}">
                     <p>${userName}</p>
                 </div>`;
     }
-    document.getElementById("selectedUserContainer").innerHTML += `                                    
+    document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
         <div href="#" onclick="chooseUser()"><img src="img/icon plus.png"></div>`
 }
 

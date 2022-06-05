@@ -288,9 +288,6 @@
         animation-direction: normal;
         animation-fill-mode: both;
     }
-    /* shorthand 
-animation: scale-up-center 1s ease 0s 1 normal none;
-*/
     
     @keyframes scale-up-center {
         0% {

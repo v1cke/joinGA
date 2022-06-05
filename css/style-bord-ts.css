@@ -136,6 +136,13 @@ body {
     box-sizing: border-box;
 }
 
+.assignedUser Img{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .color-stripe {
     width: 15px;
     height: 100%;
@@ -249,7 +256,7 @@ body {
     background: yellow;
 }
 
-.hight {
+.high {
     background: red;
 }
 

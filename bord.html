@@ -16,9 +16,13 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" type="image/x-icon" href="img/logo.png">
+    <script src="js/mini_backend.js"></script>
+    <script>
+        setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
+    </script>
     <script src="js/includeHTML.js"></script>
     <script src="js/script-bord-ts.js"></script>
-    <script src="header.js"></script>
+    <script src="js/header.js"></script>
     <link rel="stylesheet" href="css/style-responsiv-backlog-jk.css">
 
 </head>
@@ -36,10 +40,10 @@
     </div>
     <div>
         <div id="bord_container_Id" class="bord_container">
-            <div id="todo" ondrop="moveTo('todo'); removehightlight('todo')" ondragleave="removehightlight('todo')" ondragover="allowDrop(event); hightlight('todo')" class="bord_under_container d-flex f-colum"></div>
-            <div id="inProgress" ondrop="moveTo('inProgress'); removehightlight('inProgress')" ondragleave="removehightlight('inProgress')" ondragover="allowDrop(event); hightlight('inProgress')" class="bord_under_container d-flex f-colum"></div>
-            <div id="testing" ondrop="moveTo('testing'); removehightlight('testing')" ondragleave="removehightlight('testing')" ondragover="allowDrop(event); hightlight('testing')" class="bord_under_container d-flex f-colum"></div>
-            <div id="done" ondrop="moveTo('done'); removehightlight('done')" ondragleave="removehightlight('done')" ondragover="allowDrop(event); hightlight('done')" class="bord_under_container d-flex f-colum"></div>
+            <div id="todo" ondrop="moveTo('todo'); removehighlight('todo')" ondragleave="removehighlight('todo')" ondragover="allowDrop(event); highlight('todo')" class="bord_under_container d-flex f-colum"></div>
+            <div id="inProgress" ondrop="moveTo('inProgress'); removehighlight('inProgress')" ondragleave="removehighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')" class="bord_under_container d-flex f-colum"></div>
+            <div id="testing" ondrop="moveTo('testing'); removehighlight('testing')" ondragleave="removehighlight('testing')" ondragover="allowDrop(event); highlight('testing')" class="bord_under_container d-flex f-colum"></div>
+            <div id="done" ondrop="moveTo('done'); removehighlight('done')" ondragleave="removehighlight('done')" ondragover="allowDrop(event); highlight('done')" class="bord_under_container d-flex f-colum"></div>
         </div>
     </div>
     <div w3-include-html="templates/footer.html"></div>

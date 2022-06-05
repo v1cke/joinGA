@@ -1,5 +1,6 @@
 let currentDraggedElementId;
 let tasks = [];
+let bordTasks = [];
 
 
 screenWidth();
@@ -46,15 +47,17 @@ async function fillBord() {
  * load the json
  */
 async function loadTasks() {
-    let respons = await fetch('./tasks.json');
-    tasks = await respons.json();
+    await downloadFromServer();
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    users = JSON.parse(backend.getItem('user')) || [];
+    console.log(users);
 }
 
 /**
  * rendering of each process and order of urgency
  */
 function renderBord() {
-    checkHightUrgency();
+    checkHighUrgency();
     checkLowUrgency();
     dispalyTodo();
     dispalyInProgress();
@@ -65,11 +68,11 @@ function renderBord() {
 /**
  * check of the highest urgency
  */
-function checkHightUrgency() {
-    let hightUrgency = tasks.filter(t => t['urgency'] == 'hight');
-    for (let i = 0; i < hightUrgency.length; i++) {
-        let index = tasks.indexOf(hightUrgency[i]);
-        urgencyIsHight(index, hightUrgency, i);
+function checkHighUrgency() {
+    let highUrgency = tasks.filter(t => t['urgency'] == 'high');
+    for (let i = 0; i < highUrgency.length; i++) {
+        let index = tasks.indexOf(highUrgency[i]);
+        urgencyIsHigh(index, highUrgency, i);
     }
 }
 
@@ -91,8 +94,8 @@ function checkLowUrgency() {
  * @param {array} filterId - array with elements to be changed
  * @param {number} i - position in the for loop
  */
-function urgencyIsHight(index, filterId, i) {
-    if (filterId[i]['urgency'] == 'hight') {
+function urgencyIsHigh(index, filterId, i) {
+    if (filterId[i]['urgency'] == 'high') {
         tasks.splice(index, 1);
         tasks.unshift(filterId[i]);
     }
@@ -122,7 +125,14 @@ function dispalyTodo() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
     for (let i = 0; i < todo.length; i++) {
         const todoArray = todo[i];
-        document.getElementById('todo').innerHTML += todoHtml(todoArray);
+        document.getElementById('todo').innerHTML += todoHtml(todoArray, i);
+        let currentTask = document.getElementById(`assignedUserBord${i}`);
+        for (let j = 0; j < todoArray.assignedPerson.length; j++) {
+            const assignedUser = todoArray.assignedPerson[j];
+            currentTask.innerHTML += `
+            <img src="img/${assignedUser.img}">
+            `
+        }
     }
 }
 
@@ -132,7 +142,7 @@ function dispalyTodo() {
  * @param {array} todoArray - array with all elements with process todo
  * @returns 
  */
-function todoHtml(todoArray) {
+function todoHtml(todoArray, i) {
     return /* html */ `
             <div draggable="true" ondragstart="startDragging(${todoArray['id']})" class="word_break_all cart padding-20">
                 <div class="color-stripe ${todoArray['urgency']}"></div>   
@@ -148,13 +158,13 @@ function todoHtml(todoArray) {
                 <h4 class="text-center">${todoArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <span>${todoArray['name']}</span>
+                    <span id="assignedUserBord${i}" class="assignedUser"></span>
                     </div>
                 </div>
-                <p class="text_container">${todoArray['text']}</p>
+                <p class="text_container">${todoArray['description']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${todoArray['date']}</span>
-                    <span class="text-capitalize">${todoArray['department']}</span>
+                    <span class="text-capitalize">${todoArray['category']}</span>
                 </div>
             </div>
         `;
@@ -338,7 +348,7 @@ function moveTo(process, id) {
  * 
  * @param {string} id - name of the process to which the element should be moved 
  */
-function hightlight(id) {
+function highlight(id) {
     document.getElementById(id).classList.add('drag_area_highlight');
 }
 
@@ -347,7 +357,7 @@ function hightlight(id) {
  * 
  * @param {string} id - name of the process to which the element should be moved 
  */
-function removehightlight(id) {
+function removehighlight(id) {
     document.getElementById(id).classList.remove('drag_area_highlight');
 }
 

@@ -8,16 +8,16 @@ async function loadTasks() {
 }
 
 
-async function loginUser(){
+async function loginUser() {
     let userName = document.getElementById('userNameField').value;
     let password = document.getElementById('passwordField').value;
     for (let i = 0; i < accountData.length; i++) {
         const user = accountData[i];
-        if (userName == user.name && password == user.passwort){
+        if (userName == user.name && password == user.passwort) {
             loggedUser.push(user);
             await backend.setItem('loggedUser', JSON.stringify(loggedUser));
             console.log(loggedUser)
-            window.location.href ="addtask.html";
-        } 
+            window.location.href = "addtask.html";
+        }
     }
 }

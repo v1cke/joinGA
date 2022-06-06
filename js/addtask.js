@@ -99,7 +99,7 @@ function chooseUser() {
     for (let i = 0; i < users.length; i++) {
         let userName = users[i]["name"];
         let userImg = users[i]["img"];
-        
+
         //fills ChooseUserContainer with data from Array "users"
         document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
         <div class="choose-person">

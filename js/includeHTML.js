@@ -25,8 +25,8 @@ async function includeHTML(linkId) {
             element.innerHTML = "Page not found";
         }
     }
-    await showLoggedUserImg();
     hightlightHeader(linkId);
+    await showLoggedUserImg();
 }
 
 

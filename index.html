@@ -6,11 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Startseite</title>
+    <script src="js/includeHTML.js"></script>
+    <script src="js/mini_backend.js"></script>
+    <script>
+        setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
+    </script>
+    <script src="js/addtask.js"></script>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="css/style-start.css">
 </head>
 
-<body>
+<body onload="loadTasks(); includeHTML()">
     <div class="dark-start-container">
         <div class="center">
             <img class="img" src="img/joinlogo.png" alt="">

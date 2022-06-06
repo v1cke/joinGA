@@ -1,20 +1,19 @@
 let loggedUser = [];
 
 
-async function init() {
-    await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
-    users = JSON.parse(backend.getItem('users')) || [];
+// async function init() {
+//     await downloadFromServer();
+//     tasks = JSON.parse(backend.getItem('tasks')) || [];
+//     users = JSON.parse(backend.getItem('users')) || [];
 
-    console.log(tasks);
-    console.log(users);
+//     console.log(tasks);
+//     console.log(users);
 
-    await includeHTML();
-    updateActivePage();
-}
+//     await includeHTML();
+//     updateActivePage();
+// }
 
 async function includeHTML(linkId) {
-    await showLoggedUserImg();
     let includeElements = document.querySelectorAll("[w3-include-html]");
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -26,6 +25,7 @@ async function includeHTML(linkId) {
             element.innerHTML = "Page not found";
         }
     }
+    await showLoggedUserImg();
     hightlightHeader(linkId);
 }
 

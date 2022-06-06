@@ -1,4 +1,6 @@
 let backlogTask = [];
+let pushToBoardTask = [];
+
 
 /**
  * load the json and render the backlog
@@ -72,9 +74,8 @@ function generateBacklogHTML(element, i) {
 
 function addToBoard(i) {
     let backlog = backlogTask[i];
-
-    bordTasks.push(backlog);
+    pushToBoardTask.push(backlog);
+    backend.setItem('bordTasks', JSON.stringify(pushToBoardTask));
     backlogTask.splice(i, 1);
-
     fillBord();
 }

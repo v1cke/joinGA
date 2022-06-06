@@ -55,7 +55,7 @@ async function fillBord() {
 async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    // bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
+    bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
 }
 
 

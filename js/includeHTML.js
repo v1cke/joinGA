@@ -45,6 +45,7 @@ function hightlightHeader(linkId) {
     }
 }
 
+
 async function showLoggedUserImg() {
     await downloadFromServer();
     loggedUser = await JSON.parse(backend.getItem('loggedUser')) || [];
@@ -55,6 +56,7 @@ async function showLoggedUserImg() {
         document.getElementById('loggedUserImg').src = "img/guest-48.png";
     }
 }
+
 
 function logOutUser() {
     loggedUser.splice(0, 1);

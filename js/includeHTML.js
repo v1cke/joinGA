@@ -49,7 +49,8 @@ async function showLoggedUserImg() {
     await downloadFromServer();
     loggedUser = await JSON.parse(backend.getItem('loggedUser')) || [];
     if (loggedUser.length > 0) {
-        document.getElementById('loggedUserImg').src = "img/${`loggedUser[0].img`}";
+        let imgUser = loggedUser[0].img;
+        document.getElementById('loggedUserImg').src = `img/${imgUser}`;
     } else {
         document.getElementById('loggedUserImg').src = "img/guest-48.png";
     }

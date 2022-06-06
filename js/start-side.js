@@ -3,9 +3,8 @@ let loggedUser = [];
 
 async function loadTasks() {
     await downloadFromServer();
-    let users = JSON.parse(backend.getItem('user')) || [];
-    accountData = JSON.parse(backend.getItem('accountData')) || [];
-    if (users.length == 0) {
+    // accountData = JSON.parse(backend.getItem('user')) || [];
+    if (accountData.length == 0) {
         let respons = await fetch('./users-backup.json');
         users = await respons.json();
         for (let index = 0; index < users.length; index++) {

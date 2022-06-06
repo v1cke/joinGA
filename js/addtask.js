@@ -1,6 +1,8 @@
 let tasks = [];
 let users = [];
 let selectedUser = [];
+let loggedUser = [];
+
 
 
 /**
@@ -28,14 +30,14 @@ async function loadTasks() {
  * */
 async function createTask() {
     if (!selectedUser.length == 0) {
-    let title = document.getElementById('title').value;
-    let category = document.getElementById('category').value;
-    let date = document.getElementById('date').value;
-    let urgency = document.getElementById('urgency').value;
-    let text = document.getElementById('description').value;
-    generateTask(title, date, category, urgency, text);
-    backend.setItem('tasks', JSON.stringify(tasks));
-    confirmTask();
+        let title = document.getElementById('title').value;
+        let category = document.getElementById('category').value;
+        let date = document.getElementById('date').value;
+        let urgency = document.getElementById('urgency').value;
+        let text = document.getElementById('description').value;
+        generateTask(title, date, category, urgency, text);
+        backend.setItem('tasks', JSON.stringify(tasks));
+        confirmTask();
     } else {
         chooseUser();
     }
@@ -99,17 +101,17 @@ function chooseUser() {
     for (let i = 0; i < users.length; i++) {
         let userName = users[i]["name"];
         let userImg = users[i]["img"];
-
+        
         //fills ChooseUserContainer with data from Array "users"
         document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
         <div class="choose-person">
             <div class="d-flex a-center">
-            <img onclick="addUser(${i}, '${userName}')" src="img/${userImg}">
+                <img onclick="addUser(${i}, '${userName}')" src="img/${userImg}">
             <p onclick="addUser(${i}, '${userName}')">${userName}</p>
-            </div>
-            <!-- div for check symbol -->
-            <div class="checkimg opacity0" id="checked_${i}"><img src="img/checkimg.png"></div>
-        </div>`;
+        </div>
+        <!-- div for check symbol -->
+        <div class="checkimg opacity0" id="checked_${i}"><img src="img/checkimg.png"></div>
+    </div>`;
         for (let index = 0; index < selectedUser.length; index++) {
             let selectedUserName = selectedUser[index].name;
             if (userName == selectedUserName) {

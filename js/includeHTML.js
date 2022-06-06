@@ -1,39 +1,15 @@
-// function includeHTML() {
-//     var z, i, elmnt, file, xhttp;
-//     /* Loop through a collection of all HTML elements: */
-//     z = document.getElementsByTagName("*");
-//     for (i = 0; i < z.length; i++) {
-//         elmnt = z[i];
-//         /*search for elements with a certain atrribute:*/
-//         file = elmnt.getAttribute("w3-include-html");
-//         if (file) {
-//             /* Make an HTTP request using the attribute value as the file name: */
-//             xhttp = new XMLHttpRequest();
-//             xhttp.onreadystatechange = function() {
-//                 if (this.readyState == 4) {
-//                     if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-//                     if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
-//                     /* Remove the attribute, and call this function once more: */
-//                     elmnt.removeAttribute("w3-include-html");
-//                     includeHTML();
-//                 }
-//             }
-//             xhttp.open("GET", file, true);
-//             xhttp.send();
-//             /* Exit the function: */
-//             return;
-//         }
-//     }
-// }
+let loggedUser = [];
 
 
 async function init() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(backend.getItem('users')) || [];
+    loggedUser = JSON.parse(backend.getItem('loggedUser')) || [];
 
     console.log(tasks);
     console.log(users);
+    console.log(loggedUser);
 
     await includeHTML();
     updateActivePage();
@@ -52,6 +28,7 @@ async function includeHTML(linkId) {
         }
     }
     hightlightHeader(linkId);
+    showLoggedUserImg();
 }
 
 
@@ -68,4 +45,18 @@ function hightlightHeader(linkId) {
     if (linkId == 'helpLink') {
         document.getElementById('helpLink').classList.add('selectet');
     }
+}
+
+function showLoggedUserImg() {
+    if (loggedUser.length > 0) {
+        let userImg = loggedUser[0].img;
+        document.getElementById('loggedUserImg').src = "img/${`userImg`}";
+    } else {
+        document.getElementById('loggedUserImg').src = "img/guest-48.png";
+    }
+}
+function logOutUser(){
+    loggedUser.splice(0, 1);
+    backend.setItem('loggedUser', JSON.stringify(loggedUser));
+    window.location.href ="index.html";
 }

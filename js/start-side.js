@@ -14,8 +14,9 @@ async function loginUser(){
     for (let i = 0; i < accountData.length; i++) {
         const user = accountData[i];
         if (userName == user.name && password == user.passwort){
-            loggedUser.push('user');
+            loggedUser.push(user);
             await backend.setItem('loggedUser', JSON.stringify(loggedUser));
+            console.log(loggedUser)
             window.location.href ="addtask.html";
         } 
     }

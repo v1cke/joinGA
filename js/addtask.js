@@ -27,6 +27,7 @@ async function loadTasks() {
  * This functions generates a JSON (task) and pushes it in the Tasks-Array. The complete updated Array gets pushed on a backendServer.JSON
  * */
 async function createTask() {
+    if (!selectedUser.length == 0) {
     let title = document.getElementById('title').value;
     let category = document.getElementById('category').value;
     let date = document.getElementById('date').value;
@@ -35,6 +36,9 @@ async function createTask() {
     generateTask(title, date, category, urgency, text);
     backend.setItem('tasks', JSON.stringify(tasks));
     confirmTask();
+    } else {
+        chooseUser();
+    }
 }
 
 

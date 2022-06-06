@@ -50,13 +50,14 @@ function hightlightHeader(linkId) {
 function showLoggedUserImg() {
     if (loggedUser.length > 0) {
         let userImg = loggedUser[0].img;
-        document.getElementById('loggedUserImg').src = "img/${`userImg`}";
+        document.getElementById('loggedUserImg').src = `img/${userImg}`;
     } else {
         document.getElementById('loggedUserImg').src = "img/guest-48.png";
     }
 }
-function logOutUser(){
+
+function logOutUser() {
     loggedUser.splice(0, 1);
     backend.setItem('loggedUser', JSON.stringify(loggedUser));
-    window.location.href ="index.html";
+    window.location.href = "index.html";
 }

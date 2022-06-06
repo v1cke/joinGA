@@ -65,7 +65,7 @@ async function loadTasks() {
 function renderBord() {
     checkHighUrgency();
     checkLowUrgency();
-    dispalyTodo();
+    dispalyTodo('todo');
     dispalyInProgress();
     dispalyTesting();
     dispalyDone();
@@ -141,56 +141,30 @@ function urgencyIsLow(index, filterId, i) {
 /**
  * display the items in the todo area
  */
-function dispalyTodo() {
-    let todo = tasks.filter(t => t['process'] == 'todo');
-    document.getElementById('todo').innerHTML = /* html */ `
+function dispalyTodo(processValue) {
+    let process = tasks.filter(t => t['process'] == processValue);
+    document.getElementById(processValue).innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
-    for (let i = 0; i < todo.length; i++) {
-        const todoArray = todo[i];
-        document.getElementById('todo').innerHTML += todoHtml(todoArray, i);
-        let currentTask = document.getElementById(`assignedUserBord${todoArray['id']}`);
-        for (let j = 0; j < todoArray.assignedPerson.length; j++) {
-            const assignedUser = todoArray.assignedPerson[j];
+    for (let i = 0; i < process.length; i++) {
+        const processArray = process[i];
+        document.getElementById(processValue).innerHTML += cartHtml(processArray);
+        let currentTask = document.getElementById(`assignedUserBord${processArray['id']}`);
+        for (let j = 0; j < processArray.assignedPerson.length; j++) {
+            const assignedUser = processArray.assignedPerson[j];
             currentTask.innerHTML += `
             <img src="img/${assignedUser.img}">
             `
         }
-    }
-}
 
-
-/**
- * generate the html for todo
- * 
- * @param {array} todoArray - array with all elements with process todo
- * @returns 
- */
-function todoHtml(todoArray, i) {
-    return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${todoArray['id']})" class="word_break_all cart padding-20">
-                <div class="color-stripe ${todoArray['urgency']}"></div>   
-                <div id="menu${todoArray['id']}" onclick="openMenu(${todoArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    <div class="menu_btn_burger "></div>
-                    <ul id="list${todoArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        <li onclick="moveTo('inProgress', ${todoArray['id']})">Move to In Progress</li>
-                        <li onclick="moveTo('testing', ${todoArray['id']})">Move to Testing</li>
-                        <li onclick="moveTo('done', ${todoArray['id']})">Move to Done</li>
-                        <li onclick="removeTask(${todoArray['id']})">Delete</li>
-                    </ul>
-                </div>
-                <h4 class="text-center">${todoArray['title']}</h4>
-                <div>
-                    <div class="d-flex">
-                    <span id="assignedUserBord${todoArray['id']}" class="assignedUser"></span>
-                    </div>
-                </div>
-                <p class="text_container">${todoArray['description']}</p>
-                <div class="d-flex j-space-betwen">
-                    <span>${todoArray['date']}</span>
-                    <span class="text-capitalize ${todoArray['category']}">${todoArray['category']}</span>
-                </div>
-            </div>
+        if (processValue == 'todo') {
+            document.getElementById(`list${processArray['id']}`).innerHTML = `
+        <li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress</li>
+                        <li onclick="moveTo('testing', ${processArray['id']})">Move to Testing</li>
+                        <li onclick="moveTo('done', ${processArray['id']})">Move to Done</li>
+                        <li onclick="removeTask(${processArray['id']})">Delete</li>
         `;
+        }
+    }
 }
 
 
@@ -203,7 +177,7 @@ function dispalyInProgress() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>in Progress</h3></span>`;
     for (let i = 0; i < inProgress.length; i++) {
         const inProgressArray = inProgress[i];
-        document.getElementById('inProgress').innerHTML += inProgressHtml(inProgressArray, i);
+        document.getElementById('inProgress').innerHTML += cartHtml(inProgressArray);
         let currentTask = document.getElementById(`assignedUserBord${inProgressArray['id']}`);
         for (let j = 0; j < inProgressArray.assignedPerson.length; j++) {
             const assignedUser = inProgressArray.assignedPerson[j];
@@ -211,42 +185,13 @@ function dispalyInProgress() {
             <img src="img/${assignedUser.img}">
             `
         }
-    }
-}
-
-
-/**
- * generate the html for inProgress
- * 
- * @param {array} inProgressArray - array with all elements with process inProgress
- * @returns 
- */
-function inProgressHtml(inProgressArray, i) {
-    return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${inProgressArray['id']})" class="word_break_all cart padding-20">
-                <div class="color-stripe ${inProgressArray['urgency']}"></div>      
-                <div id="menu${inProgressArray['id']}" onclick="openMenu(${inProgressArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    <div class="menu_btn_burger "></div>
-                    <ul id="list${inProgressArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        <li onclick="moveTo('todo', ${inProgressArray['id']})">Move to To Do</li>
-                        <li onclick="moveTo('testing', ${inProgressArray['id']})">Move to Testing</li>
-                        <li onclick="moveTo('done', ${inProgressArray['id']})">Move to Done</li>
-                        <li onclick="removeTask(${inProgressArray['id']})">Delete</li>
-                    </ul>
-                </div>
-                <h4 class="text-center">${inProgressArray['title']}</h4>
-                <div>
-                    <div class="d-flex">
-                    <span id="assignedUserBord${inProgressArray['id']}" class="assignedUser"></span>
-                    </div>
-                </div>
-                <p class="text_container">${inProgressArray['description']}</p>
-                <div class="d-flex j-space-betwen">
-                    <span>${inProgressArray['date']}</span>
-                    <span class="text-capitalize ${inProgressArray['category']}">${inProgressArray['category']}</span>
-                </div>
-            </div>
+        document.getElementById(`list${inProgressArray['id']}`).innerHTML = `
+            <li onclick="moveTo('todo', ${inProgressArray['id']})">Move to To Do</li>
+            <li onclick="moveTo('testing', ${inProgressArray['id']})">Move to Testing</li>
+            <li onclick="moveTo('done', ${inProgressArray['id']})">Move to Done</li>
+            <li onclick="removeTask(${inProgressArray['id']})">Delete</li>
         `;
+    }
 }
 
 
@@ -259,7 +204,7 @@ function dispalyTesting() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>testing</h3></span>`;
     for (let i = 0; i < testing.length; i++) {
         const testingArray = testing[i];
-        document.getElementById('testing').innerHTML += testingHtml(testingArray, i);
+        document.getElementById('testing').innerHTML += cartHtml(testingArray);
         let currentTask = document.getElementById(`assignedUserBord${testingArray['id']}`);
         for (let j = 0; j < testingArray.assignedPerson.length; j++) {
             const assignedUser = testingArray.assignedPerson[j];
@@ -267,42 +212,13 @@ function dispalyTesting() {
             <img src="img/${assignedUser.img}">
             `
         }
-    }
-}
-
-
-/**
- * generate the html for testing
- * 
- * @param {array} testingArray - array with all elements with process testing
- * @returns 
- */
-function testingHtml(testingArray, i) {
-    return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${testingArray['id']})" class="word_break_all cart padding-20">
-                <div class="color-stripe ${testingArray['urgency']}"></div>     
-                <div id="menu${testingArray['id']}" onclick="openMenu(${testingArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    <div class="menu_btn_burger "></div>
-                    <ul id="list${testingArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        <li onclick="moveTo('todo', ${testingArray['id']})">Move to To Do</li>
-                        <li onclick="moveTo('inProgress', ${testingArray['id']})">Move to In Progress</li>
-                        <li onclick="moveTo('done', ${testingArray['id']})">Move to Done</li>
-                        <li onclick="removeTask(${testingArray['id']})">Delete</li>
-                    </ul>
-                </div>
-                <h4 class="text-center">${testingArray['title']}</h4>
-                <div>
-                    <div class="d-flex">
-                    <span id="assignedUserBord${testingArray['id']}" class="assignedUser"></span>
-                    </div>
-                </div>
-                <p class="text_container">${testingArray['description']}</p>
-                <div class="d-flex j-space-betwen">
-                    <span>${testingArray['date']}</span>
-                    <span class="text-capitalize ${testingArray['category']}">${testingArray['category']}</span>
-                </div>
-            </div>
+        document.getElementById(`list${testingArray['id']}`).innerHTML = `
+            <li onclick="moveTo('todo', ${testingArray['id']})">Move to To Do</li>
+            <li onclick="moveTo('inProgress', ${testingArray['id']})">Move to In Progress</li>
+            <li onclick="moveTo('done', ${testingArray['id']})">Move to Done</li>
+            <li onclick="removeTask(${testingArray['id']})">Delete</li>
         `;
+    }
 }
 
 
@@ -315,7 +231,7 @@ function dispalyDone() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>done</h3></span>`;
     for (let i = 0; i < done.length; i++) {
         const doneArray = done[i];
-        document.getElementById('done').innerHTML += doneHtml(doneArray, i);
+        document.getElementById('done').innerHTML += cartHtml(doneArray);
         let currentTask = document.getElementById(`assignedUserBord${doneArray['id']}`);
         for (let j = 0; j < doneArray.assignedPerson.length; j++) {
             const assignedUser = doneArray.assignedPerson[j];
@@ -323,38 +239,43 @@ function dispalyDone() {
             <img src="img/${assignedUser.img}">
             `
         }
+        document.getElementById(`list${doneArray['id']}`).innerHTML = `
+            <li onclick="moveTo('todo', ${doneArray['id']})">Move to To Do</li>
+            <li onclick="moveTo('inProgress', ${doneArray['id']})">Move to In Progress</li>
+            <li onclick="moveTo('testing', ${doneArray['id']})">Move to Testing</li>
+            <li onclick="removeTask(${doneArray['id']})">Delete</li>
+        `;
     }
 }
 
 
+
 /**
- * generate the html for done
+ * generate the html for every process
  * 
- * @param {array} doneArray - array with all elements with process done
+ * @param {array} cartArray - array with all elements with process todo
  * @returns 
  */
-function doneHtml(doneArray, i) {
+function cartHtml(cartArray) {
     return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${doneArray['id']})" class="word_break_all cart padding-20">
-                <div class="color-stripe ${doneArray['urgency']}"></div>   
-                <div id="menu${doneArray['id']}" onclick="openMenu(${doneArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
+            <div draggable="true" ondragstart="startDragging(${cartArray['id']})" class="word_break_all cart padding-20">
+                <div class="color-stripe ${cartArray['urgency']}"></div>   
+                <div id="menu${cartArray['id']}" onclick="openMenu(${cartArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
                     <div class="menu_btn_burger "></div>
-                    <ul id="list${doneArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        <li onclick="moveTo('todo', ${doneArray['id']})">Move to To Do</li>
-                        <li onclick="moveTo('inProgress', ${doneArray['id']})">Move to In Progress</li>
-                        <li onclick="moveTo('testing', ${doneArray['id']})">Move to Testing</li>
-                        <li onclick="removeTask(${doneArray['id']})">Delete</li>
+                    <ul id="list${cartArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
+                        
                     </ul>
                 </div>
-                <h4 class="text-center">${doneArray['title']}</h4><div>
-                <div class="d-flex">
-                <span id="assignedUserBord${doneArray['id']}" class="assignedUser"></span>
+                <h4 class="text-center">${cartArray['title']}</h4>
+                <div>
+                    <div class="d-flex">
+                    <span id="assignedUserBord${cartArray['id']}" class="assignedUser"></span>
+                    </div>
                 </div>
-                </div>
-                <p class="text_container">${doneArray['description']}</p>
+                <p class="text_container">${cartArray['description']}</p>
                 <div class="d-flex j-space-betwen">
-                    <span>${doneArray['date']}</span>
-                    <span class="text-capitalize ${doneArray['category']}">${doneArray['category']}</span>
+                    <span>${cartArray['date']}</span>
+                    <span class="text-capitalize ${cartArray['category']}">${cartArray['category']}</span>
                 </div>
             </div>
         `;

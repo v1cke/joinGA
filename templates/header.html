@@ -1,3 +1,13 @@
+<head>
+    <script src="js/mini_backend.js"></script>
+    <script src="js/header.js"></script>
+    <script>
+        setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
+    </script>
+</head>
+
+<body onload="showloggedUserImg()">
+    
 <div class="header">
     <div class="header-inside">
         <div>
@@ -36,9 +46,11 @@
 
         <div class="logout">
 
-            <img src="./img/man3.jpg" alt="">
-            <a href="../index.html">Log Out</a>
+            <img id="loggedUserImg" src="img/guest-48.png">
+            <a href="../index.html" onclick="logOutUser()">Log Out</a>
         </div>
     </div>
 </div>
 </div>
+
+</body>

@@ -1,32 +1,22 @@
-<head>
-    <script src="js/mini_backend.js"></script>
-    <script src="js/includeHTML.js"></script>
-    <script>
-        setURL('https://gruppe-237.developerakademie.net/smallest_backend_ever');
-    </script>
-</head>
+<div class="header">
+    <div class="header-inside">
+        <div>
+            <img src="./img/joinlogo.png" alt="">
+        </div>
 
-<body onload="includeHTML('addTaskLink')">
+        <div class="link-container d-flex">
 
-    <div class="header">
-        <div class="header-inside">
-            <div>
-                <img src="./img/joinlogo.png" alt="">
-            </div>
-
-            <div class="link-container d-flex">
-
-                <div class="menu">
-                    <div>
-                        <a id="bordLink" href="../bord.html">Board</a>
-                        <a id="backlogLink" href="../backlog.html">Backlog</a>
-                    </div>
-                    <div>
-                        <a id="addTaskLink" href="../addtask.html">Add Task</a>
-                        <a id="helpLink" href="../help.html">Help</a>
-                    </div>
+            <div class="menu">
+                <div>
+                    <a id="bordLink" href="../bord.html">Board</a>
+                    <a id="backlogLink" href="../backlog.html">Backlog</a>
                 </div>
-                <!--  
+                <div>
+                    <a id="addTaskLink" href="../addtask.html">Add Task</a>
+                    <a id="helpLink" href="../help.html">Help</a>
+                </div>
+            </div>
+            <!--  
             <div class="dropdown-menu">
                 <div class="dropdown-menu-links">
                     <a id="bordLink" href="../bord.html">Board</a>
@@ -44,14 +34,12 @@
         </div>-->
 
 
-                <div class="logout">
+            <div class="logout">
 
-                    <!-- <img id="loggedUserImg" src="img/guest-48.png"> -->
-                    <img id="loggedUserImg" src="">
-                    <a href="../index.html" onclick="logOutUser()">Log Out</a>
-                </div>
+                <!-- <img id="loggedUserImg" src="img/guest-48.png"> -->
+                <img id="loggedUserImg" src="">
+                <a href="../index.html" onclick="logOutUser()">Log Out</a>
             </div>
         </div>
     </div>
-
-</body>
+</div>

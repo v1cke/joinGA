@@ -5,17 +5,16 @@ async function init() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(backend.getItem('users')) || [];
-    loggedUser = JSON.parse(backend.getItem('loggedUser')) || [];
 
     console.log(tasks);
     console.log(users);
-    console.log(loggedUser);
 
     await includeHTML();
     updateActivePage();
 }
 
 async function includeHTML(linkId) {
+    await showLoggedUserImg();
     let includeElements = document.querySelectorAll("[w3-include-html]");
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -28,7 +27,6 @@ async function includeHTML(linkId) {
         }
     }
     hightlightHeader(linkId);
-    showLoggedUserImg();
 }
 
 
@@ -47,10 +45,11 @@ function hightlightHeader(linkId) {
     }
 }
 
-function showLoggedUserImg() {
+async function showLoggedUserImg() {
+    await downloadFromServer();
+    loggedUser = await JSON.parse(backend.getItem('loggedUser')) || [];
     if (loggedUser.length > 0) {
-        let userImg = loggedUser[0].img;
-        document.getElementById('loggedUserImg').src = `img/${userImg}`;
+        document.getElementById('loggedUserImg').src = "img/${`loggedUser[0].img`}";
     } else {
         document.getElementById('loggedUserImg').src = "img/guest-48.png";
     }

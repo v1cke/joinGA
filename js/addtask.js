@@ -1,8 +1,6 @@
 let tasks = [];
 let users = [];
 let selectedUser = [];
-let loggedUser = [];
-
 
 
 /**

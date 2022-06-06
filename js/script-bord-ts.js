@@ -44,6 +44,7 @@ function checkWidth(draggableCart) {
  */
 async function fillBord() {
     await loadTasks();
+    countTasksId();
     renderBord();
 }
 
@@ -62,7 +63,6 @@ async function loadTasks() {
  * rendering of each process and order of urgency
  */
 function renderBord() {
-    countTasksId();
     checkHighUrgency();
     checkLowUrgency();
     dispalyTodo();
@@ -148,7 +148,7 @@ function dispalyTodo() {
     for (let i = 0; i < todo.length; i++) {
         const todoArray = todo[i];
         document.getElementById('todo').innerHTML += todoHtml(todoArray, i);
-        let currentTask = document.getElementById(`assignedUserBord${i}`);
+        let currentTask = document.getElementById(`assignedUserBord${todoArray['id']}`);
         for (let j = 0; j < todoArray.assignedPerson.length; j++) {
             const assignedUser = todoArray.assignedPerson[j];
             currentTask.innerHTML += `
@@ -181,7 +181,7 @@ function todoHtml(todoArray, i) {
                 <h4 class="text-center">${todoArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <span id="assignedUserBord${i}" class="assignedUser"></span>
+                    <span id="assignedUserBord${todoArray['id']}" class="assignedUser"></span>
                     </div>
                 </div>
                 <p class="text_container">${todoArray['description']}</p>
@@ -203,7 +203,14 @@ function dispalyInProgress() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>in Progress</h3></span>`;
     for (let i = 0; i < inProgress.length; i++) {
         const inProgressArray = inProgress[i];
-        document.getElementById('inProgress').innerHTML += inProgressHtml(inProgressArray);
+        document.getElementById('inProgress').innerHTML += inProgressHtml(inProgressArray, i);
+        let currentTask = document.getElementById(`assignedUserBord${inProgressArray['id']}`);
+        for (let j = 0; j < inProgressArray.assignedPerson.length; j++) {
+            const assignedUser = inProgressArray.assignedPerson[j];
+            currentTask.innerHTML += `
+            <img src="img/${assignedUser.img}">
+            `
+        }
     }
 }
 
@@ -214,7 +221,7 @@ function dispalyInProgress() {
  * @param {array} inProgressArray - array with all elements with process inProgress
  * @returns 
  */
-function inProgressHtml(inProgressArray) {
+function inProgressHtml(inProgressArray, i) {
     return /* html */ `
             <div draggable="true" ondragstart="startDragging(${inProgressArray['id']})" class="word_break_all cart padding-20">
                 <div class="color-stripe ${inProgressArray['urgency']}"></div>      
@@ -230,13 +237,13 @@ function inProgressHtml(inProgressArray) {
                 <h4 class="text-center">${inProgressArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <span>${inProgressArray['name']}</span>
+                    <span id="assignedUserBord${inProgressArray['id']}" class="assignedUser"></span>
                     </div>
                 </div>
-                <p class="text_container">${inProgressArray['text']}</p>
+                <p class="text_container">${inProgressArray['description']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${inProgressArray['date']}</span>
-                    <span class="text-capitalize ${inProgressArray['category']}">${inProgressArray['department']}</span>
+                    <span class="text-capitalize ${inProgressArray['category']}">${inProgressArray['category']}</span>
                 </div>
             </div>
         `;
@@ -252,7 +259,14 @@ function dispalyTesting() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>testing</h3></span>`;
     for (let i = 0; i < testing.length; i++) {
         const testingArray = testing[i];
-        document.getElementById('testing').innerHTML += testingHtml(testingArray);
+        document.getElementById('testing').innerHTML += testingHtml(testingArray, i);
+        let currentTask = document.getElementById(`assignedUserBord${testingArray['id']}`);
+        for (let j = 0; j < testingArray.assignedPerson.length; j++) {
+            const assignedUser = testingArray.assignedPerson[j];
+            currentTask.innerHTML += `
+            <img src="img/${assignedUser.img}">
+            `
+        }
     }
 }
 
@@ -263,7 +277,7 @@ function dispalyTesting() {
  * @param {array} testingArray - array with all elements with process testing
  * @returns 
  */
-function testingHtml(testingArray) {
+function testingHtml(testingArray, i) {
     return /* html */ `
             <div draggable="true" ondragstart="startDragging(${testingArray['id']})" class="word_break_all cart padding-20">
                 <div class="color-stripe ${testingArray['urgency']}"></div>     
@@ -279,13 +293,13 @@ function testingHtml(testingArray) {
                 <h4 class="text-center">${testingArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <span>${testingArray['name']}</span>
+                    <span id="assignedUserBord${testingArray['id']}" class="assignedUser"></span>
                     </div>
                 </div>
-                <p class="text_container">${testingArray['text']}</p>
+                <p class="text_container">${testingArray['description']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${testingArray['date']}</span>
-                    <span class="text-capitalize ${testingArray['category']}">${testingArray['department']}</span>
+                    <span class="text-capitalize ${testingArray['category']}">${testingArray['category']}</span>
                 </div>
             </div>
         `;
@@ -301,7 +315,14 @@ function dispalyDone() {
     <span class="headline_bord text-uppercase text-center padding-20"><h3>done</h3></span>`;
     for (let i = 0; i < done.length; i++) {
         const doneArray = done[i];
-        document.getElementById('done').innerHTML += doneHtml(doneArray);
+        document.getElementById('done').innerHTML += doneHtml(doneArray, i);
+        let currentTask = document.getElementById(`assignedUserBord${doneArray['id']}`);
+        for (let j = 0; j < doneArray.assignedPerson.length; j++) {
+            const assignedUser = doneArray.assignedPerson[j];
+            currentTask.innerHTML += `
+            <img src="img/${assignedUser.img}">
+            `
+        }
     }
 }
 
@@ -312,7 +333,7 @@ function dispalyDone() {
  * @param {array} doneArray - array with all elements with process done
  * @returns 
  */
-function doneHtml(doneArray) {
+function doneHtml(doneArray, i) {
     return /* html */ `
             <div draggable="true" ondragstart="startDragging(${doneArray['id']})" class="word_break_all cart padding-20">
                 <div class="color-stripe ${doneArray['urgency']}"></div>   
@@ -327,13 +348,13 @@ function doneHtml(doneArray) {
                 </div>
                 <h4 class="text-center">${doneArray['title']}</h4><div>
                 <div class="d-flex">
-                    <span>${doneArray['name']}</span>
+                <span id="assignedUserBord${doneArray['id']}" class="assignedUser"></span>
                 </div>
                 </div>
-                <p class="text_container">${doneArray['text']}</p>
+                <p class="text_container">${doneArray['description']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${doneArray['date']}</span>
-                    <span class="text-capitalize ${doneArray['category']}">${doneArray['department']}</span>
+                    <span class="text-capitalize ${doneArray['category']}">${doneArray['category']}</span>
                 </div>
             </div>
         `;

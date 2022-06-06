@@ -11,7 +11,7 @@ async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(backend.getItem('user')) || [];
-    console.log(users);
+    // console.log(users);
 }
 
 
@@ -106,7 +106,24 @@ function chooseUser() {
             <!-- div for check symbol -->
             <div class="checkimg opacity0" id="checked_${i}"><img src="img/checkimg.png"></div>
         </div>`;
+        for (let index = 0; index < selectedUser.length; index++) {
+            let selectedUserName = selectedUser[index].name;
+            if (userName == selectedUserName) {
+                document.getElementById(`checked_${i}`).classList.remove('opacity0');
+            }
+        }
     }
+
+
+
+    // }
+
+    // let highUrgency = tasks.filter(t => t['urgency'] == 'high');
+    // for (let i = 0; i < highUrgency.length; i++) {
+    //     let index = tasks.indexOf(highUrgency[i]);
+    //     urgencyIsHigh(index, highUrgency, i);
+    // }
+
 }
 
 

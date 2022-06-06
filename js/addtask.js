@@ -11,7 +11,11 @@ async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(backend.getItem('user')) || [];
-    // console.log(users);
+    if (users.length == 0) {
+        let respons = await fetch('./users-backup.json');
+        users = await respons.json();
+    }
+    console.log(users);
 }
 
 
@@ -99,12 +103,12 @@ function chooseUser() {
     for (let i = 0; i < users.length; i++) {
         let userName = users[i]["name"];
         let userImg = users[i]["img"];
-        
+
         //fills ChooseUserContainer with data from Array "users"
         document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
         <div class="choose-person">
             <div class="d-flex a-center">
-                <img onclick="addUser(${i}, '${userName}')" src="img/${userImg}">
+                <img onclick="addUser(${i}, '${userName}')" src="${userImg}">
             <p onclick="addUser(${i}, '${userName}')">${userName}</p>
         </div>
         <!-- div for check symbol -->
@@ -156,7 +160,7 @@ function loadSelectedUsers() {
         let userImg = selectedUser[i].img;
         document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
                 <div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
-                    <img src="img/${userImg}">
+                    <img src="${userImg}">
                     <p>${userName}</p>
                 </div>`;
     }

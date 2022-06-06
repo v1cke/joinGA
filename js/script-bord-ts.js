@@ -1,9 +1,11 @@
 let currentDraggedElementId;
 let tasks = [];
 let bordTasks = [];
+let idCount = 1;
 
 
 screenWidth();
+
 
 /**
  * screen width under 600px draggable disable
@@ -14,6 +16,7 @@ function screenWidth() {
         checkWidth(draggableCart);
     }, 200);
 }
+
 
 /**
  * check the width
@@ -35,6 +38,7 @@ function checkWidth(draggableCart) {
     }
 }
 
+
 /**
  * load the json and render the board
  */
@@ -42,6 +46,7 @@ async function fillBord() {
     await loadTasks();
     renderBord();
 }
+
 
 /**
  * load the json
@@ -52,10 +57,12 @@ async function loadTasks() {
     // bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
 }
 
+
 /**
  * rendering of each process and order of urgency
  */
 function renderBord() {
+    countTasksId();
     checkHighUrgency();
     checkLowUrgency();
     dispalyTodo();
@@ -63,6 +70,19 @@ function renderBord() {
     dispalyTesting();
     dispalyDone();
 }
+
+
+/**
+ * assigns unique id to each task
+ */
+function countTasksId() {
+    for (let index = 0; index < tasks.length; index++) {
+        let tasksIndexId = tasks[index];
+        tasksIndexId.id = idCount;
+        idCount++;
+    }
+}
+
 
 /**
  * check of the highest urgency
@@ -75,6 +95,7 @@ function checkHighUrgency() {
     }
 }
 
+
 /**
  * check the least urgency
  */
@@ -85,6 +106,7 @@ function checkLowUrgency() {
         urgencyIsLow(index, lowUrgency, i);
     }
 }
+
 
 /**
  * bring the element to the first position of the json
@@ -99,6 +121,7 @@ function urgencyIsHigh(index, filterId, i) {
         tasks.unshift(filterId[i]);
     }
 }
+
 
 /**
  * bring the element to the last position of the json
@@ -135,6 +158,7 @@ function dispalyTodo() {
     }
 }
 
+
 /**
  * generate the html for todo
  * 
@@ -163,11 +187,12 @@ function todoHtml(todoArray, i) {
                 <p class="text_container">${todoArray['description']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${todoArray['date']}</span>
-                    <span class="text-capitalize">${todoArray['category']}</span>
+                    <span class="text-capitalize ${todoArray['category']}">${todoArray['category']}</span>
                 </div>
             </div>
         `;
 }
+
 
 /**
  * display the items in the inProgress area
@@ -181,6 +206,7 @@ function dispalyInProgress() {
         document.getElementById('inProgress').innerHTML += inProgressHtml(inProgressArray);
     }
 }
+
 
 /**
  * generate the html for inProgress
@@ -210,11 +236,12 @@ function inProgressHtml(inProgressArray) {
                 <p class="text_container">${inProgressArray['text']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${inProgressArray['date']}</span>
-                    <span class="text-capitalize">${inProgressArray['department']}</span>
+                    <span class="text-capitalize ${inProgressArray['category']}">${inProgressArray['department']}</span>
                 </div>
             </div>
         `;
 }
+
 
 /**
  * display the items in the testing area
@@ -228,6 +255,7 @@ function dispalyTesting() {
         document.getElementById('testing').innerHTML += testingHtml(testingArray);
     }
 }
+
 
 /**
  * generate the html for testing
@@ -257,11 +285,12 @@ function testingHtml(testingArray) {
                 <p class="text_container">${testingArray['text']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${testingArray['date']}</span>
-                    <span class="text-capitalize">${testingArray['department']}</span>
+                    <span class="text-capitalize ${testingArray['category']}">${testingArray['department']}</span>
                 </div>
             </div>
         `;
 }
+
 
 /**
  * display the items in the done area
@@ -275,6 +304,7 @@ function dispalyDone() {
         document.getElementById('done').innerHTML += doneHtml(doneArray);
     }
 }
+
 
 /**
  * generate the html for done
@@ -303,11 +333,12 @@ function doneHtml(doneArray) {
                 <p class="text_container">${doneArray['text']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${doneArray['date']}</span>
-                    <span class="text-capitalize">${doneArray['department']}</span>
+                    <span class="text-capitalize ${doneArray['category']}">${doneArray['department']}</span>
                 </div>
             </div>
         `;
 }
+
 
 /**
  * saves the id of the object to be moved
@@ -318,6 +349,7 @@ function startDragging(id) {
     currentDraggedElementId = id;
 }
 
+
 /**
  * allowed to drop an object
  * 
@@ -326,6 +358,7 @@ function startDragging(id) {
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 
 /**
  * moves an object to another process
@@ -342,6 +375,7 @@ function moveTo(process, id) {
     renderBord();
 }
 
+
 /**
  * Highlight the process to move the item to
  * 
@@ -351,6 +385,7 @@ function highlight(id) {
     document.getElementById(id).classList.add('drag_area_highlight');
 }
 
+
 /**
  * remove the highlight of the process to move the item to
  * 
@@ -359,6 +394,7 @@ function highlight(id) {
 function removehighlight(id) {
     document.getElementById(id).classList.remove('drag_area_highlight');
 }
+
 
 /**
  * open the menu
@@ -376,6 +412,7 @@ function openMenu(id) {
     }
 }
 
+
 /**
  * display of the menu
  * 
@@ -389,6 +426,7 @@ function dispalyMenu(listContainer, menuBtnId, menuBtn) {
     menuBtnId[0]['OpenMenu'] = true;
 }
 
+
 /**
  * close the menu
  * 
@@ -401,6 +439,7 @@ function removeMenu(listContainer, menuBtnId, menuBtn) {
     listContainer.classList.remove('show');
     menuBtnId[0]['OpenMenu'] = false;
 }
+
 
 /**
  * closing the menu before removing the element from the json
@@ -416,6 +455,7 @@ function removeTask(id) {
         removeIt(id);
     }, 100);
 }
+
 
 /**
  * removing the element from the json after closing the menu

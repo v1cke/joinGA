@@ -14,8 +14,22 @@
     color: white;
 }
 
-.footer-child:last-child {
-    align-items: flex-end;
-    align-content: space-between;
+.footer-child:first-child span:first-child {
+    margin-bottom: 30px;
+}
+
+.footer-child a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-child a:hover {
+    text-decoration: underline;
+}
+
+.footer-child:last-child a {
+    /* align-items: flex-end; */
+    /* align-content: space-between; */
+    margin-bottom: 15px;
     text-align: end;
 }

@@ -48,15 +48,16 @@ function hightlightHeader(linkId) {
 async function showLoggedUserImg() {
     await downloadFromServer();
     loggedUser = await JSON.parse(backend.getItem('loggedUser')) || [];
-    if (loggedUser.length > 0) {
-        let imgUser = loggedUser[0].img;
-        document.getElementById('loggedUserImg').src = `img/${imgUser}`;
+    if (loggedUser) {
+        let imgUser = loggedUser.img;
+        document.getElementById('loggedUserImg').src = imgUser;
     } else {
-        document.getElementById('loggedUserImg').src = "img/guest-48.png";
+        document.getElementById('loggedUserImg').src = 'img/guest-48.png';
     }
 }
 
 function logOutUser() {
+    // loggedUser = [];
     loggedUser.splice(0, 1);
     backend.setItem('loggedUser', JSON.stringify(loggedUser));
     window.location.href = "index.html";

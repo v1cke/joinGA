@@ -224,7 +224,7 @@ function inProgressHtml(inProgressArray) {
                 <p class="text_container">${inProgressArray['text']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${inProgressArray['date']}</span>
-                    <span class="text-capitalize ${todoArray['category']}">${inProgressArray['department']}</span>
+                    <span class="text-capitalize ${inProgressArray['category']}">${inProgressArray['department']}</span>
                 </div>
             </div>
         `;
@@ -271,7 +271,7 @@ function testingHtml(testingArray) {
                 <p class="text_container">${testingArray['text']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${testingArray['date']}</span>
-                    <span class="text-capitalize ${todoArray['category']}">${testingArray['department']}</span>
+                    <span class="text-capitalize ${testingArray['category']}">${testingArray['department']}</span>
                 </div>
             </div>
         `;
@@ -317,7 +317,7 @@ function doneHtml(doneArray) {
                 <p class="text_container">${doneArray['text']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${doneArray['date']}</span>
-                    <span class="text-capitalize ${todoArray['category']}">${doneArray['department']}</span>
+                    <span class="text-capitalize ${doneArray['category']}">${doneArray['department']}</span>
                 </div>
             </div>
         `;

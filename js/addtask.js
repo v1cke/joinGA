@@ -113,17 +113,6 @@ function chooseUser() {
             }
         }
     }
-
-
-
-    // }
-
-    // let highUrgency = tasks.filter(t => t['urgency'] == 'high');
-    // for (let i = 0; i < highUrgency.length; i++) {
-    //     let index = tasks.indexOf(highUrgency[i]);
-    //     urgencyIsHigh(index, highUrgency, i);
-    // }
-
 }
 
 

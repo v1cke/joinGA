@@ -1,5 +1,5 @@
 let currentDraggedElementId;
-let tasks = [];
+// let tasks = [];
 let bordTasks = [];
 let idCount = 1;
 
@@ -54,7 +54,7 @@ async function fillBord() {
  */
 async function loadTasks() {
     await downloadFromServer();
-    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    // tasks = JSON.parse(backend.getItem('tasks')) || [];
     bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
 }
 
@@ -76,8 +76,8 @@ function renderBord() {
  * assigns unique id to each task
  */
 function countTasksId() {
-    for (let index = 0; index < tasks.length; index++) {
-        let tasksIndexId = tasks[index];
+    for (let index = 0; index < bordTasks.length; index++) {
+        let tasksIndexId = bordTasks[index];
         tasksIndexId.id = idCount;
         idCount++;
     }
@@ -88,9 +88,9 @@ function countTasksId() {
  * check of the highest urgency
  */
 function checkHighUrgency() {
-    let highUrgency = tasks.filter(t => t['urgency'] == 'high');
+    let highUrgency = bordTasks.filter(t => t['urgency'] == 'high');
     for (let i = 0; i < highUrgency.length; i++) {
-        let index = tasks.indexOf(highUrgency[i]);
+        let index = bordTasks.indexOf(highUrgency[i]);
         urgencyIsHigh(index, highUrgency, i);
     }
 }
@@ -100,9 +100,9 @@ function checkHighUrgency() {
  * check the least urgency
  */
 function checkLowUrgency() {
-    let lowUrgency = tasks.filter(t => t['urgency'] == 'low');
+    let lowUrgency = bordTasks.filter(t => t['urgency'] == 'low');
     for (let i = 0; i < lowUrgency.length; i++) {
-        let index = tasks.indexOf(lowUrgency[i]);
+        let index = bordTasks.indexOf(lowUrgency[i]);
         urgencyIsLow(index, lowUrgency, i);
     }
 }
@@ -117,8 +117,8 @@ function checkLowUrgency() {
  */
 function urgencyIsHigh(index, filterId, i) {
     if (filterId[i]['urgency'] == 'high') {
-        tasks.splice(index, 1);
-        tasks.unshift(filterId[i]);
+        bordTasks.splice(index, 1);
+        bordTasks.unshift(filterId[i]);
     }
 }
 
@@ -132,8 +132,8 @@ function urgencyIsHigh(index, filterId, i) {
  */
 function urgencyIsLow(index, filterId, i) {
     if (filterId[i]['urgency'] == 'low') {
-        tasks.splice(index, 1);
-        tasks.push(filterId[i]);
+        bordTasks.splice(index, 1);
+        bordTasks.push(filterId[i]);
     }
 }
 
@@ -169,7 +169,7 @@ function urgencyIsLow(index, filterId, i) {
 
 
 function dispalyTodo() {
-    let process = tasks.filter(t => t['process'] == 'todo');
+    let process = bordTasks.filter(t => t['process'] == 'todo');
     document.getElementById('todo').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
     for (let i = 0; i < process.length; i++) {
@@ -179,7 +179,7 @@ function dispalyTodo() {
         for (let j = 0; j < processArray.assignedPerson.length; j++) {
             const assignedUser = processArray.assignedPerson[j];
             currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
+            <img src="${assignedUser.img}">
             `
         }
 
@@ -198,7 +198,7 @@ function dispalyTodo() {
  * display the items in the inProgress area
  */
 function dispalyInProgress() {
-    let inProgress = tasks.filter(t => t['process'] == 'inProgress');
+    let inProgress = bordTasks.filter(t => t['process'] == 'inProgress');
     document.getElementById('inProgress').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>in Progress</h3></span>`;
     for (let i = 0; i < inProgress.length; i++) {
@@ -225,7 +225,7 @@ function dispalyInProgress() {
  * display the items in the testing area
  */
 function dispalyTesting() {
-    let testing = tasks.filter(t => t['process'] == 'testing');
+    let testing = bordTasks.filter(t => t['process'] == 'testing');
     document.getElementById('testing').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>testing</h3></span>`;
     for (let i = 0; i < testing.length; i++) {
@@ -252,7 +252,7 @@ function dispalyTesting() {
  * display the items in the done area
  */
 function dispalyDone() {
-    let done = tasks.filter(t => t['process'] == 'done');
+    let done = bordTasks.filter(t => t['process'] == 'done');
     document.getElementById('done').innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>done</h3></span>`;
     for (let i = 0; i < done.length; i++) {
@@ -338,7 +338,7 @@ function moveTo(process, id) {
     if (id) {
         currentDraggedElementId = id;
     }
-    let filterId = tasks.filter(t => t['id'] == currentDraggedElementId);
+    let filterId = bordTasks.filter(t => t['id'] == currentDraggedElementId);
     filterId[0]['process'] = process;
     renderBord();
 }
@@ -370,7 +370,7 @@ function removehighlight(id) {
  * @param {number} id - id of the menu to be opened
  */
 function openMenu(id) {
-    let menuBtnId = tasks.filter(t => t['id'] == id);
+    let menuBtnId = bordTasks.filter(t => t['id'] == id);
     let menuBtn = document.getElementById(`menu${id}`)
     let listContainer = document.getElementById(`list${id}`)
     if (!menuBtnId[0]['OpenMenu']) {
@@ -415,7 +415,7 @@ function removeMenu(listContainer, menuBtnId, menuBtn) {
  * @param {number} id - id of the item to be removed
  */
 function removeTask(id) {
-    let menuBtnId = tasks.filter(t => t['id'] == id);
+    let menuBtnId = bordTasks.filter(t => t['id'] == id);
     let menuBtn = document.getElementById(`menu${id}`)
     let listContainer = document.getElementById(`list${id}`)
     removeMenu(listContainer, menuBtnId, menuBtn, id);
@@ -431,8 +431,8 @@ function removeTask(id) {
  * @param {number} id - id of the item to be removed
  */
 function removeIt(id) {
-    let removeTask = tasks.filter(t => t['id'] == id);
-    let index = tasks.indexOf(removeTask[0]);
-    tasks.splice(index, 1);
+    let removeTask = bordTasks.filter(t => t['id'] == id);
+    let index = bordTasks.indexOf(removeTask[0]);
+    bordTasks.splice(index, 1);
     renderBord();
 }

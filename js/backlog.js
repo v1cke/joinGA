@@ -1,4 +1,3 @@
-let backlogTask = [];
 let pushToBoardTask = [];
 
 
@@ -15,7 +14,7 @@ async function renderBacklog() {
  */
 async function loadTasks() {
     await downloadFromServer();
-    backlogTask = JSON.parse(backend.getItem('tasks')) || [];
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
 }
 
 
@@ -27,14 +26,14 @@ async function loadTasks() {
  */
 function renderBord() {
     document.getElementById('idBacklogContainer').innerHTML = '';
-    for (let i = 0; i < backlogTask.length; i++) {
-        const element = backlogTask[i];
+    for (let i = 0; i < tasks.length; i++) {
+        const element = tasks[i];
         document.getElementById('idBacklogContainer').innerHTML += generateBacklogHTML(element, i);
         let currentTask = document.getElementById(`assignedPersonImgBacklog${i}`);
         for (let j = 0; j < element.assignedPerson.length; j++) {
             const assignedWorker = element.assignedPerson[j];
             currentTask.innerHTML += `
-            <img src="img/${assignedWorker.img}">
+            <img src="${assignedWorker.img}">
             `
         }
     }
@@ -62,7 +61,7 @@ function generateBacklogHTML(element, i) {
                         <div class="${element.category}">${element['category']}</div>
                     </div>
                     <div class="add-to-board">
-                        <span><img onclick="addToBoard(i)" src="img/icon plus.png"></span>
+                        <span><img onclick="addToBoard(${i})" src="img/icon plus.png"></span>
                     </div>
                     <div class="backlog-text ">
                     <span>${element['description']}</span>
@@ -73,9 +72,10 @@ function generateBacklogHTML(element, i) {
 }
 
 function addToBoard(i) {
-    let backlog = backlogTask[i];
+    let backlog = tasks[i];
     pushToBoardTask.push(backlog);
     backend.setItem('bordTasks', JSON.stringify(pushToBoardTask));
-    backlogTask.splice(i, 1);
-    fillBord();
+    tasks.splice(i, 1);
+    backend.setItem('tasks', JSON.stringify(tasks));
+    renderBord();
 }

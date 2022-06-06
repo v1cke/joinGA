@@ -41,16 +41,6 @@ function checkWidth(draggableCart) {
  */
 async function fillBord() {
     await loadTasks();
-
-
-    for (let index = 0; index < tasks.length; index++) {
-        let tasksIndexId = tasks[index].id;
-        tasksIndexId = idCount;
-        idCount++;
-        console.log('board tastk', tasksIndexId);
-    }
-    console.log('board tastk', tasks);
-
     renderBord();
 }
 
@@ -61,14 +51,13 @@ async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     // bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
-
-
 }
 
 /**
  * rendering of each process and order of urgency
  */
 function renderBord() {
+    countTasksId();
     checkHighUrgency();
     checkLowUrgency();
     dispalyTodo();
@@ -76,6 +65,18 @@ function renderBord() {
     dispalyTesting();
     dispalyDone();
 }
+
+
+function countTasksId() {
+    for (let index = 0; index < tasks.length; index++) {
+        let tasksIndexId = tasks[index];
+        tasksIndexId.id = idCount;
+        idCount++;
+        console.log('board id', tasksIndexId);
+    }
+    console.log('board tastk', tasks);
+}
+
 
 /**
  * check of the highest urgency

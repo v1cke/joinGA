@@ -352,9 +352,3 @@
         height: 24px !important;
         object-fit: cover;
     }
-    
-    #fill-in-the-field {
-        top: 80px;
-        background: aqua;
-        font-size: 14px;
-    }

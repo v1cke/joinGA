@@ -1,5 +1,4 @@
 let backlogTask = [];
-let bordTasks = [];
 
 /**
  * load the json and render the backlog
@@ -61,7 +60,7 @@ function generateBacklogHTML(element, i) {
                         <div class="${element.category}">${element['category']}</div>
                     </div>
                     <div class="add-to-board">
-                        <span><img onclick="addToBoard()" src="img/icon plus.png"></span>
+                        <span><img onclick="addToBoard(i)" src="img/icon plus.png"></span>
                     </div>
                     <div class="backlog-text ">
                     <span>${element['description']}</span>
@@ -71,6 +70,11 @@ function generateBacklogHTML(element, i) {
     `
 }
 
-function addToBoard() {
-    
+function addToBoard(i) {
+    let backlog = backlogTask[i];
+
+    bordTasks.push(backlog);
+    backlogTask.splice(i, 1);
+
+    fillBord();
 }

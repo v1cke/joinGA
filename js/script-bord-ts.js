@@ -1,6 +1,7 @@
 let currentDraggedElementId;
 let tasks = [];
 let bordTasks = [];
+let idCount = 1;
 
 
 screenWidth();
@@ -40,6 +41,16 @@ function checkWidth(draggableCart) {
  */
 async function fillBord() {
     await loadTasks();
+
+
+    for (let index = 0; index < tasks.length; index++) {
+        let tasksIndexId = tasks[index].id;
+        tasksIndexId = idCount;
+        idCount++;
+        console.log('board tastk', tasksIndexId);
+    }
+    console.log('board tastk', tasks);
+
     renderBord();
 }
 
@@ -50,7 +61,8 @@ async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     // bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
-    console.log('board tastk', tasks);
+
+
 }
 
 /**

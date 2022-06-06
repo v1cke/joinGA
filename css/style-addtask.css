@@ -112,6 +112,7 @@
     }
     
     .assigned-to {
+        position: relative;
         display: flex;
         align-items: center;
         /* max-width: 80px; */
@@ -323,8 +324,8 @@
     .opacity0 {
         opacity: 0;
     }
-
-    .addBtn{
+    
+    .addBtn {
         cursor: pointer;
     }
     
@@ -350,4 +351,10 @@
         width: 24px !important;
         height: 24px !important;
         object-fit: cover;
+    }
+    
+    #fill-in-the-field {
+        top: 80px;
+        background: aqua;
+        font-size: 14px;
     }

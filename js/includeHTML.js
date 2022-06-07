@@ -26,7 +26,7 @@ async function includeHTML(linkId) {
         }
     }
     hightlightHeader(linkId);
-    await showLoggedUserImg();
+    showLoggedUserImg();
 }
 
 
@@ -46,9 +46,8 @@ function hightlightHeader(linkId) {
 }
 
 
-async function showLoggedUserImg() {
-    await downloadFromServer();
-    loggedUser = await JSON.parse(backend.getItem('loggedUser')) || [];
+function showLoggedUserImg() {
+    loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
     if (loggedUser) {
         let imgUser = loggedUser.img;
         document.getElementById('loggedUserImg').src = imgUser;
@@ -59,9 +58,9 @@ async function showLoggedUserImg() {
 
 
 function logOutUser() {
-    // loggedUser = [];
-    loggedUser.splice(0, 1);
-    backend.setItem('loggedUser', JSON.stringify(loggedUser));
+    // loggedUser.splice(0, 1);
+    // localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+    localStorage.clear();
     window.location.href = "index.html";
 }
 

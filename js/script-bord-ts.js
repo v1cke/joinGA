@@ -208,7 +208,7 @@ function dispalyInProgress() {
         for (let j = 0; j < inProgressArray.assignedPerson.length; j++) {
             const assignedUser = inProgressArray.assignedPerson[j];
             currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
+            <img src="${assignedUser.img}">
             `
         }
         document.getElementById(`list${inProgressArray['id']}`).innerHTML = `
@@ -235,7 +235,7 @@ function dispalyTesting() {
         for (let j = 0; j < testingArray.assignedPerson.length; j++) {
             const assignedUser = testingArray.assignedPerson[j];
             currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
+            <img src="${assignedUser.img}">
             `
         }
         document.getElementById(`list${testingArray['id']}`).innerHTML = `
@@ -262,7 +262,7 @@ function dispalyDone() {
         for (let j = 0; j < doneArray.assignedPerson.length; j++) {
             const assignedUser = doneArray.assignedPerson[j];
             currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
+            <img src="${assignedUser.img}">
             `
         }
         document.getElementById(`list${doneArray['id']}`).innerHTML = `

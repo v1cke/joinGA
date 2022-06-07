@@ -65,10 +65,13 @@ async function loadTasks() {
 function renderBord() {
     checkHighUrgency();
     checkLowUrgency();
-    dispalyTodo('todo');
-    dispalyInProgress();
-    dispalyTesting();
-    dispalyDone();
+    displayOfTheDifferentProcesses('todo');
+    displayOfTheDifferentProcesses('inProgress');
+    displayOfTheDifferentProcesses('testing');
+    displayOfTheDifferentProcesses('done');
+    // dispalyInProgress();
+    // dispalyTesting();
+    // dispalyDone();
 }
 
 
@@ -141,139 +144,24 @@ function urgencyIsLow(index, filterId, i) {
 /**
  * display the items in the todo area
  */
-// function dispalyTodo(processValue) {
-//     let process = tasks.filter(t => t['process'] == processValue);
-//     document.getElementById(processValue).innerHTML = /* html */ `
-//     <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
-//     for (let i = 0; i < process.length; i++) {
-//         const processArray = process[i];
-//         document.getElementById(processValue).innerHTML += cartHtml(processArray);
-//         let currentTask = document.getElementById(`assignedUserBord${processArray['id']}`);
-//         for (let j = 0; j < processArray.assignedPerson.length; j++) {
-//             const assignedUser = processArray.assignedPerson[j];
-//             currentTask.innerHTML += `
-//             <img src="img/${assignedUser.img}">
-//             `
-//         }
-
-//         if (processValue == 'todo') {
-//             document.getElementById(`list${processArray['id']}`).innerHTML = `
-//         <li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress</li>
-//                         <li onclick="moveTo('testing', ${processArray['id']})">Move to Testing</li>
-//                         <li onclick="moveTo('done', ${processArray['id']})">Move to Done</li>
-//                         <li onclick="removeTask(${processArray['id']})">Delete</li>
-//         `;
-//         }
-//     }
-// }
-
-
-function dispalyTodo() {
-    let process = bordTasks.filter(t => t['process'] == 'todo');
-    document.getElementById('todo').innerHTML = /* html */ `
+function displayOfTheDifferentProcesses(processValue) {
+    let process = bordTasks.filter(t => t['process'] == processValue);
+    document.getElementById(processValue).innerHTML = /* html */ `
     <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
     for (let i = 0; i < process.length; i++) {
         const processArray = process[i];
-        document.getElementById('todo').innerHTML += cartHtml(processArray);
+        document.getElementById(processValue).innerHTML += cartHtml(processArray);
         let currentTask = document.getElementById(`assignedUserBord${processArray['id']}`);
         for (let j = 0; j < processArray.assignedPerson.length; j++) {
             const assignedUser = processArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="${assignedUser.img}">
-            `
+            currentTask.innerHTML += `<img src="${assignedUser.img}">`
         }
-
-        document.getElementById(`list${processArray['id']}`).innerHTML = `
-        <li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress</li>
-                        <li onclick="moveTo('testing', ${processArray['id']})">Move to Testing</li>
-                        <li onclick="moveTo('done', ${processArray['id']})">Move to Done</li>
-                        <li onclick="removeTask(${processArray['id']})">Delete</li>
-        `;
-
+        checkTodoAndFillMenu(processArray, processValue);
+        checkInProgressAndFillMenu(processArray, processValue);
+        checkTestingAndFillMenu(processArray, processValue);
+        checkDoneAndFillMenu(processArray, processValue);
     }
 }
-
-
-/**
- * display the items in the inProgress area
- */
-function dispalyInProgress() {
-    let inProgress = bordTasks.filter(t => t['process'] == 'inProgress');
-    document.getElementById('inProgress').innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>in Progress</h3></span>`;
-    for (let i = 0; i < inProgress.length; i++) {
-        const inProgressArray = inProgress[i];
-        document.getElementById('inProgress').innerHTML += cartHtml(inProgressArray);
-        let currentTask = document.getElementById(`assignedUserBord${inProgressArray['id']}`);
-        for (let j = 0; j < inProgressArray.assignedPerson.length; j++) {
-            const assignedUser = inProgressArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
-            `
-        }
-        document.getElementById(`list${inProgressArray['id']}`).innerHTML = `
-            <li onclick="moveTo('todo', ${inProgressArray['id']})">Move to To Do</li>
-            <li onclick="moveTo('testing', ${inProgressArray['id']})">Move to Testing</li>
-            <li onclick="moveTo('done', ${inProgressArray['id']})">Move to Done</li>
-            <li onclick="removeTask(${inProgressArray['id']})">Delete</li>
-        `;
-    }
-}
-
-
-/**
- * display the items in the testing area
- */
-function dispalyTesting() {
-    let testing = bordTasks.filter(t => t['process'] == 'testing');
-    document.getElementById('testing').innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>testing</h3></span>`;
-    for (let i = 0; i < testing.length; i++) {
-        const testingArray = testing[i];
-        document.getElementById('testing').innerHTML += cartHtml(testingArray);
-        let currentTask = document.getElementById(`assignedUserBord${testingArray['id']}`);
-        for (let j = 0; j < testingArray.assignedPerson.length; j++) {
-            const assignedUser = testingArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
-            `
-        }
-        document.getElementById(`list${testingArray['id']}`).innerHTML = `
-            <li onclick="moveTo('todo', ${testingArray['id']})">Move to To Do</li>
-            <li onclick="moveTo('inProgress', ${testingArray['id']})">Move to In Progress</li>
-            <li onclick="moveTo('done', ${testingArray['id']})">Move to Done</li>
-            <li onclick="removeTask(${testingArray['id']})">Delete</li>
-        `;
-    }
-}
-
-
-/**
- * display the items in the done area
- */
-function dispalyDone() {
-    let done = bordTasks.filter(t => t['process'] == 'done');
-    document.getElementById('done').innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>done</h3></span>`;
-    for (let i = 0; i < done.length; i++) {
-        const doneArray = done[i];
-        document.getElementById('done').innerHTML += cartHtml(doneArray);
-        let currentTask = document.getElementById(`assignedUserBord${doneArray['id']}`);
-        for (let j = 0; j < doneArray.assignedPerson.length; j++) {
-            const assignedUser = doneArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="img/${assignedUser.img}">
-            `
-        }
-        document.getElementById(`list${doneArray['id']}`).innerHTML = `
-            <li onclick="moveTo('todo', ${doneArray['id']})">Move to To Do</li>
-            <li onclick="moveTo('inProgress', ${doneArray['id']})">Move to In Progress</li>
-            <li onclick="moveTo('testing', ${doneArray['id']})">Move to Testing</li>
-            <li onclick="removeTask(${doneArray['id']})">Delete</li>
-        `;
-    }
-}
-
 
 
 /**
@@ -305,6 +193,54 @@ function cartHtml(cartArray) {
                 </div>
             </div>
         `;
+}
+
+
+function checkTodoAndFillMenu(processArray, processValue) {
+    if (processValue == 'todo') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            <li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress</li>
+            <li onclick="moveTo('testing', ${processArray['id']})">Move to Testing</li>
+            <li onclick="moveTo('done', ${processArray['id']})">Move to Done</li>
+            <li onclick="removeTask(${processArray['id']})">Delete</li>
+        `;
+    }
+}
+
+
+function checkInProgressAndFillMenu(processArray, processValue) {
+    if (processValue == 'inProgress') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            <li onclick="moveTo('todo', ${processArray['id']})">Move to To Do</li>
+            <li onclick="moveTo('testing', ${processArray['id']})">Move to Testing</li>
+            <li onclick="moveTo('done', ${processArray['id']})">Move to Done</li>
+            <li onclick="removeTask(${processArray['id']})">Delete</li>
+        `;
+    }
+}
+
+
+function checkTestingAndFillMenu(processArray, processValue) {
+    if (processValue == 'testing') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            <li onclick="moveTo('todo', ${processArray['id']})">Move to To Do</li>
+            <li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress</li>
+            <li onclick="moveTo('done', ${processArray['id']})">Move to Done</li>
+            <li onclick="removeTask(${processArray['id']})">Delete</li>
+        `;
+    }
+}
+
+
+function checkDoneAndFillMenu(processArray, processValue) {
+    if (processValue == 'done') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            <li onclick="moveTo('todo', ${processArray['id']})">Move to To Do</li>
+            <li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress</li>
+            <li onclick="moveTo('testing', ${processArray['id']})">Move to Testing</li>
+            <li onclick="removeTask(${processArray['id']})">Delete</li>
+        `;
+    }
 }
 
 

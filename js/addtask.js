@@ -10,7 +10,7 @@ let selectedUser = [];
 async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    users = JSON.parse(backend.getItem('user')) || [];
+    users = JSON.parse(backend.getItem('users')) || [];
     if (users.length == 0) {
         let respons = await fetch('./users-backup.json');
         users = await respons.json();

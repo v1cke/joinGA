@@ -64,3 +64,12 @@ function logOutUser() {
     backend.setItem('loggedUser', JSON.stringify(loggedUser));
     window.location.href = "index.html";
 }
+
+
+function openCookies(){
+    document.getElementById('cookieTemplate').classList.remove('d-none');
+}
+
+function closeCookies() {
+    document.getElementById('cookieTemplate').classList.add('d-none');
+}

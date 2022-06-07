@@ -86,6 +86,7 @@ main {
     background-color: white;
     margin-top: 10px;
     padding-left: 15px;
+    overflow: hidden;
 }
 
 .backlog-container img {
@@ -180,16 +181,12 @@ main {
     text-align: center;
 } */
 
-
 @media screen and (max-width: 500px) {
-
     .backlog-container {
         display: flex;
         flex-direction: column;
     }
-    
     .content-titles {
         display: none;
     }
-    
 }

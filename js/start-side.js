@@ -2,29 +2,28 @@ let accountData = [];
 let loggedUser = [];
 
 async function loadTasks() {
-    await downloadFromServer();
+    // await downloadFromServer();
     // accountData = JSON.parse(backend.getItem('user')) || [];
-    if (accountData.length == 0) {
+    // if (accountData.length == 0) {
         let respons = await fetch('./users-backup.json');
-        users = await respons.json();
-        for (let index = 0; index < users.length; index++) {
-            const element = users[index];
-            accountData.push(element);
-        }
-    }
+        accountData = await respons.json();
+        // for (let index = 0; index < users.length; index++) {
+            // const element = users[index];
+            // accountData.push(element);
+        // }
+    // }
     // console.log('alle users', accountData);
 }
 
 
-async function loginUser() {
+function loginUser() {
     let userName = document.getElementById('userNameField').value;
     let password = document.getElementById('passwordField').value;
     for (let i = 0; i < accountData.length; i++) {
         const user = accountData[i];
         if (userName == user.name && password == user.passwort) {
             loggedUser = user;
-            await backend.setItem('loggedUser', JSON.stringify(loggedUser));
-            console.log(loggedUser);
+            localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
             window.location.href = "bord.html";
         }
     }
@@ -78,7 +77,7 @@ function closeCreateUser() {
 }
 
 
-async function loginAsGuest() {
+function loginAsGuest() {
     let userName = 'Guest';
     let password = 'Guest';
     let newUser = {
@@ -88,7 +87,7 @@ async function loginAsGuest() {
     };
     loggedUser = newUser;
 
-    await backend.setItem('loggedUser', JSON.stringify(loggedUser));
+    localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
     console.log(loggedUser);
     window.location.href = "bord.html";
 }

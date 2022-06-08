@@ -8,6 +8,7 @@
     <title>Join - Board</title>
     <link rel="stylesheet" href="css/style-bord-ts.css">
     <link rel="stylesheet" href="css/style-color-ts.css">
+    <link rel="stylesheet" href="css/style-cookies.css">
     <link rel="stylesheet" href="css/style-display-flex-ts.css">
     <link rel="stylesheet" href="css/style-fonts-ts.css">
     <link rel="stylesheet" href="css/style-padding-margin-ts.css">
@@ -45,6 +46,7 @@
             <div id="done" ondrop="moveTo('done'); removehighlight('done')" ondragleave="removehighlight('done')" ondragover="allowDrop(event); highlight('done')" class="bord_under_container d-flex f-colum"></div>
         </div>
     </div>
+    <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
     <div w3-include-html="templates/footer.html"></div>
 </body>
 

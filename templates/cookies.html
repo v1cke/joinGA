@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - Cookies</title>
-    <script src="js/includeHTML.js"></script>
-    <link rel="icon" type="image/x-icon" href="img/logo.png">
-    <link rel="stylesheet" href="css/style-addtask.css">
-    <link rel="stylesheet" href="css/style-display-flex-ts.css">
-    <link rel="stylesheet" href="css/style-responsiv-VG.css">
-    <link rel="stylesheet" href="css/style-fonts-ts.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <script src="js/header.js"></script>
-</head>
-
-<body onload="includeHTML()">
-    <div w3-include-html="./templates/header.html"></div>
-
-    <div class="main-container">
-        <div class="container">
             <div class="cookies-container">
                 <div class="cookies-head">
                     <p>Helfen Sie uns mit Ihrer Zustimmung</p>
@@ -42,19 +19,7 @@
                     <ul>Personalisierte Anzeigen und Anzeigenmessung</ul>
                 </div>
                 <div class="cookies-btn">
-                    <a href="www.google.de"><button>Seite verlassen</button></a>
-                    <button onclick="closeCookies()">Cookies akzeptieren</button>
+                    <a href="www.google.de"><button class="cookie-create">Seite verlassen</button></a>
+                    <button class="cookie-create" onclick="closeCookies()">Cookies akzeptieren</button>
                 </div>
-            </div>            
-        </div>
-    </div>
-
-    <div w3-include-html="templates/footer.html"></div>
-</body>
-
-</html>
-
-
-<div id="cookies" class="cookies-body d-none">
-    
-</div>
+            </div>

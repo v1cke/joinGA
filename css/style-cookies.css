@@ -1,53 +1,50 @@
-body {
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    background-image: url('img/pexels-fauxels-3183197.jpg');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    font-family: 'Open Sans', sans-serif;
-    min-height: 100vh;
-}
-
-.main-container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    max-width: 1024px;
-    margin: 3em auto;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-}
-
-
 .cookies-container {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 20%;
+    right: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white !important;
+    align-items: center;
+    width: 60%;
 }
 
 .cookies-head p{
-    color: white !important;
-    width: 80%;
+    position: relative;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
 
-.cookies-info p{
+.cookies-info{
     width: 80%;
-    color: white !important;
+}
+
+.cookies-btn {
+    margin-top: 32px;
+    display: flex;
+    width: 70%;
+    justify-content: space-evenly;
+}
+
+.cookie-create {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    border: 2px solid;
+    border-radius: 12px;
+    height: 50px;
+    transition: 500ms;
+}
+
+.cookie-create:hover {
+    border-color: black;
+    background: rgba(0, 0, 0, 0.8);
+    transition: 700ms;
 }

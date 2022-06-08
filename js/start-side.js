@@ -1,19 +1,46 @@
 let accountData = [];
 let loggedUser = [];
+let internUsers = [];
 
-async function loadTasks() {
+async function loadUsers() {
     // await downloadFromServer();
     // accountData = JSON.parse(backend.getItem('user')) || [];
     // if (accountData.length == 0) {
+
     let respons = await fetch('./users-backup.json');
     accountData = await respons.json();
-    // for (let index = 0; index < users.length; index++) {
-    // const element = users[index];
-    // accountData.push(element);
+    internUsers = JSON.parse(localStorage.getItem('accountData'));
+    if (internUsers) {
+        for (let index = 0; index < internUsers.length; index++) {
+            const element = internUsers[index];
+            accountData.push(element);
+        }
+    }
+
+
+    //     const internUsersName = internUsers[i];
+    //     for (let j = 0; j < accountData.length; j++) {
+    //         const accountDataName = accountData[j];
+    //         if (internUsersName.name == accountDataName.name) {
+    //             console.log('user gefunden');
+    //         } else {
+    //             accountData.push(internUsers[i]);
+    //             console.log('user', internUsers[i]);
+
+    //         }
+    //     }
     // }
-    // }
-    // console.log('alle users', accountData);
+
 }
+
+
+// for (let index = 0; index < users.length; index++) {
+// const element = users[index];
+// accountData.push(element);
+// }
+// }
+// console.log('alle users', accountData);
+
 
 
 function loginUser() {
@@ -24,9 +51,10 @@ function loginUser() {
         const user = accountData[i];
 
         if (userName == user.name && password == user.passwort) {
+
+            searchUser[i] = true;
             loggedUser = user;
             localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-            searchUser[i] = true;
         }
     }
     if (!searchUser.includes(true)) {

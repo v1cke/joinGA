@@ -60,12 +60,13 @@ function showLoggedUserImg() {
 function logOutUser() {
     // loggedUser.splice(0, 1);
     // localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-    localStorage.clear();
+    localStorage.removeItem('loggedUser');
+    // localStorage.clear();
     window.location.href = "index.html";
 }
 
 
-function openCookies(){
+function openCookies() {
     document.getElementById('cookieTemplate').classList.remove('d-none');
 }
 

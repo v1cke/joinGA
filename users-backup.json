@@ -18,10 +18,5 @@
         "name": "Tony",
         "passwort": "Tony",
         "img": "img/man1.jpg"
-    },
-    {
-        "name": "Ursula",
-        "passwort": "Ursula",
-        "img": "img/girl2.jpg"
     }
 ]

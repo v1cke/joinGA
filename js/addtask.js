@@ -10,7 +10,8 @@ let selectedUser = [];
 async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    users = JSON.parse(backend.getItem('users')) || [];
+    // users = JSON.parse(backend.getItem('users')) || [];
+    users = JSON.parse(localStorage.getItem('accountData'));
 
     if (users.length == 0) {
         let respons = await fetch('./users-backup.json');

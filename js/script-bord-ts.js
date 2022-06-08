@@ -300,6 +300,7 @@ function moveTo(process, id) {
     let filterId = bordTasks.filter(t => t['id'] == currentDraggedElementId);
     filterId[0]['process'] = process;
     renderBord();
+    backend.setItem('bordTasks', JSON.stringify(bordTasks));
 }
 
 
@@ -394,4 +395,5 @@ function removeIt(id) {
     let index = bordTasks.indexOf(removeTask[0]);
     bordTasks.splice(index, 1);
     renderBord();
+    backend.setItem('bordTasks', JSON.stringify(bordTasks));
 }

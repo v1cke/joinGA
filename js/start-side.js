@@ -11,6 +11,7 @@ async function loadUsers() {
     accountData = await respons.json();
     internUsers = JSON.parse(localStorage.getItem('accountData'));
     if (internUsers) {
+        accountData = [];
         for (let index = 0; index < internUsers.length; index++) {
             const element = internUsers[index];
             accountData.push(element);

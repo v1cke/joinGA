@@ -271,10 +271,11 @@
         position: absolute;
         left: 0;
         top: calc(50% -150px);
-        height: 550px;
+        max-height: 650px;
         max-width: 320px;
         margin-top: -350px;
         margin-left: -160px;
+        padding-top: 80px;
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 12px;
         color: white;

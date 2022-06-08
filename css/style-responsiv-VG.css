@@ -33,6 +33,10 @@
     .cancel-create-box {
         justify-content: center;
     }
+    .choose-user-container {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 @media screen and (max-width: 300px) {

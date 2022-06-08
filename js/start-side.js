@@ -3,10 +3,6 @@ let loggedUser = [];
 let internUsers = [];
 
 async function loadUsers() {
-    // await downloadFromServer();
-    // accountData = JSON.parse(backend.getItem('user')) || [];
-    // if (accountData.length == 0) {
-
     let respons = await fetch('./users-backup.json');
     accountData = await respons.json();
     internUsers = JSON.parse(localStorage.getItem('accountData'));
@@ -17,31 +13,7 @@ async function loadUsers() {
             accountData.push(element);
         }
     }
-
-
-    //     const internUsersName = internUsers[i];
-    //     for (let j = 0; j < accountData.length; j++) {
-    //         const accountDataName = accountData[j];
-    //         if (internUsersName.name == accountDataName.name) {
-    //             console.log('user gefunden');
-    //         } else {
-    //             accountData.push(internUsers[i]);
-    //             console.log('user', internUsers[i]);
-
-    //         }
-    //     }
-    // }
-
 }
-
-
-// for (let index = 0; index < users.length; index++) {
-// const element = users[index];
-// accountData.push(element);
-// }
-// }
-// console.log('alle users', accountData);
-
 
 
 function loginUser() {
@@ -56,6 +28,7 @@ function loginUser() {
             searchUser[i] = true;
             loggedUser = user;
             localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+            localStorage.setItem('accountData', JSON.stringify(accountData));
         }
     }
     if (!searchUser.includes(true)) {

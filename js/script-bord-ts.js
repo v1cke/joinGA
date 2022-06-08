@@ -60,6 +60,18 @@ async function loadTasks() {
 
 
 /**
+ * assigns unique id to each task
+ */
+function countTasksId() {
+    for (let index = 0; index < bordTasks.length; index++) {
+        let tasksIndexId = bordTasks[index];
+        tasksIndexId.id = idCount;
+        idCount++;
+    }
+}
+
+
+/**
  * rendering of each process and order of urgency
  */
 function renderBord() {
@@ -69,21 +81,6 @@ function renderBord() {
     displayOfTheDifferentProcesses('inProgress');
     displayOfTheDifferentProcesses('testing');
     displayOfTheDifferentProcesses('done');
-    // dispalyInProgress();
-    // dispalyTesting();
-    // dispalyDone();
-}
-
-
-/**
- * assigns unique id to each task
- */
-function countTasksId() {
-    for (let index = 0; index < bordTasks.length; index++) {
-        let tasksIndexId = bordTasks[index];
-        tasksIndexId.id = idCount;
-        idCount++;
-    }
 }
 
 
@@ -143,11 +140,13 @@ function urgencyIsLow(index, filterId, i) {
 
 /**
  * display the items in the todo area
+ * 
+ * @param {string} processValue - correct process name
  */
 function displayOfTheDifferentProcesses(processValue) {
     let process = bordTasks.filter(t => t['process'] == processValue);
     document.getElementById(processValue).innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>to do</h3></span>`;
+    <span  class="headline_bord text-uppercase text-center padding-20"><h3>${processValue}</h3></span>`;
     for (let i = 0; i < process.length; i++) {
         const processArray = process[i];
         document.getElementById(processValue).innerHTML += cartHtml(processArray);
@@ -165,95 +164,10 @@ function displayOfTheDifferentProcesses(processValue) {
 
 
 /**
-<<<<<<< HEAD
-=======
- * display the items in the inProgress area
- */
-function dispalyInProgress() {
-    let inProgress = bordTasks.filter(t => t['process'] == 'inProgress');
-    document.getElementById('inProgress').innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>in Progress</h3></span>`;
-    for (let i = 0; i < inProgress.length; i++) {
-        const inProgressArray = inProgress[i];
-        document.getElementById('inProgress').innerHTML += cartHtml(inProgressArray);
-        let currentTask = document.getElementById(`assignedUserBord${inProgressArray['id']}`);
-        for (let j = 0; j < inProgressArray.assignedPerson.length; j++) {
-            const assignedUser = inProgressArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="${assignedUser.img}">
-            `
-        }
-        document.getElementById(`list${inProgressArray['id']}`).innerHTML = `
-            <li onclick="moveTo('todo', ${inProgressArray['id']})">Move to To Do</li>
-            <li onclick="moveTo('testing', ${inProgressArray['id']})">Move to Testing</li>
-            <li onclick="moveTo('done', ${inProgressArray['id']})">Move to Done</li>
-            <li onclick="removeTask(${inProgressArray['id']})">Delete</li>
-        `;
-    }
-}
-
-
-/**
- * display the items in the testing area
- */
-function dispalyTesting() {
-    let testing = bordTasks.filter(t => t['process'] == 'testing');
-    document.getElementById('testing').innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>testing</h3></span>`;
-    for (let i = 0; i < testing.length; i++) {
-        const testingArray = testing[i];
-        document.getElementById('testing').innerHTML += cartHtml(testingArray);
-        let currentTask = document.getElementById(`assignedUserBord${testingArray['id']}`);
-        for (let j = 0; j < testingArray.assignedPerson.length; j++) {
-            const assignedUser = testingArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="${assignedUser.img}">
-            `
-        }
-        document.getElementById(`list${testingArray['id']}`).innerHTML = `
-            <li onclick="moveTo('todo', ${testingArray['id']})">Move to To Do</li>
-            <li onclick="moveTo('inProgress', ${testingArray['id']})">Move to In Progress</li>
-            <li onclick="moveTo('done', ${testingArray['id']})">Move to Done</li>
-            <li onclick="removeTask(${testingArray['id']})">Delete</li>
-        `;
-    }
-}
-
-
-/**
- * display the items in the done area
- */
-function dispalyDone() {
-    let done = bordTasks.filter(t => t['process'] == 'done');
-    document.getElementById('done').innerHTML = /* html */ `
-    <span class="headline_bord text-uppercase text-center padding-20"><h3>done</h3></span>`;
-    for (let i = 0; i < done.length; i++) {
-        const doneArray = done[i];
-        document.getElementById('done').innerHTML += cartHtml(doneArray);
-        let currentTask = document.getElementById(`assignedUserBord${doneArray['id']}`);
-        for (let j = 0; j < doneArray.assignedPerson.length; j++) {
-            const assignedUser = doneArray.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="${assignedUser.img}">
-            `
-        }
-        document.getElementById(`list${doneArray['id']}`).innerHTML = `
-            <li onclick="moveTo('todo', ${doneArray['id']})">Move to To Do</li>
-            <li onclick="moveTo('inProgress', ${doneArray['id']})">Move to In Progress</li>
-            <li onclick="moveTo('testing', ${doneArray['id']})">Move to Testing</li>
-            <li onclick="removeTask(${doneArray['id']})">Delete</li>
-        `;
-    }
-}
-
-
-
-/**
->>>>>>> 77b5d96baed6347d50dd194ef44847bb43df5e6e
  * generate the html for every process
  * 
- * @param {array} cartArray - array with all elements with process todo
- * @returns 
+ * @param {array} cartArray - array with all elements for the specific process
+ * @returns - html code for the cart
  */
 function cartHtml(cartArray) {
     return /* html */ `
@@ -281,6 +195,12 @@ function cartHtml(cartArray) {
 }
 
 
+/**
+ * filling the menu with all possible options
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
+ */
 function checkTodoAndFillMenu(processArray, processValue) {
     if (processValue == 'todo') {
         document.getElementById(`list${processArray['id']}`).innerHTML = `
@@ -293,6 +213,12 @@ function checkTodoAndFillMenu(processArray, processValue) {
 }
 
 
+/**
+ * filling the menu with all possible options
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
+ */
 function checkInProgressAndFillMenu(processArray, processValue) {
     if (processValue == 'inProgress') {
         document.getElementById(`list${processArray['id']}`).innerHTML = `
@@ -305,6 +231,12 @@ function checkInProgressAndFillMenu(processArray, processValue) {
 }
 
 
+/**
+ * filling the menu with all possible options
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
+ */
 function checkTestingAndFillMenu(processArray, processValue) {
     if (processValue == 'testing') {
         document.getElementById(`list${processArray['id']}`).innerHTML = `
@@ -317,6 +249,12 @@ function checkTestingAndFillMenu(processArray, processValue) {
 }
 
 
+/**
+ * filling the menu with all possible options
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
+ */
 function checkDoneAndFillMenu(processArray, processValue) {
     if (processValue == 'done') {
         document.getElementById(`list${processArray['id']}`).innerHTML = `
@@ -362,8 +300,6 @@ function moveTo(process, id) {
     let filterId = bordTasks.filter(t => t['id'] == currentDraggedElementId);
     filterId[0]['process'] = process;
     renderBord();
-    console.log(bordTasks);
-    backend.setItem('bordTasks', JSON.stringify(bordTasks));
 }
 
 
@@ -458,5 +394,4 @@ function removeIt(id) {
     let index = bordTasks.indexOf(removeTask[0]);
     bordTasks.splice(index, 1);
     renderBord();
-    backend.setItem('bordTasks', JSON.stringify(bordTasks));
 }

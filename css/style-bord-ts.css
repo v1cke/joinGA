@@ -282,7 +282,19 @@ body {
     transition: 125ms;
 }
 
+.name-Img {
+    height: 0;
+    overflow: hidden;
+    transition: 125ms;
+    text-align: center;
+}
+
 .cart:hover .text_container {
+    height: auto;
+    transition: 125ms;
+}
+
+.cart:hover .name-Img {
     height: auto;
     transition: 125ms;
 }

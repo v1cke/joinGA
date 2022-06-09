@@ -165,7 +165,7 @@ function displayUsersImg(processArray) {
         currentTask.innerHTML += `
             <div class="d-flex f-colum">
                 <img src="${assignedUser.img}">
-                <span>${assignedUser.name}</span>
+                <span class="name-Img">${assignedUser.name}</span>
             </div>
             `;
     }

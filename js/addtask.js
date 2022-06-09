@@ -4,8 +4,8 @@ let selectedUser = [];
 
 
 /**
- * @param {tasks} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
- * @param {users} users - JSON from backend-server loaded and added to array users when loading addtasks.html
+ * @param {string} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
+ * @param {string} users - JSON from backend-server loaded and added to array users when loading addtasks.html
  */
 async function loadTasks() {
     await downloadFromServer();
@@ -23,14 +23,13 @@ async function loadTasks() {
 
 /**
  * function to put values of the task as a JSON in an array and save it in storage
- * 
- * @param {string} title - Value of the field title
- * @param {category} category - Value of the field category
- * @param {date} date - Value of the field date
- * @param {urgency} urgency - Value of the field urgency
- * @param {text} text - Value of the field description
- * 
  * This functions generates a JSON (task) and pushes it in the Tasks-Array. The complete updated Array gets pushed on a backendServer.JSON
+ * @param {string} title - Value of the field title
+ * @param {string} category - Value of the field category
+ * @param {string} date - Value of the field date
+ * @param {string} urgency - Value of the field urgency
+ * @param {string} text - Value of the field description
+ * 
  * */
 async function createTask() {
     if (!selectedUser.length == 0) {
@@ -49,8 +48,9 @@ async function createTask() {
 
 
 /**
- * @param {task} task - creates new JSON with data from function createTask and selectedUser
  * JSON task gets pushed into array tasks
+ * 
+ * @param {string} task - creates new JSON with data from function createTask and selectedUser
  * */
 function generateTask(title, date, category, urgency, text) {
     let task = {
@@ -91,9 +91,9 @@ function hideConfirmContainer() {
 
 
 /**
- * @param {userName} userName - element name in task users
- * @param {userImg} userImg - element image in task users
  * displays container with registrated users to choose for assignement
+ * @param {string} userName - element name in task users
+ * @param {string} userImg - element image in task users
  */
 function chooseUser() {
     document.getElementById("chooseUserContainer").innerHTML = "";
@@ -127,8 +127,8 @@ function chooseUser() {
 
 
 /**
- * @param {selection} selection - selectedUser from function chooseUser()
- * @param {userName} userName - element name of VAR selection()
+ * @param {string} selection - selectedUser from function chooseUser()
+ * @param {string} userName - element name of VAR selection()
  * 
  * This function adds user to selectedUser Array. In Case, the user allready added, the function removes the user.
  * return is used in case for removing user, that function finishes
@@ -151,8 +151,8 @@ function addUser(i, userName) {
 
 
 /**
- * @param {userName} userName - element name in task selectedUser
- * @param {userImg} userImg - element image in task slectedUser
+ * @param {string} userName - element name in task selectedUser
+ * @param {string} userImg - element image in task slectedUser
  * adds assigned user to container slectedUserContainer
  */
 function loadSelectedUsers() {
@@ -171,7 +171,7 @@ function loadSelectedUsers() {
 
 /**
  * 
- * @param {selectedUser} selectedUser - deletes selected user (element) from selectedUser Array
+ * @param {string} selectedUser - deletes selected user (element) from selectedUser Array
  */
 function removeUser(i) {
     selectedUser.splice(i, 1);

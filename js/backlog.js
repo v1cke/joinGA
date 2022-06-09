@@ -43,7 +43,10 @@ function displaySelectedUser(element, i) {
     for (let j = 0; j < element.assignedPerson.length; j++) {
         const assignedWorker = element.assignedPerson[j];
         currentTask.innerHTML += /* html */ `
-            <img src="${assignedWorker.img}">
+            <div class="d-flex f-colum">
+                <img src="${assignedWorker.img}">
+                <span class="name-Img">${assignedWorker.name}</span>
+            </div>
             `
     }
 }
@@ -61,7 +64,7 @@ function generateBacklogHTML(element, i) {
             <div class="backlog-container">
                 <div class="color-stripe ${element['urgency']}"></div>
                     <div class="identification">
-                        <div id="assignedPersonImgBacklog${i}"></div>
+                        <div id="assignedPersonImgBacklog${i}" class="d-flex flex-wrap"></div>
                     </div>
                     <div class="title">
                         <div>${element['title']}</div>

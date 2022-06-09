@@ -25,7 +25,6 @@
 
 <body onload="loadTasks(); includeHTML('addTaskLink')">
     <div w3-include-html="templates/header.html"></div>
-
     <div class="main-container">
         <div class="container">
             <div id="taskContainer" class="task-container">
@@ -59,7 +58,6 @@
                         <h2>DESCRIPTION</h2>
                         <textarea required minlength="5" id="description" class="input-field-big" placeholder="insert description..." type="text"></textarea>
                     </div>
-
                     <div class="task-content-box">
                         <h2>ASSIGNED TO</h2>
                         <div class="assigned-to">
@@ -88,7 +86,6 @@
             </div>
         </div>
     </div>
-
     <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
     <div w3-include-html="templates/footer.html"></div>
 </body>

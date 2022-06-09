@@ -9,8 +9,9 @@ async function renderBacklog() {
     renderBord();
 }
 
+
 /**
- * @param {backlogTask} backlogTask - Load JSON from BackendServer to backlogTask Array
+ * Load JSON from BackendServer to tasks json
  */
 async function loadTasks() {
     await downloadFromServer();
@@ -19,9 +20,6 @@ async function loadTasks() {
 
 
 /**
- * @param {element} element - each JSON from backlogTask Array
- * @param {currentTask} currenTask - replaces innerHTML of assignedPersonImgBacklog
- * @param {assignedPerson} assignedPerson - JSON with assigned users in JSON from backlogTask Array
  * rendering of each task in backlog
  */
 function renderBord() {
@@ -29,25 +27,39 @@ function renderBord() {
     for (let i = 0; i < tasks.length; i++) {
         const element = tasks[i];
         document.getElementById('idBacklogContainer').innerHTML += generateBacklogHTML(element, i);
-        let currentTask = document.getElementById(`assignedPersonImgBacklog${i}`);
-        for (let j = 0; j < element.assignedPerson.length; j++) {
-            const assignedWorker = element.assignedPerson[j];
-            currentTask.innerHTML += `
-            <img src="${assignedWorker.img}">
-            `
-        }
+        displaySelectedUser(element, i);
     }
 }
 
 
 /**
+ * show each selected user
  * 
- * creates container with data from Array backlogTask / function renderBord() 
+ * @param {*} element - current element of tasks json
+ * @param {*} i - current index of tasks json
+ */
+function displaySelectedUser(element, i) {
+    let currentTask = document.getElementById(`assignedPersonImgBacklog${i}`);
+    for (let j = 0; j < element.assignedPerson.length; j++) {
+        const assignedWorker = element.assignedPerson[j];
+        currentTask.innerHTML += /* html */ `
+            <img src="${assignedWorker.img}">
+            `
+    }
+}
+
+
+/**
+ * html for idBacklogContainer
+ * 
+ * @param {array} element current element of tasks json
+ * @param {number} i - current index of tasks json
+ * @returns - html for idBacklogContainer
  */
 function generateBacklogHTML(element, i) {
-    return /* html */ `  <div class="backlog-container">
+    return /* html */ `  
+            <div class="backlog-container">
                 <div class="color-stripe ${element['urgency']}"></div>
-             
                     <div class="identification">
                         <div id="assignedPersonImgBacklog${i}"></div>
                     </div>
@@ -68,9 +80,15 @@ function generateBacklogHTML(element, i) {
                     </div>
                 </div>
             </div>
-    `
+    `;
 }
 
+
+/**
+ * pushes the selected task into the board and saves it in the backend
+ * 
+ * @param {number} i - current index of tasks json
+ */
 function addToBoard(i) {
     let backlog = tasks[i];
     bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];

@@ -1,18 +1,11 @@
 let loggedUser = [];
 
 
-// async function init() {
-//     await downloadFromServer();
-//     tasks = JSON.parse(backend.getItem('tasks')) || [];
-//     users = JSON.parse(backend.getItem('users')) || [];
-
-//     console.log(tasks);
-//     console.log(users);
-
-//     await includeHTML();
-//     updateActivePage();
-// }
-
+/**
+ * show the header and footer
+ * 
+ * @param {string} linkId - current page
+ */
 async function includeHTML(linkId) {
     let includeElements = document.querySelectorAll("[w3-include-html]");
     for (let i = 0; i < includeElements.length; i++) {
@@ -30,6 +23,11 @@ async function includeHTML(linkId) {
 }
 
 
+/**
+ *Check the current page and highlight in the header
+ *  
+ * @param {string} linkId - current page
+ */
 function hightlightHeader(linkId) {
     if (linkId == 'bordLink') {
         document.getElementById('bordLink').classList.add('selectet');
@@ -46,6 +44,9 @@ function hightlightHeader(linkId) {
 }
 
 
+/**
+ * load and show the logged in user or the guest image
+ */
 function showLoggedUserImg() {
     loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
     if (loggedUser) {
@@ -57,19 +58,26 @@ function showLoggedUserImg() {
 }
 
 
+/**
+ * remove the logged in user and return to the home page
+ */
 function logOutUser() {
-    // loggedUser.splice(0, 1);
-    // localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
     localStorage.removeItem('loggedUser');
-    // localStorage.clear();
     window.location.href = "index.html";
 }
 
 
+/**
+ * opening the cookies
+ */
 function openCookies() {
     document.getElementById('cookieTemplate').classList.remove('d-none');
 }
 
+
+/**
+ * close the cookies
+ */
 function closeCookies() {
     document.getElementById('cookieTemplate').classList.add('d-none');
 }

@@ -1,8 +1,8 @@
 let accountData = [];
 let loggedUser = [];
 let internUsers = [];
-// let searchCreateUser = [];
-// let searchUser = [];
+let searchCreateUser = [];
+let searchUser = [];
 
 
 
@@ -31,10 +31,10 @@ function loadUserFromLocalStorage(internUsers) {
         }
     }
 }
-44
+
 
 /**
- * 
+ * login current user
  */
 function loginUser() {
     let searchUser = [];

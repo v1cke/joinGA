@@ -1,0 +1,123 @@
+.flash-container {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    position: absolute;
+    top: 15%;
+    bottom: 15%;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 900px;
+}
+
+.flash-head p{
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flash-info{
+    width: 80%;
+    overflow-y: auto;
+}
+
+.flash-btn-container {
+    margin-top: 32px;
+    display: flex;
+    width: 70%;
+    justify-content: space-evenly;
+}
+
+.flash-btn {
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    border: 2px solid;
+    border-radius: 12px;
+    height: 50px;
+    transition: 500ms;
+}
+
+.flash-btn:hover {
+    border-color: black;
+    background: rgba(0, 0, 0, 0.8);
+    transition: 700ms;
+}
+
+.flash-border {
+    border-radius: 10%;
+    border: solid 2px;
+    padding: 10px;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 10px !important;
+}
+
+.flash-creators{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media(max-width: 1000px){
+    .flash-container {
+        left: 5%;
+        right: 5%;
+        min-width: 700px;
+    }
+}
+
+@media(max-width: 800px){
+    .flash-container {
+        left: 1%;
+        right: 1%;
+        min-width: 600px;
+    }
+}
+
+@media(max-width: 600px){
+    .flash-container {
+        top: 10%;
+        bottom: 10%;
+        left: 1%;
+        right: 1%;
+        min-width: 400px;
+    }
+
+    .flash-info{
+        width: 95%;
+    }
+}
+
+@media(max-width: 450px){
+    .flash-container {
+        left: 1%;
+        right: 1%;
+        min-width: 300px;
+    }
+
+    .flash-head h1, h2{
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 350px){
+    .flash-container {
+        top: 2%;
+        bottom: 2%;
+        left: 1%;
+        right: 1%;
+        min-width: 250px;
+    }
+
+    .flash-head h1, h2{
+        font-size: 16px;
+    }
+}

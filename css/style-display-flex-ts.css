@@ -47,6 +47,10 @@
         flex-direction: column;
     }
     
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+    
     .f-colum-reverse {
         flex-direction: column-reverse;
     }

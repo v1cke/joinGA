@@ -37,7 +37,6 @@ function loadUserFromLocalStorage(internUsers) {
  * login current user
  */
 function loginUser() {
-    let searchUser = [];
     let userName = document.getElementById('userNameField').value;
     let password = document.getElementById('passwordField').value;
     checkLoginMatch(userName, password);
@@ -106,7 +105,6 @@ function openCreateUser() {
  * create a new user account
  */
 async function createUser() {
-    let searchCreateUser = [];
     let userName = document.getElementById('createuserNameField').value;
     let password = document.getElementById('createpasswordField').value;
     checkNameAlreadyExists(userName);

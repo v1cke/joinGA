@@ -163,9 +163,9 @@ function displayUsersImg(processArray) {
     for (let j = 0; j < processArray.assignedPerson.length; j++) {
         const assignedUser = processArray.assignedPerson[j];
         currentTask.innerHTML += `
-            <div>
+            <div class="d-flex f-colum">
                 <img src="${assignedUser.img}">
-
+                <span>${assignedUser.name}</span>
             </div>
             `;
     }
@@ -191,7 +191,7 @@ function cartHtml(cartArray) {
                 <h4 class="text-center">${cartArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <span id="assignedUserBord${cartArray['id']}" class="assignedUser"></span>
+                    <span id="assignedUserBord${cartArray['id']}" class="assignedUser d-flex flex-wrap"></span>
                     </div>
                 </div>
                 <p class="text_container">${cartArray['description']}</p>

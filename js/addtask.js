@@ -197,8 +197,8 @@ function loadSelectedUsers() {
  * 
  * @param {string} userName - current user name
  * @param {string} userImg  current user image
- * @param {number} i - current index of selectedUser array
- * @returns 
+ * @param {number} i - current index of selectedUser json
+ * @returns html for selectedUserContainer
  */
 function displayTheSelectetUsers(userName, userImg, i) {
     return /* html */ `                                    
@@ -212,7 +212,7 @@ function displayTheSelectetUsers(userName, userImg, i) {
 /**
  * deletes selected user from selectedUser Array
  * 
- * @param {number} i - current index of selectedUser array
+ * @param {number} i - current index of selectedUser json
  */
 function removeUser(i) {
     selectedUser.splice(i, 1);

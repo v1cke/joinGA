@@ -20,6 +20,10 @@
     text-align: center;
 }
 
+.flash-head h1, h2{
+    font-size: 48px !important;
+}
+
 .flash-info{
     width: 80%;
     overflow-y: auto;
@@ -56,7 +60,7 @@
     padding: 10px;
     margin-right: 20px;
     margin-top: 20px;
-    font-size: 10px !important;
+    font-size: 16px;
 }
 
 .flash-creators{
@@ -80,6 +84,10 @@
         right: 1%;
         min-width: 600px;
     }
+
+    .flash-head h1, h2{
+        font-size: 36px !important;
+    }
 }
 
 @media(max-width: 600px){
@@ -91,8 +99,18 @@
         min-width: 400px;
     }
 
+    .flash-border {
+        margin-right: 10px;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
     .flash-info{
         width: 95%;
+    }
+
+    .flash-head h1, h2{
+        font-size: 36px !important;
     }
 }
 
@@ -103,8 +121,16 @@
         min-width: 300px;
     }
 
+    .flash-border {
+        font-size: 12px;
+    }
+
     .flash-head h1, h2{
         font-size: 16px;
+    }
+
+    .flash-head h1, h2{
+        font-size: 20px !important;
     }
 }
 

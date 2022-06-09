@@ -4,34 +4,29 @@ let selectedUser = [];
 
 
 /**
- * @param {tasks} tasks - JSON from backend-server loaded and added to array tasks when loading addtasks.html
- * @param {users} users - JSON from backend-server loaded and added to array users when loading addtasks.html
+ * loads array from backend server
  */
 async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
-    // users = JSON.parse(backend.getItem('users')) || [];
     users = JSON.parse(localStorage.getItem('accountData'));
+    checkUsersLength();
+}
 
+/**
+ * checks whether the variable users is filled
+ */
+function checkUsersLength() {
     if (users.length == 0) {
         let respons = await fetch('./users-backup.json');
         users = await respons.json();
     }
-    console.log('die user', users);
 }
 
 
 /**
- * function to put values of the task as a JSON in an array and save it in storage
- * 
- * @param {string} title - Value of the field title
- * @param {category} category - Value of the field category
- * @param {date} date - Value of the field date
- * @param {urgency} urgency - Value of the field urgency
- * @param {text} text - Value of the field description
- * 
- * This functions generates a JSON (task) and pushes it in the Tasks-Array. The complete updated Array gets pushed on a backendServer.JSON
- * */
+ * put values of the task as a JSON in an array and save it in storage
+ */
 async function createTask() {
     if (!selectedUser.length == 0) {
         let title = document.getElementById('title').value;
@@ -42,16 +37,19 @@ async function createTask() {
         generateTask(title, date, category, urgency, text);
         backend.setItem('tasks', JSON.stringify(tasks));
         confirmTask();
-    } else {
-        chooseUser();
-    }
+    } else { chooseUser(); }
 }
 
 
 /**
- * @param {task} task - creates new JSON with data from function createTask and selectedUser
  * JSON task gets pushed into array tasks
- * */
+ * 
+ * @param {string} title - value of the field title
+ * @param {string} date - value of the field category
+ * @param {string} category  - value of the field date
+ * @param {string} urgency - value of the field urgency
+ * @param {string} text - value of the field description
+ */
 function generateTask(title, date, category, urgency, text) {
     let task = {
         'title': title,
@@ -69,7 +67,7 @@ function generateTask(title, date, category, urgency, text) {
 
 
 /**
- * Cleaning all fields for restarting task
+ * cleaning all fields for restarting task
  */
 function cancelTask() {
     document.getElementById('title').innerHTML = "";
@@ -85,56 +83,90 @@ function confirmTask() {
     document.getElementById('confirmContainer').classList.add('d-flex');
 }
 
-function hideConfirmContainer() {
-    document.getElementById('confirmContainer').style.display = "none";
+
+/**
+ * displays container with registrated users to choose for assignement
+ */
+function chooseUser() {
+    openChooseUser();
+    for (let i = 0; i < users.length; i++) {
+        let userName = users[i]["name"];
+        let userImg = users[i]["img"];
+        document.getElementById("chooseUserContainer").innerHTML += displayThePicturesOfTheUsers(userName, userImg);
+        dispalyTheHack(userName);
+    }
 }
 
 
 /**
- * @param {userName} userName - element name in task users
- * @param {userImg} userImg - element image in task users
- * displays container with registrated users to choose for assignement
+ * displays the chooseUser container
  */
-function chooseUser() {
+function openChooseUser() {
     document.getElementById("chooseUserContainer").innerHTML = "";
     document.getElementById("chooseUserContainer").classList.remove("d-none");
     document.body.classList.add('overflow-hidden');
     document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
         <div id="closeBtn" onclick="closeUserContainer()"><img src="img/icon plus.png" class="close-btn"></div>
         `;
-    for (let i = 0; i < users.length; i++) {
-        let userName = users[i]["name"];
-        let userImg = users[i]["img"];
+}
 
-        //fills ChooseUserContainer with data from Array "users"
-        document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
+
+/**
+ * show the pictures of the users
+ * 
+ * @param {string} userName - current user name 
+ * @param {string} userImg - current user image
+ * @returns - html for chooseUserContainer
+ */
+function displayThePicturesOfTheUsers(userName, userImg) {
+    return /*html*/ `
         <div class="choose-person">
             <div class="d-flex a-center">
                 <img onclick="addUser(${i}, '${userName}')" src="${userImg}">
-            <p onclick="addUser(${i}, '${userName}')">${userName}</p>
-        </div>
-        <!-- div for check symbol -->
-        <div class="checkimg opacity0" id="checked_${i}"><img src="img/checkimg.png"></div>
-    </div>`;
-        for (let index = 0; index < selectedUser.length; index++) {
-            let selectedUserName = selectedUser[index].name;
-            if (userName == selectedUserName) {
-                document.getElementById(`checked_${i}`).classList.remove('opacity0');
-            }
+                <p onclick="addUser(${i}, '${userName}')">${userName}</p>
+            </div>
+            <div class="checkimg opacity0" id="checked_${i}"><img src="img/checkimg.png"></div>
+        </div>`;
+}
+
+
+/**
+ * show the hoes for selected users
+ * 
+ * @param {string} userName - current user name
+ */
+function dispalyTheHack(userName) {
+    for (let index = 0; index < selectedUser.length; index++) {
+        let selectedUserName = selectedUser[index].name;
+        if (userName == selectedUserName) {
+            document.getElementById(`checked_${i}`).classList.remove('opacity0');
         }
     }
 }
 
 
 /**
- * @param {selection} selection - selectedUser from function chooseUser()
- * @param {userName} userName - element name of VAR selection()
+ * adds user to selectedUser Array. In Case, the user allready added, the function removes the user.
  * 
- * This function adds user to selectedUser Array. In Case, the user allready added, the function removes the user.
- * return is used in case for removing user, that function finishes
- * */
+ * @param {number} i - current index of users array
+ * @param {string} userName - current user name
+ */
 function addUser(i, userName) {
     let userInfo = users[i];
+    checkUserAlreadySelected(userName);
+    selectedUser.push(userInfo);
+    document.getElementById(`checked_${i}`).classList.remove('opacity0');
+    loadSelectedUsers();
+}
+
+
+/**
+ * checks whether the user has already been selected
+ * 
+ * @param {string} userName - current user name
+ * @returns - ends the function
+ */
+function checkUserAlreadySelected(userName) {
     for (let j = 0; j < selectedUser.length; j++) {
         let selection = selectedUser[j];
         if (userName == selection.name) {
@@ -144,15 +176,10 @@ function addUser(i, userName) {
             return;
         }
     }
-    selectedUser.push(userInfo);
-    document.getElementById(`checked_${i}`).classList.remove('opacity0');
-    loadSelectedUsers();
 }
 
 
 /**
- * @param {userName} userName - element name in task selectedUser
- * @param {userImg} userImg - element image in task slectedUser
  * adds assigned user to container slectedUserContainer
  */
 function loadSelectedUsers() {
@@ -160,18 +187,32 @@ function loadSelectedUsers() {
     for (let i = 0; i < selectedUser.length; i++) {
         let userName = selectedUser[i].name;
         let userImg = selectedUser[i].img;
-        document.getElementById("selectedUserContainer").innerHTML += /* html */ `                                    
-                <div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
-                    <img src="${userImg}">
-                    <p>${userName}</p>
-                </div>`;
+        document.getElementById("selectedUserContainer").innerHTML += displayTheSelectetUsers(userName, userImg, i)
     }
 }
 
 
 /**
+ * html for selectedUserContainer
  * 
- * @param {selectedUser} selectedUser - deletes selected user (element) from selectedUser Array
+ * @param {string} userName - current user name
+ * @param {string} userImg  current user image
+ * @param {number} i - current index of selectedUser array
+ * @returns 
+ */
+function displayTheSelectetUsers(userName, userImg, i) {
+    return /* html */ `                                    
+                <div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
+                    <img src="${userImg}">
+                    <p>${userName}</p>
+                </div>`;
+}
+
+
+/**
+ * deletes selected user from selectedUser Array
+ * 
+ * @param {number} i - current index of selectedUser array
  */
 function removeUser(i) {
     selectedUser.splice(i, 1);
@@ -179,6 +220,9 @@ function removeUser(i) {
 }
 
 
+/**
+ * close the chooseUser container
+ */
 function closeUserContainer() {
     document.getElementById("chooseUserContainer").classList.add("d-none");
     document.body.classList.remove('overflow-hidden');

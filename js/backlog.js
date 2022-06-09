@@ -27,15 +27,18 @@ function renderBord() {
     for (let i = 0; i < tasks.length; i++) {
         const element = tasks[i];
         document.getElementById('idBacklogContainer').innerHTML += generateBacklogHTML(element, i);
-        displaySelectedUser();
+        displaySelectedUser(element, i);
     }
 }
 
 
 /**
  * show each selected user
+ * 
+ * @param {*} element - current element of tasks json
+ * @param {*} i - current index of tasks json
  */
-function displaySelectedUser() {
+function displaySelectedUser(element, i) {
     let currentTask = document.getElementById(`assignedPersonImgBacklog${i}`);
     for (let j = 0; j < element.assignedPerson.length; j++) {
         const assignedWorker = element.assignedPerson[j];

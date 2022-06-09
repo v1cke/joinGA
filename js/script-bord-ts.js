@@ -1,5 +1,4 @@
 let currentDraggedElementId;
-// let tasks = [];
 let bordTasks = [];
 let idCount = 1;
 
@@ -54,7 +53,6 @@ async function fillBord() {
  */
 async function loadTasks() {
     await downloadFromServer();
-    // tasks = JSON.parse(backend.getItem('tasks')) || [];
     bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
 }
 
@@ -113,7 +111,7 @@ function checkLowUrgency() {
  * 
  * @param {number} index - index position in json
  * @param {array} filterId - array with elements to be changed
- * @param {number} i - position in the for loop
+ * @param {number} i - current position in the for loop
  */
 function urgencyIsHigh(index, filterId, i) {
     if (filterId[i]['urgency'] == 'high') {
@@ -128,7 +126,7 @@ function urgencyIsHigh(index, filterId, i) {
  * 
  * @param {number} index - index position in json
  * @param {array} filterId - array with elements to be changed
- * @param {number} i - position in the for loop
+ * @param {number} i - current position in the for loop
  */
 function urgencyIsLow(index, filterId, i) {
     if (filterId[i]['urgency'] == 'low') {
@@ -150,15 +148,26 @@ function displayOfTheDifferentProcesses(processValue) {
     for (let i = 0; i < process.length; i++) {
         const processArray = process[i];
         document.getElementById(processValue).innerHTML += cartHtml(processArray);
-        let currentTask = document.getElementById(`assignedUserBord${processArray['id']}`);
-        for (let j = 0; j < processArray.assignedPerson.length; j++) {
-            const assignedUser = processArray.assignedPerson[j];
-            currentTask.innerHTML += `<img src="${assignedUser.img}">`
-        }
+        displayUsersImg(processArray);
         checkTodoAndFillMenu(processArray, processValue);
         checkInProgressAndFillMenu(processArray, processValue);
         checkTestingAndFillMenu(processArray, processValue);
         checkDoneAndFillMenu(processArray, processValue);
+    }
+}
+
+
+
+function displayUsersImg(processArray) {
+    let currentTask = document.getElementById(`assignedUserBord${processArray['id']}`);
+    for (let j = 0; j < processArray.assignedPerson.length; j++) {
+        const assignedUser = processArray.assignedPerson[j];
+        currentTask.innerHTML += `
+            <div>
+                <img src="${assignedUser.img}">
+
+            </div>
+            `;
     }
 }
 
@@ -196,7 +205,7 @@ function cartHtml(cartArray) {
 
 
 /**
- * filling the menu with all possible options
+ * filling the menu with all possible options for todo container
  * 
  * @param {array} processArray - array with the right content for the specific process
  * @param {string} processValue - correct process name
@@ -214,7 +223,7 @@ function checkTodoAndFillMenu(processArray, processValue) {
 
 
 /**
- * filling the menu with all possible options
+ * filling the menu with all possible options for inProgress container
  * 
  * @param {array} processArray - array with the right content for the specific process
  * @param {string} processValue - correct process name
@@ -232,7 +241,7 @@ function checkInProgressAndFillMenu(processArray, processValue) {
 
 
 /**
- * filling the menu with all possible options
+ * filling the menu with all possible options for testing container
  * 
  * @param {array} processArray - array with the right content for the specific process
  * @param {string} processValue - correct process name
@@ -250,7 +259,7 @@ function checkTestingAndFillMenu(processArray, processValue) {
 
 
 /**
- * filling the menu with all possible options
+ * filling the menu with all possible options for done container
  * 
  * @param {array} processArray - array with the right content for the specific process
  * @param {string} processValue - correct process name

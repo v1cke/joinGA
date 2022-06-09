@@ -10,13 +10,13 @@ async function loadTasks() {
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     users = JSON.parse(localStorage.getItem('accountData'));
-    checkUsersLength();
+    await checkUsersLength();
 }
 
 /**
  * checks whether the variable users is filled
  */
-function checkUsersLength() {
+async function checkUsersLength() {
     if (users.length == 0) {
         let respons = await fetch('./users-backup.json');
         users = await respons.json();
@@ -92,7 +92,7 @@ function chooseUser() {
     for (let i = 0; i < users.length; i++) {
         let userName = users[i]["name"];
         let userImg = users[i]["img"];
-        document.getElementById("chooseUserContainer").innerHTML += displayThePicturesOfTheUsers(userName, userImg);
+        document.getElementById("chooseUserContainer").innerHTML += displayThePicturesOfTheUsers(userName, userImg, i);
         dispalyTheHack(userName);
     }
 }
@@ -116,9 +116,10 @@ function openChooseUser() {
  * 
  * @param {string} userName - current user name 
  * @param {string} userImg - current user image
+ * @param {number} i - current index of users json 
  * @returns - html for chooseUserContainer
  */
-function displayThePicturesOfTheUsers(userName, userImg) {
+function displayThePicturesOfTheUsers(userName, userImg, i) {
     return /*html*/ `
         <div class="choose-person">
             <div class="d-flex a-center">

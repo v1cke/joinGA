@@ -286,6 +286,7 @@ function startDragging(id) {
 }
 
 
+
 /**
  * allowed to drop an object
  * 

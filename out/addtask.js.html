@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: addtask.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: addtask.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let tasks = [];
+let users = [];
+let selectedUser = [];
+
+
+/**
+ * loads array from backend server
+ */
+async function loadTasks() {
+    await downloadFromServer();
+    tasks = JSON.parse(backend.getItem('tasks')) || [];
+    users = JSON.parse(localStorage.getItem('accountData'));
+    await checkUsersLength();
+}
+
+/**
+ * checks whether the variable users is filled
+ */
+async function checkUsersLength() {
+    if (users.length == 0) {
+        let respons = await fetch('./users-backup.json');
+        users = await respons.json();
+    }
+}
+
+
+/**
+ * put values of the task as a JSON in an array and save it in storage
+ */
+async function createTask() {
+    if (!selectedUser.length == 0) {
+        let title = document.getElementById('title').value;
+        let category = document.getElementById('category').value;
+        let date = document.getElementById('date').value;
+        let urgency = document.getElementById('urgency').value;
+        let text = document.getElementById('description').value;
+        generateTask(title, date, category, urgency, text);
+        backend.setItem('tasks', JSON.stringify(tasks));
+        confirmTask();
+    } else { chooseUser(); }
+}
+
+
+/**
+ * JSON task gets pushed into array tasks
+ * 
+ * @param {string} title - value of the field title
+ * @param {string} date - value of the field category
+ * @param {string} category  - value of the field date
+ * @param {string} urgency - value of the field urgency
+ * @param {string} text - value of the field description
+ */
+function generateTask(title, date, category, urgency, text) {
+    let task = {
+        'title': title,
+        'date': date,
+        'category': category,
+        'urgency': urgency,
+        'description': text,
+        'OpenMenu': false,
+        'assignedPerson': selectedUser,
+        'id': 0,
+        'process': 'todo'
+    }
+    tasks.push(task);
+}
+
+
+/**
+ * cleaning all fields for restarting task
+ */
+function cancelTask() {
+    document.getElementById('title').innerHTML = "";
+    document.getElementById('date').innerHTML = "";
+    document.getElementById('description').innerHTML = "";
+}
+
+
+/**
+ * displays confirmation-container when task finished and saved
+ */
+function confirmTask() {
+    document.getElementById('confirmContainer').classList.add('d-flex');
+}
+
+
+/**
+ * displays container with registrated users to choose for assignement
+ */
+function chooseUser(event) {
+    event.stopPropagation();
+    openChooseUser();
+    for (let i = 0; i &lt; users.length; i++) {
+        let userName = users[i]["name"];
+        let userImg = users[i]["img"];
+        document.getElementById("chooseUserContainer").innerHTML += displayThePicturesOfTheUsers(userName, userImg, i);
+        dispalyTheHack(userName);
+    }
+}
+
+
+/**
+ * displays the chooseUser container
+ */
+function openChooseUser() {
+    document.getElementById("hideContainer").classList.remove("d-none");
+
+    document.getElementById("chooseUserContainer").innerHTML = "";
+    document.getElementById("chooseUserContainer").classList.remove("d-none");
+    document.body.classList.add('overflow-hidden');
+    document.getElementById("chooseUserContainer").innerHTML += /*html*/ `
+        &lt;div id="closeBtn" onclick="closeUserContainer()">&lt;img src="img/icon plus.png" class="close-btn">&lt;/div>
+        `;
+}
+
+
+/**
+ * show the pictures of the users
+ * 
+ * @param {string} userName - current user name 
+ * @param {string} userImg - current user image
+ * @param {number} i - current index of users json 
+ * @returns - html for chooseUserContainer
+ */
+function displayThePicturesOfTheUsers(userName, userImg, i) {
+    return /*html*/ `
+        &lt;div class="choose-person">
+            &lt;div class="d-flex a-center">
+                &lt;img onclick="addUser(${i}, '${userName}')" src="${userImg}">
+                &lt;p onclick="addUser(${i}, '${userName}')">${userName}&lt;/p>
+            &lt;/div>
+            &lt;div class="checkimg opacity0" id="checked_${i}">&lt;img src="img/checkimg.png">&lt;/div>
+        &lt;/div>`;
+}
+
+
+/**
+ * show the hoes for selected users
+ * 
+ * @param {string} userName - current user name
+ */
+function dispalyTheHack(userName) {
+    for (let index = 0; index &lt; selectedUser.length; index++) {
+        let selectedUserName = selectedUser[index].name;
+        if (userName == selectedUserName) {
+            document.getElementById(`checked_${i}`).classList.remove('opacity0');
+        }
+    }
+}
+
+
+/**
+ * adds user to selectedUser Array. In Case, the user allready added, the function removes the user.
+ * 
+ * @param {number} i - current index of users array
+ * @param {string} userName - current user name
+ */
+function addUser(i, userName) {
+    let userInfo = users[i];
+    for (let j = 0; j &lt; selectedUser.length; j++) {
+        let selection = selectedUser[j];
+        if (userName == selection.name) {
+            selectedUser.splice(j, 1);
+            loadSelectedUsers();
+            document.getElementById(`checked_${i}`).classList.add('opacity0');
+            return;
+        }
+    }
+    selectedUser.push(userInfo);
+    document.getElementById(`checked_${i}`).classList.remove('opacity0');
+    loadSelectedUsers();
+}
+
+
+/**
+ * adds assigned user to container slectedUserContainer
+ */
+function loadSelectedUsers() {
+    document.getElementById("selectedUserContainer").innerHTML = "";
+    for (let i = 0; i &lt; selectedUser.length; i++) {
+        let userName = selectedUser[i].name;
+        let userImg = selectedUser[i].img;
+        document.getElementById("selectedUserContainer").innerHTML += displayTheSelectetUsers(userName, userImg, i)
+    }
+}
+
+
+/**
+ * html for selectedUserContainer
+ * 
+ * @param {string} userName - current user name
+ * @param {string} userImg  current user image
+ * @param {number} i - current index of selectedUser json
+ * @returns html for selectedUserContainer
+ */
+function displayTheSelectetUsers(userName, userImg, i) {
+    return /* html */ `                                    
+                &lt;div id="User${i}" class="assigned-person" onclick="removeUser(${i})">
+                    &lt;img src="${userImg}">
+                    &lt;p>${userName}&lt;/p>
+                &lt;/div>`;
+}
+
+
+/**
+ * deletes selected user from selectedUser Array
+ * 
+ * @param {number} i - current index of selectedUser json
+ */
+function removeUser(i) {
+    selectedUser.splice(i, 1);
+    loadSelectedUsers();
+}
+
+
+/**
+ * close the chooseUser container
+ */
+function closeUserContainer() {
+    document.getElementById("hideContainer").classList.add("d-none");
+
+    document.getElementById("chooseUserContainer").classList.add("d-none");
+    document.body.classList.remove('overflow-hidden');
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#cancelTask">cancelTask</a></li><li><a href="global.html#checkUsersLength">checkUsersLength</a></li><li><a href="global.html#chooseUser">chooseUser</a></li><li><a href="global.html#closeUserContainer">closeUserContainer</a></li><li><a href="global.html#confirmTask">confirmTask</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#dispalyTheHack">dispalyTheHack</a></li><li><a href="global.html#displayThePicturesOfTheUsers">displayThePicturesOfTheUsers</a></li><li><a href="global.html#displayTheSelectetUsers">displayTheSelectetUsers</a></li><li><a href="global.html#generateTask">generateTask</a></li><li><a href="global.html#loadSelectedUsers">loadSelectedUsers</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#openChooseUser">openChooseUser</a></li><li><a href="global.html#removeUser">removeUser</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri Jun 10 2022 22:16:40 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

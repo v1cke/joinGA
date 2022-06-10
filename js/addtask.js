@@ -70,9 +70,11 @@ function generateTask(title, date, category, urgency, text) {
  * cleaning all fields for restarting task
  */
 function cancelTask() {
-    document.getElementById('title').innerHTML = "";
-    document.getElementById('date').innerHTML = "";
-    document.getElementById('description').innerHTML = "";
+    document.getElementById('title').value = "";
+    document.getElementById('date').value = "";
+    document.getElementById('description').value = "";
+    selectedUser = [];
+    loadSelectedUsers();
 }
 
 

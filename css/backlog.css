@@ -133,6 +133,7 @@ main {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    gap: 8px;
 }
 
 .backlog-text {
@@ -164,7 +165,7 @@ main {
 
 .trashContainer img {
     object-position: center;
-    /* object-fit: cover; */
+    object-fit: cover;
     height: 75%;
     width: 75%;
 }

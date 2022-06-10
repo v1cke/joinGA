@@ -110,7 +110,8 @@ body {
 .bord_under_container {
     background: rgba(0, 0, 0, 0.6);
     min-width: 250px;
-    min-height: calc((100vh - 285px) - 6em);
+    /* min-height: calc((100vh - 285px) - 6em); */
+    min-height: 80vh;
     border-radius: 20px;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);

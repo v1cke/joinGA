@@ -35,14 +35,17 @@
             <a href="#inProgress">in progress</a>
             <a href="#testing">testing</a>
             <a href="#done">done</a>
+
+
         </div>
     </div>
-    <div>
-        <div id="bord_container_Id" class="bord_container p-relativ">
+    <div class="p-relativ">
 
-            <div id="imprintTemplate" w3-include-html="templates/imprint.html" class="d-none"></div>
-            <div id="privacyTemplate" w3-include-html="templates/privacy.html" class="d-none"></div>
-            <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
+        <div id="imprintTemplate" w3-include-html="templates/imprint.html" class="d-none"></div>
+        <div id="privacyTemplate" w3-include-html="templates/privacy.html" class="d-none"></div>
+        <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
+
+        <div id="bord_container_Id" class="bord_container">
 
             <div id="todo" ondrop="moveTo('todo'); removehighlight('todo')" ondragleave="removehighlight('todo')" ondragover="allowDrop(event); highlight('todo')" class="bord_under_container d-flex f-colum"></div>
             <div id="inProgress" ondrop="moveTo('inProgress'); removehighlight('inProgress')" ondragleave="removehighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')" class="bord_under_container d-flex f-colum"></div>

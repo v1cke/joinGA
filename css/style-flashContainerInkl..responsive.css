@@ -11,7 +11,7 @@
     /* top: calc(50% -150px); */
     left: 0;
     right: 0;
-    top: 0;
+    /* top: 0; */
     bottom: 0;
     /* transform: translateX(-50%) translateY(50%); */
     display: flex;
@@ -20,7 +20,8 @@
     align-items: center;
     /* max-width: 1000px; */
     /* width: 100%; */
-    /* max-height: calc((100vh - 285px) - 6em); */
+    max-height: 700px;
+    height: 100%;
     /* overflow: hidden; */
 }
 
@@ -38,6 +39,7 @@
 .flash-head h1,
 .flash-head h2 {
     font-size: 38px !important;
+    background: none !important;
 }
 
 .flash-info {

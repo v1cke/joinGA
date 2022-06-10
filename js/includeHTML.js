@@ -72,18 +72,33 @@ function logOutUser() {
  */
 function openCookies() {
     document.getElementById('cookieTemplate').classList.remove('d-none');
-}
-
-function openPrivacy() {
-    document.getElementById('privacyTemplate').classList.remove('d-none');
-}
-function openImprint() {
-    document.getElementById('imprintTemplate').classList.remove('d-none');
+    document.getElementById('privacyTemplate').classList.add('d-none');
+    document.getElementById('imprintTemplate').classList.add('d-none');
 }
 
 
 /**
- * close the cookies
+ * opening the privacy
+ */
+function openPrivacy() {
+    document.getElementById('privacyTemplate').classList.remove('d-none');
+    document.getElementById('cookieTemplate').classList.add('d-none');
+    document.getElementById('imprintTemplate').classList.add('d-none');
+}
+
+
+/**
+ * opening the imprint
+ */
+function openImprint() {
+    document.getElementById('imprintTemplate').classList.remove('d-none');
+    document.getElementById('cookieTemplate').classList.add('d-none');
+    document.getElementById('privacyTemplate').classList.add('d-none');
+}
+
+
+/**
+ * close the cookies, privacy and imprint
  */
 function closeFlashContainer() {
     document.getElementById('cookieTemplate').classList.add('d-none');

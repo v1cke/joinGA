@@ -1,5 +1,7 @@
 .flash-container {
-    background: rgba(0, 0, 0, 0.9);
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 20px;
     color: white;
     position: absolute;
     top: 15%;
@@ -13,18 +15,19 @@
     min-width: 900px;
 }
 
-.flash-head p{
+.flash-head p {
     position: relative;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
 
-.flash-head h1, h2{
+.flash-head h1,
+h2 {
     font-size: 48px !important;
 }
 
-.flash-info{
+.flash-info {
     width: 80%;
     overflow-y: auto;
 }
@@ -46,6 +49,7 @@
     border-radius: 12px;
     height: 50px;
     transition: 500ms;
+    margin-bottom: 10px;
 }
 
 .flash-btn:hover {
@@ -63,14 +67,14 @@
     font-size: 16px;
 }
 
-.flash-creators{
+.flash-creators {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-@media(max-width: 1000px){
+@media(max-width: 1000px) {
     .flash-container {
         left: 5%;
         right: 5%;
@@ -78,19 +82,19 @@
     }
 }
 
-@media(max-width: 800px){
+@media(max-width: 800px) {
     .flash-container {
         left: 1%;
         right: 1%;
         min-width: 600px;
     }
-
-    .flash-head h1, h2{
+    .flash-head h1,
+    h2 {
         font-size: 36px !important;
     }
 }
 
-@media(max-width: 600px){
+@media(max-width: 600px) {
     .flash-container {
         top: 10%;
         bottom: 10%;
@@ -98,52 +102,49 @@
         right: 1%;
         min-width: 400px;
     }
-
     .flash-border {
         margin-right: 10px;
         margin-top: 10px;
         font-size: 16px;
     }
-
-    .flash-info{
+    .flash-info {
         width: 95%;
     }
-
-    .flash-head h1, h2{
+    .flash-head h1,
+    h2 {
         font-size: 36px !important;
     }
 }
 
-@media(max-width: 450px){
+@media(max-width: 450px) {
     .flash-container {
         left: 1%;
         right: 1%;
         min-width: 300px;
     }
-
     .flash-border {
         font-size: 12px;
     }
-
-    .flash-head h1, h2{
+    .flash-head h1,
+    h2 {
         font-size: 16px;
     }
-
-    .flash-head h1, h2{
+    .flash-head h1,
+    h2 {
         font-size: 20px !important;
     }
 }
 
-@media(max-width: 350px){
+@media(max-width: 350px) {
     .flash-container {
         top: 2%;
         bottom: 2%;
         left: 1%;
         right: 1%;
-        min-width: 250px;
+        min-width: 260px;
     }
-
-    .flash-head h1, h2{
+    .flash-head h1,
+    h2 {
         font-size: 16px;
     }
 }

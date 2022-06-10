@@ -206,6 +206,7 @@ function loginAsGuest() {
         'img': "img/guest-48.png"
     };
     loggedUser = newUser;
+    localStorage.setItem('accountData', JSON.stringify(accountData));
     localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
     console.log(loggedUser);
     window.location.href = "bord.html";

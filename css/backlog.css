@@ -52,8 +52,6 @@ main {
 }
 
 .content-titles {
-    /* display: flex; */
-    /* justify-content: space-evenly; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 0 5px;
@@ -63,14 +61,11 @@ main {
     margin-bottom: 1em;
     color: black;
     font-size: x-large;
-    /* padding: 0.1em; */
     border-radius: 12px;
 }
 
 .backlog-container {
     display: grid;
-    /* grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr); */
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 0 5px;
     text-align: center;
@@ -78,11 +73,7 @@ main {
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     border-radius: 12px;
-    /* padding: 1em; */
-    /* display: flex; */
-    /* align-items: center; */
     position: relative;
-    /* justify-content: space-between; */
     background-color: white;
     margin-top: 10px;
     padding-left: 15px;
@@ -98,15 +89,12 @@ main {
     width: 50px;
     object-fit: cover;
     border-radius: 100%;
-    /* margin-right: 8px; */
     margin-top: 5px;
-    /* border: 2px solid white; */
 }
 
 .color-stripe {
     width: 15px;
     height: 100%;
-    /* background-color: white; */
     position: absolute;
     top: 0;
     left: 0;

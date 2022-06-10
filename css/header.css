@@ -6,8 +6,6 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
     position: relative;
-    /* position: sticky; */
-    /* border-radius: 0 0 20px 20px; */
 }
 
 .header-inside {
@@ -30,7 +28,6 @@
 .logout a {
     text-decoration: none;
     color: white;
-    /* border-bottom: 5px solid transparent; */
     background: transparent;
     padding: 3px 10px;
     border-radius: 12px;
@@ -46,7 +43,6 @@
 
 .menu a:hover,
 .logout a:hover {
-    /* border-bottom: 5px solid white; */
     background: white;
     color: black;
     transition: 125ms;
@@ -86,73 +82,3 @@ menu a.active {
         margin-right: 0 !important;
     }
 }
-
-/*
-.dropdown-menu {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 120px
-}
-
-.dropdown-menu-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    
-}
-
-@media screen and (max-width: 650px) {
-    .menu {
-        display: none;
-    }
-
-    .menu-burger {
-        display: flex;
-        justify-content: center;
-    }
-
-    .menu-burger img {
-        height: 32px !important;
-    }
-
-    .link-container {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
-}
-*/
-
-/* @media screen and (max-width: 600px) {
-    .task-content-container {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-    h2 {
-        text-align: center !important;
-    }
-    .task-content-box {
-        width: 80% !important;
-    }
-    .assigned-to {
-        justify-content: center !important;
-        width: 100% !important;
-    }
-    .cancel-create-box {
-        justify-content: center !important;
-    }
-}
-
-@media screen and (max-width: 300px) {
-    .assigned-to {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: auto !important;
-        height: auto !important;
-    }
-} */

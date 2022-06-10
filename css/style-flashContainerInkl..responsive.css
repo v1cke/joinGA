@@ -15,6 +15,10 @@
     height: 100%;
 }
 
+.flash-container h1 {
+    background: none !important;
+}
+
 .flash-head {
     text-align: center;
 }

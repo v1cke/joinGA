@@ -156,14 +156,17 @@ main {
 }
 
 .trashContainer {
+    height: 50px;
+    width: 50px;
     border-radius: 100%;
     background: #D8D8D8;
 }
 
 .trashContainer img {
-    object-fit: contain;
-    /* height: 30px;
-    width: 30px; */
+    object-position: center;
+    /* object-fit: cover; */
+    height: 75%;
+    width: 75%;
 }
 
 @media screen and (max-width: 500px) {

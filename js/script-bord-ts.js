@@ -191,7 +191,7 @@ function cartHtml(cartArray) {
                 <h4 class="text-center">${cartArray['title']}</h4>
                 <div>
                     <div class="d-flex">
-                    <span id="assignedUserBord${cartArray['id']}" class="assignedUser d-flex flex-wrap"></span>
+                    <span id="assignedUserBord${cartArray['id']}" class="assignedUser gap10 d-flex flex-wrap"></span>
                     </div>
                 </div>
                 <p class="text_container">${cartArray['description']}</p>

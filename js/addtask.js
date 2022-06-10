@@ -87,7 +87,8 @@ function confirmTask() {
 /**
  * displays container with registrated users to choose for assignement
  */
-function chooseUser() {
+function chooseUser(event) {
+    event.stopPropagation();
     openChooseUser();
     for (let i = 0; i < users.length; i++) {
         let userName = users[i]["name"];
@@ -102,6 +103,8 @@ function chooseUser() {
  * displays the chooseUser container
  */
 function openChooseUser() {
+    document.getElementById("hideContainer").classList.remove("d-none");
+
     document.getElementById("chooseUserContainer").innerHTML = "";
     document.getElementById("chooseUserContainer").classList.remove("d-none");
     document.body.classList.add('overflow-hidden');
@@ -154,20 +157,6 @@ function dispalyTheHack(userName) {
  */
 function addUser(i, userName) {
     let userInfo = users[i];
-    checkUserAlreadySelected(userName);
-    selectedUser.push(userInfo);
-    document.getElementById(`checked_${i}`).classList.remove('opacity0');
-    loadSelectedUsers();
-}
-
-
-/**
- * checks whether the user has already been selected
- * 
- * @param {string} userName - current user name
- * @returns - ends the function
- */
-function checkUserAlreadySelected(userName) {
     for (let j = 0; j < selectedUser.length; j++) {
         let selection = selectedUser[j];
         if (userName == selection.name) {
@@ -177,6 +166,9 @@ function checkUserAlreadySelected(userName) {
             return;
         }
     }
+    selectedUser.push(userInfo);
+    document.getElementById(`checked_${i}`).classList.remove('opacity0');
+    loadSelectedUsers();
 }
 
 
@@ -225,6 +217,8 @@ function removeUser(i) {
  * close the chooseUser container
  */
 function closeUserContainer() {
+    document.getElementById("hideContainer").classList.add("d-none");
+
     document.getElementById("chooseUserContainer").classList.add("d-none");
     document.body.classList.remove('overflow-hidden');
 }

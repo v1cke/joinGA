@@ -1,18 +1,31 @@
 .flash-container {
     z-index: 20;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(0, 0, 0, 0.98);
     border-radius: 20px;
     color: white;
     position: absolute;
-    top: 15%;
+    /* top: 15%;
     bottom: 15%;
     left: 10%;
-    right: 10%;
+    right: 10%; */
+    /* top: calc(50% -150px); */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* transform: translateX(-50%) translateY(50%); */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 900px;
+    /* max-width: 1000px; */
+    /* width: 100%; */
+    /* max-height: calc((100vh - 285px) - 6em); */
+    /* overflow: hidden; */
+}
+
+.flash-head {
+    text-align: center;
 }
 
 .flash-head p {
@@ -23,12 +36,13 @@
 }
 
 .flash-head h1,
-h2 {
+.flash-head h2 {
     font-size: 38px !important;
 }
 
 .flash-info {
-    width: 80%;
+    /* width: 80%; */
+    margin: 30px;
     overflow-y: auto;
 }
 
@@ -62,7 +76,6 @@ h2 {
     border-radius: 10%;
     border: solid 2px;
     padding: 10px;
-    margin-right: 20px;
     margin-top: 20px;
     font-size: 16px;
 }
@@ -70,81 +83,7 @@ h2 {
 .flash-creators {
     display: flex;
     justify-content: space-evenly;
-    flex-direction: row;
     flex-wrap: wrap;
-}
-
-@media(max-width: 1000px) {
-    .flash-container {
-        left: 5%;
-        right: 5%;
-        min-width: 700px;
-    }
-}
-
-@media(max-width: 800px) {
-    .flash-container {
-        left: 1%;
-        right: 1%;
-        min-width: 600px;
-    }
-    .flash-head h1,
-    h2 {
-        font-size: 36px !important;
-    }
-}
-
-@media(max-width: 600px) {
-    .flash-container {
-        top: 10%;
-        bottom: 10%;
-        left: 1%;
-        right: 1%;
-        min-width: 400px;
-    }
-    .flash-border {
-        margin-right: 10px;
-        margin-top: 10px;
-        font-size: 16px;
-    }
-    .flash-info {
-        width: 95%;
-    }
-    .flash-head h1,
-    h2 {
-        font-size: 36px !important;
-    }
-}
-
-@media(max-width: 450px) {
-    .flash-container {
-        left: 1%;
-        right: 1%;
-        min-width: 300px;
-    }
-    .flash-border {
-        font-size: 12px;
-    }
-    .flash-head h1,
-    h2 {
-        font-size: 16px;
-    }
-    .flash-head h1,
-    h2 {
-        font-size: 20px !important;
-    }
-}
-
-@media(max-width: 350px) {
-    .flash-container {
-        top: 2%;
-        bottom: 2%;
-        left: 1%;
-        right: 1%;
-        min-width: 260px;
-    }
-    .flash-head h1,
-    h2 {
-        font-size: 16px;
-    }
+    gap: 20px;
+    overflow-y: auto;
 }

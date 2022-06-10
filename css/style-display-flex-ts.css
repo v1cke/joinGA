@@ -86,3 +86,7 @@
     .p-fixed {
         position: fixed;
     }
+    
+    .gap10 {
+        gap: 10px;
+    }

@@ -38,16 +38,19 @@
         </div>
     </div>
     <div>
-        <div id="bord_container_Id" class="bord_container">
+        <div id="bord_container_Id" class="bord_container p-relativ">
+
+            <div id="imprintTemplate" w3-include-html="templates/imprint.html" class="d-none"></div>
+            <div id="privacyTemplate" w3-include-html="templates/privacy.html" class="d-none"></div>
+            <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
+
             <div id="todo" ondrop="moveTo('todo'); removehighlight('todo')" ondragleave="removehighlight('todo')" ondragover="allowDrop(event); highlight('todo')" class="bord_under_container d-flex f-colum"></div>
             <div id="inProgress" ondrop="moveTo('inProgress'); removehighlight('inProgress')" ondragleave="removehighlight('inProgress')" ondragover="allowDrop(event); highlight('inProgress')" class="bord_under_container d-flex f-colum"></div>
             <div id="testing" ondrop="moveTo('testing'); removehighlight('testing')" ondragleave="removehighlight('testing')" ondragover="allowDrop(event); highlight('testing')" class="bord_under_container d-flex f-colum"></div>
             <div id="done" ondrop="moveTo('done'); removehighlight('done')" ondragleave="removehighlight('done')" ondragover="allowDrop(event); highlight('done')" class="bord_under_container d-flex f-colum"></div>
         </div>
     </div>
-    <div id="imprintTemplate" w3-include-html="templates/imprint.html" class="d-none"></div>
-    <div id="privacyTemplate" w3-include-html="templates/privacy.html" class="d-none"></div>
-    <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
+
     <div w3-include-html="templates/footer.html"></div>
 </body>
 

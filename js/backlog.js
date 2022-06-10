@@ -64,7 +64,7 @@ function generateBacklogHTML(element, i) {
             <div class="backlog-container">
                 <div class="color-stripe ${element['urgency']}"></div>
                     <div class="identification">
-                        <div id="assignedPersonImgBacklog${i}" class="d-flex flex-wrap"></div>
+                        <div id="assignedPersonImgBacklog${i}" class="d-flex flex-wrap gap10"></div>
                     </div>
                     <div class="title">
                         <div>${element['title']}</div>

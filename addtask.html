@@ -25,8 +25,25 @@
 
 <body onload="loadTasks(); includeHTML('addTaskLink')">
     <div w3-include-html="templates/header.html"></div>
-    <div class="main-container">
+    <div class="main-container p-relativ">
+
+        <div id="hideContainer" class="hideall d-none">
+            <div id="chooseUserContainer" class="choose-user-container d-none"></div>
+        </div>
+
+
+        <div id="imprintTemplate" w3-include-html="templates/imprint.html" class="d-none"></div>
+        <div id="privacyTemplate" w3-include-html="templates/privacy.html" class="d-none"></div>
+        <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
+
+
+
+
         <div class="container">
+
+
+
+
             <div id="taskContainer" class="task-container">
                 <form onsubmit="event.preventDefault(), createTask()" class="task-content-container">
                     <div class="task-content-box">
@@ -61,10 +78,15 @@
                     <div class="task-content-box">
                         <h2>ASSIGNED TO</h2>
                         <div class="assigned-to">
-                            <div id="chooseUserContainer" class="choose-user-container d-none"></div>
+
+
+                            <!-- <div id="chooseUserContainer" class="choose-user-container d-none"></div> -->
+
+
+
                             <div id="selectedUserContainer" class="d-flex">
                             </div>
-                            <div onclick="chooseUser()"><img src="img/icon plus.png" class="addBtn"></div>
+                            <div onclick="chooseUser(event)"><img src="img/icon plus.png" class="addBtn"></div>
 
                         </div>
                         <div class="cancel-create-box">
@@ -86,9 +108,10 @@
             </div>
         </div>
     </div>
+    <!-- 
     <div id="imprintTemplate" w3-include-html="templates/imprint.html" class="d-none"></div>
     <div id="privacyTemplate" w3-include-html="templates/privacy.html" class="d-none"></div>
-    <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div>
+    <div id="cookieTemplate" w3-include-html="templates/cookies.html" class="d-none"></div> -->
     <div w3-include-html="templates/footer.html"></div>
 </body>
 

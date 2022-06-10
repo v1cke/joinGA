@@ -90,6 +90,7 @@ function generateBacklogHTML(element, i) {
                     </div>
                     <div class="add-to-board">
                         <span><img onclick="addToBoard(${i})" src="img/icon plus.png"></span>
+                        <span class="trashContainer"><img onclick="deleteTask(${i})" src="img/trash.png"></span>
                     </div>
                     <div class="backlog-text ">
                     <span>${element['description']}</span>

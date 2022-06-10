@@ -155,6 +155,17 @@ main {
     height: auto;
 }
 
+.trashContainer {
+    border-radius: 100%;
+    background: #D8D8D8;
+}
+
+.trashContainer img {
+    object-fit: contain;
+    /* height: 30px;
+    width: 30px; */
+}
+
 @media screen and (max-width: 500px) {
     .backlog-container {
         display: flex;

@@ -136,8 +136,17 @@ body {
     box-sizing: border-box;
 }
 
-.assignedUser Img {
+.assignedUser {
     margin-left: 10px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.assignedUser.heightAuto {
+    height: auto !important;
+}
+
+.assignedUser Img {
     height: 50px;
     width: 50px;
     object-fit: cover;
@@ -279,24 +288,19 @@ body {
 .text_container {
     height: 22px;
     overflow: hidden;
-    transition: 125ms;
+}
+
+.height-for-img {
+    height: 50px;
 }
 
 .name-Img {
-    height: 0;
+    /* text-align: center; */
     overflow: hidden;
-    transition: 125ms;
-    text-align: center;
 }
 
-.cart:hover .text_container {
+.text_container.heightAuto {
     height: auto;
-    transition: 125ms;
-}
-
-.cart:hover .name-Img {
-    height: auto;
-    transition: 125ms;
 }
 
 .headline_bord h3 {

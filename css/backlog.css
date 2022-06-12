@@ -148,11 +148,11 @@ main {
     overflow: hidden;
 }
 
-.backlog-container:hover .backlog-text {
+.backlog-text.heightAuto {
     height: 100%;
 }
 
-.backlog-container:hover .name-Img {
+.name-Img.heightAuto {
     height: auto;
 }
 

@@ -180,11 +180,11 @@ function displayUsersImg(processArray) {
  */
 function cartHtml(cartArray) {
     return /* html */ `
-            <div draggable="true" ondragstart="startDragging(${cartArray['id']})" class="word_break_all cart padding-20">
+            <div draggable="true" onclick="addFullHeight(${cartArray['id']})" ondragstart="startDragging(${cartArray['id']})" class="word_break_all cart padding-20">
                 <div class="color-stripe ${cartArray['urgency']}"></div>   
                 <div id="menu${cartArray['id']}" onclick="openMenu(${cartArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    <div class="menu_btn_burger "></div>
-                    <ul id="list${cartArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
+                    <div  class="menu_btn_burger  "></div>
+                    <ul id="list${cartArray['id']}" class="drop_menu p-absolute d-none f-colum w-space-nowrap">
                         
                     </ul>
                 </div>
@@ -194,13 +194,25 @@ function cartHtml(cartArray) {
                     <span id="assignedUserBord${cartArray['id']}" class="assignedUser gap10 d-flex flex-wrap"></span>
                     </div>
                 </div>
-                <p class="text_container">${cartArray['description']}</p>
+                <p id="boardTextId${cartArray['id']}" class="text_container">${cartArray['description']}</p>
                 <div class="d-flex j-space-betwen">
                     <span>${cartArray['date']}</span>
                     <span class="text-capitalize ${cartArray['category']}">${cartArray['category']}</span>
                 </div>
             </div>
         `;
+}
+
+
+function addFullHeight(i) {
+
+    document.getElementById(`boardTextId${i}`).classList.toggle('heightAuto');
+
+    document.getElementById(`assignedUserBord${i}`).classList.toggle('heightAuto');
+    // console.log(document.getElementById(`assignedUserBord${i}`).children)
+
+
+
 }
 
 
@@ -360,8 +372,13 @@ function openMenu(id) {
  */
 function dispalyMenu(listContainer, menuBtnId, menuBtn) {
     menuBtn.classList.add('open');
-    listContainer.classList.add('show');
-    menuBtnId[0]['OpenMenu'] = true;
+    listContainer.classList.remove('d-none');
+    listContainer.classList.add('d-flex');
+    setTimeout(() => {
+        listContainer.classList.add('show');
+        menuBtnId[0]['OpenMenu'] = true;
+    });
+
 }
 
 
@@ -376,6 +393,12 @@ function removeMenu(listContainer, menuBtnId, menuBtn) {
     menuBtn.classList.remove('open');
     listContainer.classList.remove('show');
     menuBtnId[0]['OpenMenu'] = false;
+    setTimeout(() => {
+        listContainer.classList.add('d-none');
+        listContainer.classList.remove('d-flex');
+    });
+
+
 }
 
 

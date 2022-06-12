@@ -23,7 +23,7 @@ async function loadTasks() {
 /**
  * assigns unique id to each task
  */
- function countTasksId() {
+function countTasksId() {
     for (let index = 0; index < tasks.length; index++) {
         let tasksIndexId = tasks[index];
         tasksIndexId.id = idCount;
@@ -58,7 +58,7 @@ function displaySelectedUser(element, i) {
         currentTask.innerHTML += /* html */ `
             <div class="d-flex f-colum">
                 <img src="${assignedWorker.img}">
-                <span class="name-Img">${assignedWorker.name}</span>
+                <span id="backlogImgId${i}" class="name-Img">${assignedWorker.name}</span>
             </div>
             `
     }
@@ -74,7 +74,7 @@ function displaySelectedUser(element, i) {
  */
 function generateBacklogHTML(element, i) {
     return /* html */ `  
-            <div class="backlog-container">
+            <div  onclick="addHeight(${i})" class="backlog-container">
                 <div class="color-stripe ${element['urgency']}"></div>
                     <div class="identification">
                         <div id="assignedPersonImgBacklog${i}" class="d-flex flex-wrap gap10"></div>
@@ -92,7 +92,7 @@ function generateBacklogHTML(element, i) {
                         <span><img onclick="addToBoard(${i})" src="img/icon plus.png"></span>
                         <span class="trashContainer"><img onclick="deleteTask(${i})" src="img/trash.png"></span>
                     </div>
-                    <div class="backlog-text ">
+                    <div id="backlogTextId${i}" class="backlog-text ">
                     <span>${element['description']}</span>
                     </div>
                 </div>
@@ -101,12 +101,18 @@ function generateBacklogHTML(element, i) {
 }
 
 
+function addHeight(i) {
+    document.getElementById(`backlogTextId${i}`).classList.toggle('heightAuto');
+    document.getElementById(`backlogImgId${i}`).classList.toggle('heightAuto');
+}
+
+
 /**
  * removing the element from the json after closing the menu
  * 
  * @param {number} id - id of the item to be removed
  */
- function deleteTask(id) {
+function deleteTask(id) {
     let deleteTask = tasks.filter(t => t['id'] == id);
     let index = tasks.indexOf(deleteTask[0]);
     tasks.splice(index, 1);

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: start-side.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: start-side.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>let accountData = [];
+let loggedUser = [];
+let internUsers = [];
+let searchCreateUser = [];
+let searchUser = [];
+
+
+
+/**
+ * load the user
+ */
+async function loadUsers() {
+    let respons = await fetch('./users-backup.json');
+    accountData = await respons.json();
+    internUsers = JSON.parse(localStorage.getItem('accountData'));
+    loadUserFromLocalStorage(internUsers);
+}
+
+
+/**
+ * load the saved user
+ * 
+ * @param {json} internUsers json for the users in local storage
+ */
+function loadUserFromLocalStorage(internUsers) {
+    if (internUsers) {
+        accountData = [];
+        for (let index = 0; index &lt; internUsers.length; index++) {
+            const element = internUsers[index];
+            accountData.push(element);
+        }
+    }
+}
+
+
+/**
+ * login current user
+ */
+function loginUser() {
+    let userName = document.getElementById('userNameField').value;
+    let password = document.getElementById('passwordField').value;
+    checkLoginMatch(userName, password);
+    loginOrNot();
+}
+
+
+/**
+ * check if name and password match
+ * 
+ * @param {string} userName - value of the field username
+ * @param {string} password - value of the field password
+ */
+function checkLoginMatch(userName, password) {
+    for (let i = 0; i &lt; accountData.length; i++) {
+        const user = accountData[i];
+        if (userName == user.name &amp;&amp; password == user.passwort) {
+            loggedUser = user;
+            localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+            localStorage.setItem('accountData', JSON.stringify(accountData));
+            return searchUser[i] = true;
+        }
+    }
+}
+
+
+/**
+ * if name and password are correct, log in otherwise not
+ */
+function loginOrNot() {
+    if (!searchUser.includes(true)) {
+        document.getElementById('createContainer').classList.remove('d-none');
+        document.getElementById('createContainer').innerHTML = `&lt;h2>Username or Password are incorrect&lt;/h2>`;
+        setTimeout(() => {
+            document.getElementById('createContainer').classList.add('d-none');
+        }, 2000);
+    } else { window.location.href = "bord.html"; }
+}
+
+
+/**
+ * open the container to create a new user
+ */
+function openCreateUser() {
+    document.getElementById('createContainer').classList.remove('d-none');
+    document.getElementById('createContainer').innerHTML = /* html */ `
+                &lt;div onclick="closeCreateUser()">&lt;img src="img/icon plus.png" class="close-btn">&lt;/div>
+                &lt;form onsubmit="event.preventDefault(), createUser()">
+                    &lt;div class="txt_field">
+                        &lt;input id="createuserNameField" type="text" required>
+                        &lt;span>&lt;/span>
+                        &lt;label>Username&lt;/label>
+                    &lt;/div>
+                    &lt;div class="txt_field">
+                        &lt;input id="createpasswordField" type="password" required>
+                        &lt;span>&lt;/span>
+                        &lt;label>Password&lt;/label>
+                    &lt;/div>
+                    &lt;button type="submit" class="input-button">create Account&lt;/button>
+                &lt;/form>
+    `;
+}
+
+
+/**
+ * create a new user account
+ */
+async function createUser() {
+    let userName = document.getElementById('createuserNameField').value;
+    let password = document.getElementById('createpasswordField').value;
+    checkNameAlreadyExists(userName);
+    createNewUserOrNot(userName, password);
+}
+
+
+/**
+ * check if the user name already exists
+ * 
+ * @param {string} userName - value of the field create user name
+ */
+function checkNameAlreadyExists(userName) {
+    for (let i = 0; i &lt; accountData.length; i++) {
+        const user = accountData[i];
+        if (userName == user.name) {
+            return searchCreateUser[i] = true;
+        }
+    }
+}
+
+
+/**
+ * show if the user name already exists or create a new user
+ * 
+ * @param {string} userName - value of the field create user name
+ * @param {string} password - value of the field create password
+ */
+function createNewUserOrNot(userName, password) {
+    if (searchCreateUser.includes(true)) {
+        displayUserExists();
+    } else {
+        createNewUser(userName, password);
+    }
+}
+
+
+/**
+ * show if the user name already exists
+ */
+function displayUserExists() {
+    document.getElementById('createContainer').classList.remove('d-none');
+    document.getElementById('createContainer').innerHTML = `
+        &lt;h2>username already exists&lt;/h2>
+        `;
+    setTimeout(() => {
+        openCreateUser();
+    }, 2000);
+}
+
+
+/**
+ * create a new user and save in local storage
+ * 
+ * @param {string} userName - value of the field create user name
+ * @param {string} password - value of the field create password
+ */
+function createNewUser(userName, password) {
+    let newUser = {
+        'name': userName,
+        'passwort': password,
+        'img': "img/guest-48.png"
+    };
+    accountData.push(newUser);
+    localStorage.setItem('accountData', JSON.stringify(accountData));
+    console.log(accountData);
+    document.getElementById('createContainer').innerHTML = `&lt;h2>Account created&lt;/h2>`;
+    autoCloseContainer();
+}
+
+
+/**
+ * close the createContainer after 2 seconds
+ */
+function autoCloseContainer() {
+    setTimeout(() => {
+        document.getElementById('createContainer').classList.add('d-none');
+    }, 2000);
+}
+
+
+/**
+ * close the container to create a new user
+ */
+function closeCreateUser() {
+    document.getElementById('createContainer').classList.add('d-none');
+}
+
+
+/**
+ * log in as a guest and save in localStoraage
+ */
+function loginAsGuest() {
+    let userName = 'Guest';
+    let password = 'Guest';
+    let newUser = {
+        'name': userName,
+        'passwort': password,
+        'img': "img/guest-48.png"
+    };
+    loggedUser = newUser;
+    localStorage.setItem('accountData', JSON.stringify(accountData));
+    localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+    console.log(loggedUser);
+    window.location.href = "bord.html";
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addToBoard">addToBoard</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#autoCloseContainer">autoCloseContainer</a></li><li><a href="global.html#cancelTask">cancelTask</a></li><li><a href="global.html#cartHtml">cartHtml</a></li><li><a href="global.html#checkDoneAndFillMenu">checkDoneAndFillMenu</a></li><li><a href="global.html#checkHighUrgency">checkHighUrgency</a></li><li><a href="global.html#checkInProgressAndFillMenu">checkInProgressAndFillMenu</a></li><li><a href="global.html#checkLoginMatch">checkLoginMatch</a></li><li><a href="global.html#checkLowUrgency">checkLowUrgency</a></li><li><a href="global.html#checkNameAlreadyExists">checkNameAlreadyExists</a></li><li><a href="global.html#checkTestingAndFillMenu">checkTestingAndFillMenu</a></li><li><a href="global.html#checkTodoAndFillMenu">checkTodoAndFillMenu</a></li><li><a href="global.html#checkUsersLength">checkUsersLength</a></li><li><a href="global.html#checkWidth">checkWidth</a></li><li><a href="global.html#chooseUser">chooseUser</a></li><li><a href="global.html#closeCreateUser">closeCreateUser</a></li><li><a href="global.html#closeFlashContainer">closeFlashContainer</a></li><li><a href="global.html#closeUserContainer">closeUserContainer</a></li><li><a href="global.html#confirmTask">confirmTask</a></li><li><a href="global.html#countTasksId">countTasksId</a></li><li><a href="global.html#createNewUser">createNewUser</a></li><li><a href="global.html#createNewUserOrNot">createNewUserOrNot</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#dispalyMenu">dispalyMenu</a></li><li><a href="global.html#dispalyTheHack">dispalyTheHack</a></li><li><a href="global.html#displayOfTheDifferentProcesses">displayOfTheDifferentProcesses</a></li><li><a href="global.html#displaySelectedUser">displaySelectedUser</a></li><li><a href="global.html#displayThePicturesOfTheUsers">displayThePicturesOfTheUsers</a></li><li><a href="global.html#displayTheSelectetUsers">displayTheSelectetUsers</a></li><li><a href="global.html#displayUserExists">displayUserExists</a></li><li><a href="global.html#fillBord">fillBord</a></li><li><a href="global.html#generateBacklogHTML">generateBacklogHTML</a></li><li><a href="global.html#generateTask">generateTask</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#hightlightHeader">hightlightHeader</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadSelectedUsers">loadSelectedUsers</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadUserFromLocalStorage">loadUserFromLocalStorage</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#loginAsGuest">loginAsGuest</a></li><li><a href="global.html#loginOrNot">loginOrNot</a></li><li><a href="global.html#loginUser">loginUser</a></li><li><a href="global.html#logOutUser">logOutUser</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openChooseUser">openChooseUser</a></li><li><a href="global.html#openCookies">openCookies</a></li><li><a href="global.html#openCreateUser">openCreateUser</a></li><li><a href="global.html#openImprint">openImprint</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#openPrivacy">openPrivacy</a></li><li><a href="global.html#removehighlight">removehighlight</a></li><li><a href="global.html#removeIt">removeIt</a></li><li><a href="global.html#removeMenu">removeMenu</a></li><li><a href="global.html#removeTask">removeTask</a></li><li><a href="global.html#removeUser">removeUser</a></li><li><a href="global.html#renderBacklog">renderBacklog</a></li><li><a href="global.html#renderBord">renderBord</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#screenWidth">screenWidth</a></li><li><a href="global.html#showLoggedUserImg">showLoggedUserImg</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#urgencyIsHigh">urgencyIsHigh</a></li><li><a href="global.html#urgencyIsLow">urgencyIsLow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun Jun 12 2022 19:16:37 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

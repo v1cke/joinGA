@@ -27,12 +27,16 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>let currentDraggedElementId;
-let tasks = [];
+let bordTasks = [];
+let idCount = 1;
 
 
 screenWidth();
 
 
+/**
+ * screen width under 600px draggable disable
+ */
 function screenWidth() {
     let draggableCart = document.getElementsByClassName('cart');
     setInterval(() => {
@@ -41,6 +45,11 @@ function screenWidth() {
 }
 
 
+/**
+ * check the width
+ * 
+ * @param {string} draggableCart - content of the class to be deactivated
+ */
 function checkWidth(draggableCart) {
     let width = window.innerWidth;
     if (width &lt;= 600) {
@@ -56,273 +65,256 @@ function checkWidth(draggableCart) {
     }
 }
 
+
 /**
  * load the json and render the board
  */
-function fillBord() {
-    loadTasks();
-    setTimeout(() => {
-        renderBord();
-    }, 100);
+async function fillBord() {
+    await loadTasks();
+    countTasksId();
+    renderBord();
 }
+
 
 /**
  * load the json
  */
 async function loadTasks() {
-    let respons = await fetch('./tasks.json');
-    tasks = await respons.json();
+    await downloadFromServer();
+    bordTasks = JSON.parse(backend.getItem('bordTasks')) || [];
 }
 
+
 /**
- * rendering of each category and order of urgency
+ * assigns unique id to each task
+ */
+function countTasksId() {
+    for (let index = 0; index &lt; bordTasks.length; index++) {
+        let tasksIndexId = bordTasks[index];
+        tasksIndexId.id = idCount;
+        idCount++;
+    }
+}
+
+
+/**
+ * rendering of each process and order of urgency
  */
 function renderBord() {
-    checkHightUrgency();
+    checkHighUrgency();
     checkLowUrgency();
-    dispalyTodo();
-    dispalyInProgress();
-    dispalyTesting();
-    dispalyDone();
+    displayOfTheDifferentProcesses('todo');
+    displayOfTheDifferentProcesses('inProgress');
+    displayOfTheDifferentProcesses('testing');
+    displayOfTheDifferentProcesses('done');
 }
+
 
 /**
  * check of the highest urgency
  */
-function checkHightUrgency() {
-    let hightUrgency = tasks.filter(t => t['urgency'] == 'hight');
-    for (let i = 0; i &lt; hightUrgency.length; i++) {
-        let index = tasks.indexOf(hightUrgency[i]);
-        urgencyIsHight(index, hightUrgency, i);
+function checkHighUrgency() {
+    let highUrgency = bordTasks.filter(t => t['urgency'] == 'high');
+    for (let i = 0; i &lt; highUrgency.length; i++) {
+        let index = bordTasks.indexOf(highUrgency[i]);
+        urgencyIsHigh(index, highUrgency, i);
     }
 }
+
 
 /**
  * check the least urgency
  */
 function checkLowUrgency() {
-    let lowUrgency = tasks.filter(t => t['urgency'] == 'low');
+    let lowUrgency = bordTasks.filter(t => t['urgency'] == 'low');
     for (let i = 0; i &lt; lowUrgency.length; i++) {
-        let index = tasks.indexOf(lowUrgency[i]);
+        let index = bordTasks.indexOf(lowUrgency[i]);
         urgencyIsLow(index, lowUrgency, i);
     }
 }
+
 
 /**
  * bring the element to the first position of the json
  * 
  * @param {number} index - index position in json
  * @param {array} filterId - array with elements to be changed
- * @param {number} i - position in the for loop
+ * @param {number} i - current position in the for loop
  */
-function urgencyIsHight(index, filterId, i) {
-    if (filterId[i]['urgency'] == 'hight') {
-        tasks.splice(index, 1);
-        tasks.unshift(filterId[i]);
+function urgencyIsHigh(index, filterId, i) {
+    if (filterId[i]['urgency'] == 'high') {
+        bordTasks.splice(index, 1);
+        bordTasks.unshift(filterId[i]);
     }
 }
+
 
 /**
  * bring the element to the last position of the json
  * 
  * @param {number} index - index position in json
  * @param {array} filterId - array with elements to be changed
- * @param {number} i - position in the for loop
+ * @param {number} i - current position in the for loop
  */
 function urgencyIsLow(index, filterId, i) {
     if (filterId[i]['urgency'] == 'low') {
-        tasks.splice(index, 1);
-        tasks.push(filterId[i]);
+        bordTasks.splice(index, 1);
+        bordTasks.push(filterId[i]);
     }
 }
 
 
 /**
  * display the items in the todo area
+ * 
+ * @param {string} processValue - correct process name
  */
-function dispalyTodo() {
-    let todo = tasks.filter(t => t['category'] == 'todo');
-    document.getElementById('todo').innerHTML = /* html */ `
-    &lt;span class="headline_bord text-uppercase text-center padding-20">&lt;h3>to do&lt;/h3>&lt;/span>`;
-    for (let i = 0; i &lt; todo.length; i++) {
-        const todoArray = todo[i];
-        document.getElementById('todo').innerHTML += todoHtml(todoArray);
+function displayOfTheDifferentProcesses(processValue) {
+    let process = bordTasks.filter(t => t['process'] == processValue);
+    document.getElementById(processValue).innerHTML = /* html */ `
+    &lt;span  class="headline_bord text-uppercase text-center padding-20">&lt;h3>${processValue}&lt;/h3>&lt;/span>`;
+    for (let i = 0; i &lt; process.length; i++) {
+        const processArray = process[i];
+        document.getElementById(processValue).innerHTML += cartHtml(processArray);
+        displayUsersImg(processArray);
+        checkTodoAndFillMenu(processArray, processValue);
+        checkInProgressAndFillMenu(processArray, processValue);
+        checkTestingAndFillMenu(processArray, processValue);
+        checkDoneAndFillMenu(processArray, processValue);
     }
 }
 
+
+
+function displayUsersImg(processArray) {
+    let currentTask = document.getElementById(`assignedUserBord${processArray['id']}`);
+    for (let j = 0; j &lt; processArray.assignedPerson.length; j++) {
+        const assignedUser = processArray.assignedPerson[j];
+        currentTask.innerHTML += `
+            &lt;div class="d-flex f-colum">
+                &lt;img src="${assignedUser.img}">
+                &lt;span class="name-Img">${assignedUser.name}&lt;/span>
+            &lt;/div>
+            `;
+    }
+}
+
+
 /**
- * generate the html for todo
+ * generate the html for every process
  * 
- * @param {array} todoArray - array with all elements with category todo
- * @returns 
+ * @param {array} cartArray - array with all elements for the specific process
+ * @returns - html code for the cart
  */
-function todoHtml(todoArray) {
+function cartHtml(cartArray) {
     return /* html */ `
-            &lt;div draggable="true" ondragstart="startDragging(${todoArray['id']})" class="word_break_all cart padding-20 ${todoArray['urgency']}">
-                &lt;div id="menu${todoArray['id']}" onclick="openMenu(${todoArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    &lt;div class="menu_btn_burger ">&lt;/div>
-                    &lt;ul id="list${todoArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        &lt;li onclick="moveTo('inProgress', ${todoArray['id']})">Move to In Progress&lt;/li>
-                        &lt;li onclick="moveTo('testing', ${todoArray['id']})">Move to Testing&lt;/li>
-                        &lt;li onclick="moveTo('done', ${todoArray['id']})">Move to Done&lt;/li>
-                        &lt;li onclick="removeTask(${todoArray['id']})">Delete&lt;/li>
+            &lt;div draggable="true" onclick="addFullHeight(${cartArray['id']})" ondragstart="startDragging(${cartArray['id']})" class="word_break_all cart padding-20">
+                &lt;div class="color-stripe ${cartArray['urgency']}">&lt;/div>   
+                &lt;div id="menu${cartArray['id']}" onclick="openMenu(${cartArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
+                    &lt;div  class="menu_btn_burger  ">&lt;/div>
+                    &lt;ul id="list${cartArray['id']}" class="drop_menu p-absolute d-none f-colum w-space-nowrap">
+                        
                     &lt;/ul>
                 &lt;/div>
-                &lt;h4 class="text-center">${todoArray['title']}&lt;/h4>
+                &lt;h4 class="text-center">${cartArray['title']}&lt;/h4>
                 &lt;div>
                     &lt;div class="d-flex">
-                    &lt;p>${todoArray['name']}&lt;/p>
+                    &lt;span id="assignedUserBord${cartArray['id']}" class="assignedUser gap10 d-flex flex-wrap">&lt;/span>
                     &lt;/div>
-                    &lt;span class="word_break_all">${todoArray['email']}&lt;/span>
                 &lt;/div>
-                &lt;p class="text_container">${todoArray['text']}&lt;/p>
+                &lt;p id="boardTextId${cartArray['id']}" class="text_container">${cartArray['description']}&lt;/p>
                 &lt;div class="d-flex j-space-betwen">
-                    &lt;span>${todoArray['date']}&lt;/span>
-                    &lt;span>${todoArray['department']}&lt;/span>
+                    &lt;span>${cartArray['date']}&lt;/span>
+                    &lt;span class="text-capitalize ${cartArray['category']}">${cartArray['category']}&lt;/span>
                 &lt;/div>
             &lt;/div>
         `;
 }
 
+
+function addFullHeight(i) {
+
+    document.getElementById(`boardTextId${i}`).classList.toggle('heightAuto');
+
+    document.getElementById(`assignedUserBord${i}`).classList.toggle('heightAuto');
+    // console.log(document.getElementById(`assignedUserBord${i}`).children)
+
+
+
+}
+
+
 /**
- * display the items in the inProgress area
+ * filling the menu with all possible options for todo container
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
  */
-function dispalyInProgress() {
-    let inProgress = tasks.filter(t => t['category'] == 'inProgress');
-    document.getElementById('inProgress').innerHTML = /* html */ `
-    &lt;span class="headline_bord text-uppercase text-center padding-20">&lt;h3>in Progress&lt;/h3>&lt;/span>`;
-    for (let i = 0; i &lt; inProgress.length; i++) {
-        const inProgressArray = inProgress[i];
-        document.getElementById('inProgress').innerHTML += inProgressHtml(inProgressArray);
+function checkTodoAndFillMenu(processArray, processValue) {
+    if (processValue == 'todo') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            &lt;li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress&lt;/li>
+            &lt;li onclick="moveTo('testing', ${processArray['id']})">Move to Testing&lt;/li>
+            &lt;li onclick="moveTo('done', ${processArray['id']})">Move to Done&lt;/li>
+            &lt;li onclick="removeTask(${processArray['id']})">Delete&lt;/li>
+        `;
     }
 }
 
-/**
- * generate the html for inProgress
- * 
- * @param {array} inProgressArray - array with all elements with category inProgress
- * @returns 
- */
-function inProgressHtml(inProgressArray) {
-    return /* html */ `
-            &lt;div draggable="true" ondragstart="startDragging(${inProgressArray['id']})" class="word_break_all cart padding-20 ${inProgressArray['urgency']}">
-                &lt;div id="menu${inProgressArray['id']}" onclick="openMenu(${inProgressArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    &lt;div class="menu_btn_burger ">&lt;/div>
-                    &lt;ul id="list${inProgressArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        &lt;li onclick="moveTo('todo', ${inProgressArray['id']})">Move to To Do&lt;/li>
-                        &lt;li onclick="moveTo('testing', ${inProgressArray['id']})">Move to Testing&lt;/li>
-                        &lt;li onclick="moveTo('done', ${inProgressArray['id']})">Move to Done&lt;/li>
-                        &lt;li onclick="removeTask(${inProgressArray['id']})">Delete&lt;/li>
-                    &lt;/ul>
-                &lt;/div>
-                &lt;h4 class="text-center">${inProgressArray['title']}&lt;/h4>
-                &lt;div>
-                    &lt;div class="d-flex">
-                    &lt;p>${inProgressArray['name']}&lt;/p>
-                    &lt;/div>
-                    &lt;span class="word_break_all">${inProgressArray['email']}&lt;/span>
-                &lt;/div>
-                &lt;p class="text_container">${inProgressArray['text']}&lt;/p>
-                &lt;div class="d-flex j-space-betwen">
-                    &lt;span>${inProgressArray['date']}&lt;/span>
-                    &lt;span>${inProgressArray['department']}&lt;/span>
-                &lt;/div>
-            &lt;/div>
-        `;
-}
 
 /**
- * display the items in the testing area
+ * filling the menu with all possible options for inProgress container
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
  */
-function dispalyTesting() {
-    let testing = tasks.filter(t => t['category'] == 'testing');
-    document.getElementById('testing').innerHTML = /* html */ `
-    &lt;span class="headline_bord text-uppercase text-center padding-20">&lt;h3>testing&lt;/h3>&lt;/span>`;
-    for (let i = 0; i &lt; testing.length; i++) {
-        const testingArray = testing[i];
-        document.getElementById('testing').innerHTML += testingHtml(testingArray);
+function checkInProgressAndFillMenu(processArray, processValue) {
+    if (processValue == 'inProgress') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            &lt;li onclick="moveTo('todo', ${processArray['id']})">Move to To Do&lt;/li>
+            &lt;li onclick="moveTo('testing', ${processArray['id']})">Move to Testing&lt;/li>
+            &lt;li onclick="moveTo('done', ${processArray['id']})">Move to Done&lt;/li>
+            &lt;li onclick="removeTask(${processArray['id']})">Delete&lt;/li>
+        `;
     }
 }
 
-/**
- * generate the html for testing
- * 
- * @param {array} testingArray - array with all elements with category testing
- * @returns 
- */
-function testingHtml(testingArray) {
-    return /* html */ `
-            &lt;div draggable="true" ondragstart="startDragging(${testingArray['id']})" class="word_break_all cart padding-20 ${testingArray['urgency']}">
-                &lt;div id="menu${testingArray['id']}" onclick="openMenu(${testingArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    &lt;div class="menu_btn_burger ">&lt;/div>
-                    &lt;ul id="list${testingArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        &lt;li onclick="moveTo('todo', ${testingArray['id']})">Move to To Do&lt;/li>
-                        &lt;li onclick="moveTo('inProgress', ${testingArray['id']})">Move to In Progress&lt;/li>
-                        &lt;li onclick="moveTo('done', ${testingArray['id']})">Move to Done&lt;/li>
-                        &lt;li onclick="removeTask(${testingArray['id']})">Delete&lt;/li>
-                    &lt;/ul>
-                &lt;/div>
-                &lt;h4 class="text-center">${testingArray['title']}&lt;/h4>
-                &lt;div>
-                    &lt;div class="d-flex">
-                    &lt;p>${testingArray['name']}&lt;/p>
-                    &lt;/div>
-                    &lt;span class="word_break_all">${testingArray['email']}&lt;/span>
-                &lt;/div>
-                &lt;p class="text_container">${testingArray['text']}&lt;/p>
-                &lt;div class="d-flex j-space-betwen">
-                    &lt;span>${testingArray['date']}&lt;/span>
-                    &lt;span>${testingArray['department']}&lt;/span>
-                &lt;/div>
-            &lt;/div>
-        `;
-}
 
 /**
- * display the items in the done area
+ * filling the menu with all possible options for testing container
+ * 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
  */
-function dispalyDone() {
-    let done = tasks.filter(t => t['category'] == 'done');
-    document.getElementById('done').innerHTML = /* html */ `
-    &lt;span class="headline_bord text-uppercase text-center padding-20">&lt;h3>done&lt;/h3>&lt;/span>`;
-    for (let i = 0; i &lt; done.length; i++) {
-        const doneArray = done[i];
-        document.getElementById('done').innerHTML += doneHtml(doneArray);
+function checkTestingAndFillMenu(processArray, processValue) {
+    if (processValue == 'testing') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            &lt;li onclick="moveTo('todo', ${processArray['id']})">Move to To Do&lt;/li>
+            &lt;li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress&lt;/li>
+            &lt;li onclick="moveTo('done', ${processArray['id']})">Move to Done&lt;/li>
+            &lt;li onclick="removeTask(${processArray['id']})">Delete&lt;/li>
+        `;
     }
 }
 
+
 /**
- * generate the html for done
+ * filling the menu with all possible options for done container
  * 
- * @param {array} doneArray - array with all elements with category done
- * @returns 
+ * @param {array} processArray - array with the right content for the specific process
+ * @param {string} processValue - correct process name
  */
-function doneHtml(doneArray) {
-    return /* html */ `
-            &lt;div draggable="true" ondragstart="startDragging(${doneArray['id']})" class="word_break_all cart padding-20 ${doneArray['urgency']}">
-                &lt;div id="menu${doneArray['id']}" onclick="openMenu(${doneArray['id']})" class="p-absolute d-flex j-center-a-center cursor-pointer cart_menu_btn">
-                    &lt;div class="menu_btn_burger ">&lt;/div>
-                    &lt;ul id="list${doneArray['id']}" class="drop_menu p-absolute d-flex f-colum w-space-nowrap">
-                        &lt;li onclick="moveTo('todo', ${doneArray['id']})">Move to To Do&lt;/li>
-                        &lt;li onclick="moveTo('inProgress', ${doneArray['id']})">Move to In Progress&lt;/li>
-                        &lt;li onclick="moveTo('testing', ${doneArray['id']})">Move to Testing&lt;/li>
-                        &lt;li onclick="removeTask(${doneArray['id']})">Delete&lt;/li>
-                    &lt;/ul>
-                &lt;/div>
-                &lt;h4 class="text-center">${doneArray['title']}&lt;/h4>&lt;div>
-                &lt;div class="d-flex">
-                    &lt;p>${doneArray['name']}&lt;/p>
-                &lt;/div>
-                    &lt;span class="word_break_all">${doneArray['email']}&lt;/span>
-                &lt;/div>
-                &lt;p class="text_container">${doneArray['text']}&lt;/p>
-                &lt;div class="d-flex j-space-betwen">
-                    &lt;span>${doneArray['date']}&lt;/span>
-                    &lt;span>${doneArray['department']}&lt;/span>
-                &lt;/div>
-            &lt;/div>
+function checkDoneAndFillMenu(processArray, processValue) {
+    if (processValue == 'done') {
+        document.getElementById(`list${processArray['id']}`).innerHTML = `
+            &lt;li onclick="moveTo('todo', ${processArray['id']})">Move to To Do&lt;/li>
+            &lt;li onclick="moveTo('inProgress', ${processArray['id']})">Move to In Progress&lt;/li>
+            &lt;li onclick="moveTo('testing', ${processArray['id']})">Move to Testing&lt;/li>
+            &lt;li onclick="removeTask(${processArray['id']})">Delete&lt;/li>
         `;
+    }
 }
+
 
 /**
  * saves the id of the object to be moved
@@ -333,6 +325,8 @@ function startDragging(id) {
     currentDraggedElementId = id;
 }
 
+
+
 /**
  * allowed to drop an object
  * 
@@ -342,38 +336,43 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+
 /**
- * moves an object to another category
+ * moves an object to another process
  * 
- * @param {string} category - new category of the object to be moved
+ * @param {string} process - new process of the object to be moved
  * @param {number} id - id of the object to be moved
  */
-function moveTo(category, id) {
+function moveTo(process, id) {
     if (id) {
         currentDraggedElementId = id;
     }
-    let filterId = tasks.filter(t => t['id'] == currentDraggedElementId);
-    filterId[0]['category'] = category;
+    let filterId = bordTasks.filter(t => t['id'] == currentDraggedElementId);
+    filterId[0]['process'] = process;
     renderBord();
+    backend.setItem('bordTasks', JSON.stringify(bordTasks));
 }
 
+
 /**
- * Highlight the category to move the item to
+ * Highlight the process to move the item to
  * 
- * @param {string} id - name of the category to which the element should be moved 
+ * @param {string} id - name of the process to which the element should be moved 
  */
-function hightlight(id) {
+function highlight(id) {
     document.getElementById(id).classList.add('drag_area_highlight');
 }
 
+
 /**
- * remove the highlight of the category to move the item to
+ * remove the highlight of the process to move the item to
  * 
- * @param {string} id - name of the category to which the element should be moved 
+ * @param {string} id - name of the process to which the element should be moved 
  */
-function removehightlight(id) {
+function removehighlight(id) {
     document.getElementById(id).classList.remove('drag_area_highlight');
 }
+
 
 /**
  * open the menu
@@ -381,7 +380,7 @@ function removehightlight(id) {
  * @param {number} id - id of the menu to be opened
  */
 function openMenu(id) {
-    let menuBtnId = tasks.filter(t => t['id'] == id);
+    let menuBtnId = bordTasks.filter(t => t['id'] == id);
     let menuBtn = document.getElementById(`menu${id}`)
     let listContainer = document.getElementById(`list${id}`)
     if (!menuBtnId[0]['OpenMenu']) {
@@ -390,6 +389,7 @@ function openMenu(id) {
         removeMenu(listContainer, menuBtnId, menuBtn, id);
     }
 }
+
 
 /**
  * display of the menu
@@ -400,9 +400,15 @@ function openMenu(id) {
  */
 function dispalyMenu(listContainer, menuBtnId, menuBtn) {
     menuBtn.classList.add('open');
-    listContainer.classList.add('show');
-    menuBtnId[0]['OpenMenu'] = true;
+    listContainer.classList.remove('d-none');
+    listContainer.classList.add('d-flex');
+    setTimeout(() => {
+        listContainer.classList.add('show');
+        menuBtnId[0]['OpenMenu'] = true;
+    });
+
 }
+
 
 /**
  * close the menu
@@ -415,7 +421,14 @@ function removeMenu(listContainer, menuBtnId, menuBtn) {
     menuBtn.classList.remove('open');
     listContainer.classList.remove('show');
     menuBtnId[0]['OpenMenu'] = false;
+    setTimeout(() => {
+        listContainer.classList.remove('d-flex');
+        listContainer.classList.add('d-none');
+    });
+
+
 }
+
 
 /**
  * closing the menu before removing the element from the json
@@ -423,7 +436,7 @@ function removeMenu(listContainer, menuBtnId, menuBtn) {
  * @param {number} id - id of the item to be removed
  */
 function removeTask(id) {
-    let menuBtnId = tasks.filter(t => t['id'] == id);
+    let menuBtnId = bordTasks.filter(t => t['id'] == id);
     let menuBtn = document.getElementById(`menu${id}`)
     let listContainer = document.getElementById(`list${id}`)
     removeMenu(listContainer, menuBtnId, menuBtn, id);
@@ -432,16 +445,27 @@ function removeTask(id) {
     }, 100);
 }
 
+
 /**
  * removing the element from the json after closing the menu
  * 
  * @param {number} id - id of the item to be removed
  */
 function removeIt(id) {
-    let removeTask = tasks.filter(t => t['id'] == id);
-    let index = tasks.indexOf(removeTask[0]);
-    tasks.splice(index, 1);
+    let removeTask = bordTasks.filter(t => t['id'] == id);
+    let index = bordTasks.indexOf(removeTask[0]);
+    bordTasks.splice(index, 1);
     renderBord();
+    backend.setItem('bordTasks', JSON.stringify(bordTasks));
+}
+
+function openSliderMenu() {
+    document.getElementById('sliderlinks').classList.toggle('open');
+    document.getElementById('sliderList').classList.toggle('d-none');
+    document.getElementById('sliderList').classList.toggle('d-flex');
+    setTimeout(() => {
+        document.getElementById('sliderList').classList.toggle('show');
+    });
 }</code></pre>
         </article>
     </section>
@@ -452,13 +476,13 @@ function removeIt(id) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#checkHightUrgency">checkHightUrgency</a></li><li><a href="global.html#checkLowUrgency">checkLowUrgency</a></li><li><a href="global.html#dispalyDone">dispalyDone</a></li><li><a href="global.html#dispalyInProgress">dispalyInProgress</a></li><li><a href="global.html#dispalyMenu">dispalyMenu</a></li><li><a href="global.html#dispalyTesting">dispalyTesting</a></li><li><a href="global.html#dispalyTodo">dispalyTodo</a></li><li><a href="global.html#doneHtml">doneHtml</a></li><li><a href="global.html#fillBord">fillBord</a></li><li><a href="global.html#hightlight">hightlight</a></li><li><a href="global.html#inProgressHtml">inProgressHtml</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#removehightlight">removehightlight</a></li><li><a href="global.html#removeIt">removeIt</a></li><li><a href="global.html#removeMenu">removeMenu</a></li><li><a href="global.html#removeTask">removeTask</a></li><li><a href="global.html#renderBord">renderBord</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#testingHtml">testingHtml</a></li><li><a href="global.html#todoHtml">todoHtml</a></li><li><a href="global.html#urgencyIsHight">urgencyIsHight</a></li><li><a href="global.html#urgencyIsLow">urgencyIsLow</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addToBoard">addToBoard</a></li><li><a href="global.html#addUser">addUser</a></li><li><a href="global.html#allowDrop">allowDrop</a></li><li><a href="global.html#autoCloseContainer">autoCloseContainer</a></li><li><a href="global.html#cancelTask">cancelTask</a></li><li><a href="global.html#cartHtml">cartHtml</a></li><li><a href="global.html#checkDoneAndFillMenu">checkDoneAndFillMenu</a></li><li><a href="global.html#checkHighUrgency">checkHighUrgency</a></li><li><a href="global.html#checkInProgressAndFillMenu">checkInProgressAndFillMenu</a></li><li><a href="global.html#checkLoginMatch">checkLoginMatch</a></li><li><a href="global.html#checkLowUrgency">checkLowUrgency</a></li><li><a href="global.html#checkNameAlreadyExists">checkNameAlreadyExists</a></li><li><a href="global.html#checkTestingAndFillMenu">checkTestingAndFillMenu</a></li><li><a href="global.html#checkTodoAndFillMenu">checkTodoAndFillMenu</a></li><li><a href="global.html#checkUsersLength">checkUsersLength</a></li><li><a href="global.html#checkWidth">checkWidth</a></li><li><a href="global.html#chooseUser">chooseUser</a></li><li><a href="global.html#closeCreateUser">closeCreateUser</a></li><li><a href="global.html#closeFlashContainer">closeFlashContainer</a></li><li><a href="global.html#closeUserContainer">closeUserContainer</a></li><li><a href="global.html#confirmTask">confirmTask</a></li><li><a href="global.html#countTasksId">countTasksId</a></li><li><a href="global.html#createNewUser">createNewUser</a></li><li><a href="global.html#createNewUserOrNot">createNewUserOrNot</a></li><li><a href="global.html#createTask">createTask</a></li><li><a href="global.html#createUser">createUser</a></li><li><a href="global.html#deleteTask">deleteTask</a></li><li><a href="global.html#dispalyMenu">dispalyMenu</a></li><li><a href="global.html#dispalyTheHack">dispalyTheHack</a></li><li><a href="global.html#displayOfTheDifferentProcesses">displayOfTheDifferentProcesses</a></li><li><a href="global.html#displaySelectedUser">displaySelectedUser</a></li><li><a href="global.html#displayThePicturesOfTheUsers">displayThePicturesOfTheUsers</a></li><li><a href="global.html#displayTheSelectetUsers">displayTheSelectetUsers</a></li><li><a href="global.html#displayUserExists">displayUserExists</a></li><li><a href="global.html#fillBord">fillBord</a></li><li><a href="global.html#generateBacklogHTML">generateBacklogHTML</a></li><li><a href="global.html#generateTask">generateTask</a></li><li><a href="global.html#highlight">highlight</a></li><li><a href="global.html#hightlightHeader">hightlightHeader</a></li><li><a href="global.html#includeHTML">includeHTML</a></li><li><a href="global.html#loadJSONFromServer">loadJSONFromServer</a></li><li><a href="global.html#loadSelectedUsers">loadSelectedUsers</a></li><li><a href="global.html#loadTasks">loadTasks</a></li><li><a href="global.html#loadUserFromLocalStorage">loadUserFromLocalStorage</a></li><li><a href="global.html#loadUsers">loadUsers</a></li><li><a href="global.html#loginAsGuest">loginAsGuest</a></li><li><a href="global.html#loginOrNot">loginOrNot</a></li><li><a href="global.html#loginUser">loginUser</a></li><li><a href="global.html#logOutUser">logOutUser</a></li><li><a href="global.html#moveTo">moveTo</a></li><li><a href="global.html#openChooseUser">openChooseUser</a></li><li><a href="global.html#openCookies">openCookies</a></li><li><a href="global.html#openCreateUser">openCreateUser</a></li><li><a href="global.html#openImprint">openImprint</a></li><li><a href="global.html#openMenu">openMenu</a></li><li><a href="global.html#openPrivacy">openPrivacy</a></li><li><a href="global.html#removehighlight">removehighlight</a></li><li><a href="global.html#removeIt">removeIt</a></li><li><a href="global.html#removeMenu">removeMenu</a></li><li><a href="global.html#removeTask">removeTask</a></li><li><a href="global.html#removeUser">removeUser</a></li><li><a href="global.html#renderBacklog">renderBacklog</a></li><li><a href="global.html#renderBord">renderBord</a></li><li><a href="global.html#saveJSONToServer">saveJSONToServer</a></li><li><a href="global.html#screenWidth">screenWidth</a></li><li><a href="global.html#showLoggedUserImg">showLoggedUserImg</a></li><li><a href="global.html#startDragging">startDragging</a></li><li><a href="global.html#urgencyIsHigh">urgencyIsHigh</a></li><li><a href="global.html#urgencyIsLow">urgencyIsLow</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Fri May 27 2022 21:06:10 GMT+0200 (Mitteleuropäische Sommerzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun Jun 12 2022 19:16:37 GMT+0200 (Mitteleuropäische Sommerzeit)
 </footer>
 
 <script> prettyPrint(); </script>

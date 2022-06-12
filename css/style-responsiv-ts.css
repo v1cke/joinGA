@@ -21,5 +21,9 @@
         }
         .selection {
             border-radius: 0;
+            display: none;
+        }
+        #sliderlinks {
+            display: block;
         }
     }

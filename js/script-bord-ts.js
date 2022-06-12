@@ -430,3 +430,12 @@ function removeIt(id) {
     renderBord();
     backend.setItem('bordTasks', JSON.stringify(bordTasks));
 }
+
+function openSliderMenu() {
+    document.getElementById('sliderlinks').classList.toggle('open');
+    document.getElementById('sliderList').classList.toggle('d-none');
+    document.getElementById('sliderList').classList.toggle('d-flex');
+    setTimeout(() => {
+        document.getElementById('sliderList').classList.toggle('show');
+    });
+}

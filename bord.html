@@ -29,6 +29,19 @@
 
 <body onload="fillBord(); includeHTML('bordLink')">
     <div w3-include-html="templates/header.html"></div>
+
+    <div id="sliderlinks" onclick="openSliderMenu()" class="p-absolute d-none j-center-a-center cursor-pointer slider_menu_btn">
+        <div class="slider_menu_btn_burger"></div>
+        <div class="slider_backgroung"></div>
+        <ul id="sliderList" class="slider_drop_menu p-absolute d-none f-colum w-space-nowrap">
+            <li><a href="#top">Scroll to Top</a></li>
+            <li><a href="#todo">to Do</a></li>
+            <li><a href="#inProgress">In Progress</a></li>
+            <li><a href="#testing">Testing</a></li>
+            <li><a href="#done">Done</a></li>
+        </ul>
+    </div>
+
     <div class="selection d-none">
         <div class="slider d-flex text-uppercase text-center">
             <a href="#todo">to do</a>

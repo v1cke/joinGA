@@ -6,6 +6,7 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
     position: relative;
+    overflow-x: hidden;
 }
 
 .header-inside {
@@ -72,6 +73,102 @@ menu a.active {
 .menu a.selectet {
     background: white;
     color: black;
+}
+
+.header_menu_btn {
+    top: 5px;
+    right: 5px;
+    height: 40px;
+    width: 40px;
+    transition: all 0.5s ease-in-out;
+}
+
+.header_menu_btn_burger {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(207, 101, 47, .2);
+    transition: all 0.5s ease-in-out;
+}
+
+.header_menu_btn_burger::before,
+.header_menu_btn_burger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(207, 101, 47, .2);
+    transition: all 0.5s ease-in-out;
+}
+
+.header_menu_btn_burger::before {
+    transform: translateY(-8px);
+}
+
+.header_menu_btn_burger::after {
+    transform: translateY(8px);
+}
+
+.header_menu_btn.open .header_menu_btn_burger {
+    transform: translateX(-25px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.header_menu_btn.open .header_menu_btn_burger::before {
+    transform: rotate(45deg) translate(17.5px, -17.5px);
+}
+
+.header_menu_btn.open .header_menu_btn_burger::after {
+    transform: rotate(-45deg) translate(17.5px, 17.5px);
+}
+
+.header_drop_menu {
+    margin: 0;
+    top: 35px;
+    right: 5px;
+    perspective: 1000px;
+}
+
+.header_drop_menu li {
+    color: white;
+    list-style-type: none;
+    text-align: end;
+    padding: 2px 5px;
+    background: rgba(0, 0, 0, 0.9);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: rotateY(-100deg);
+    transform-origin: right;
+}
+
+.header_drop_menu li a {
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+}
+
+.header_drop_menu li:hover {
+    text-decoration: underline;
+}
+
+.header_drop_menu li:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.header_drop_menu li:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.header_drop_menu.show li {
+    transform: rotateY(0);
+    transform-origin: right;
+    opacity: 1;
 }
 
 @media screen and (max-width: 970px) {

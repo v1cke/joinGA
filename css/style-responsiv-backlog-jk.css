@@ -27,6 +27,15 @@
     }
 }
 
+@media screen and (max-width: 450px) {
+    .menu {
+        display: none;
+    }
+    #menulinks {
+        display: flex;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .footer {
         font-size: 12px;

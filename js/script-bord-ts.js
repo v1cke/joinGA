@@ -394,8 +394,8 @@ function removeMenu(listContainer, menuBtnId, menuBtn) {
     listContainer.classList.remove('show');
     menuBtnId[0]['OpenMenu'] = false;
     setTimeout(() => {
-        listContainer.classList.add('d-none');
         listContainer.classList.remove('d-flex');
+        listContainer.classList.add('d-none');
     });
 
 

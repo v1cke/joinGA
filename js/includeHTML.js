@@ -105,3 +105,13 @@ function closeFlashContainer() {
     document.getElementById('privacyTemplate').classList.add('d-none');
     document.getElementById('imprintTemplate').classList.add('d-none');
 }
+
+
+function openHeaderMenu() {
+    document.getElementById('menulinks').classList.toggle('open');
+    document.getElementById('headerList').classList.toggle('d-none');
+    document.getElementById('headerList').classList.toggle('d-flex');
+    setTimeout(() => {
+        document.getElementById('headerList').classList.toggle('show');
+    });
+}

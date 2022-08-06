@@ -6,13 +6,15 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    min-height: 400px;
     max-height: 700px;
     height: 100%;
+    overflow-x: hidden;
 }
 
 .flash-container h1 {
@@ -20,6 +22,7 @@
 }
 
 .flash-head {
+    max-height: 100px;
     text-align: center;
 }
 
@@ -30,19 +33,41 @@
     text-align: center;
 }
 
-.flash-head h1,
+.flash-head h1 {
+    font-size: 28px !important;
+    background: none !important;
+}
+
 .flash-head h2 {
-    font-size: 38px !important;
+    font-size: 20px !important;
     background: none !important;
 }
 
 .flash-info {
-    margin: 30px;
+    /* margin: 30px; */
+    padding: 0 30px;
     overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.flash-info h1 {
+    font-size: 24px;
+}
+
+.flash-info h2 {
+    font-size: 20px;
+}
+
+.flash-info a {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    /* white-space: nowrap; */
 }
 
 .flash-btn-container {
-    margin-top: 32px;
+    margin-top: 3px;
     display: flex;
     width: 70%;
     justify-content: space-evenly;
@@ -81,4 +106,10 @@
     flex-wrap: wrap;
     gap: 20px;
     overflow-y: auto;
+}
+
+@media screen and (max-width: 360px) {
+    .flash-info {
+        padding: 5px;
+    }
 }

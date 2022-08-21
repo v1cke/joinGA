@@ -112,10 +112,8 @@ function addHeight(i) {
  * 
  * @param {number} id - id of the item to be removed
  */
-function deleteTask(id) {
-    let deleteTask = tasks.filter(t => t['id'] == id);
-    let index = tasks.indexOf(deleteTask[0]);
-    tasks.splice(index, 1);
+function deleteTask(i) {
+    tasks.splice(i, 1);
     renderBord();
     backend.setItem('tasks', JSON.stringify(tasks));
 }

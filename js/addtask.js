@@ -37,7 +37,9 @@ async function createTask() {
         generateTask(title, date, category, urgency, text);
         backend.setItem('tasks', JSON.stringify(tasks));
         confirmTask();
-    } else { chooseUser(); }
+    } else if (selectedUser.length == 0) { 
+        chooseUser(event); 
+    }
 }
 
 

@@ -58,7 +58,7 @@ function displaySelectedUser(element, i) {
         currentTask.innerHTML += /* html */ `
             <div class="d-flex f-colum">
                 <img src="${assignedWorker.img}">
-                <span id="backlogImgId${i}" class="name-Img">${assignedWorker.name}</span>
+                <span id="backlogImgId${i}" class="name-Img d-none">${assignedWorker.name}</span>
             </div>
             `
     }
@@ -92,7 +92,7 @@ function generateBacklogHTML(element, i) {
                         <span><img onclick="addToBoard(${i})" src="img/icon plus.png"></span>
                         <span class="trashContainer"><img onclick="deleteTask(${i})" src="img/trash.png"></span>
                     </div>
-                    <div id="backlogTextId${i}" class="backlog-text ">
+                    <div id="backlogTextId${i}" class="backlog-text d-none">
                     <span>${element['description']}</span>
                     </div>
                 </div>
@@ -101,9 +101,14 @@ function generateBacklogHTML(element, i) {
 }
 
 
+/**
+ * show all details
+ * 
+ * @param {number} i - current index of tasks json
+ */
 function addHeight(i) {
-    document.getElementById(`backlogTextId${i}`).classList.toggle('heightAuto');
-    document.getElementById(`backlogImgId${i}`).classList.toggle('heightAuto');
+    document.getElementById(`backlogTextId${i}`).classList.toggle('d-none');
+    document.getElementById(`backlogImgId${i}`).classList.toggle('d-none');
 }
 
 

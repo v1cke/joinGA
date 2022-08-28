@@ -14,7 +14,7 @@
         font-family: 'Open Sans', sans-serif;
         min-height: 100vh;
     }
-    
+
     .main-container {
         background: rgba(0, 0, 0, 0.6);
         padding: 20px;
@@ -25,22 +25,22 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .container {
         display: flex;
         justify-content: center;
     }
-    
+
     .headline h1 {
         font-weight: bold;
         margin-bottom: 8px;
     }
-    
+
     .headline p {
         font-weight: bold;
         margin-top: 8px;
     }
-    
+
     .task-content-container {
         display: flex;
         flex-wrap: wrap;
@@ -51,13 +51,13 @@
         -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
         box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.55);
     }
-    
+
     .task-content-box {
         display: flex;
         flex-direction: column;
         width: 40%;
     }
-    
+
     .input-field {
         height: 70px;
         font-size: 20px;
@@ -66,11 +66,11 @@
         box-sizing: border-box;
         border: 2px solid rgba(0, 0, 0, 0.8);
     }
-    
+
     .input-field:hover {
         border: 2px solid rgba(31, 51, 146, 0.8);
     }
-    
+
     .input-field-big {
         text-align: start;
         height: 200px;
@@ -82,15 +82,15 @@
         border: 2px solid rgba(0, 0, 0, 0.8);
         margin-bottom: 20px;
     }
-    
+
     .input-field-big:hover {
         border: 2px solid rgba(31, 51, 146, 0.8);
     }
-    
+
     .input-field-big:se {
         border: 2px solid rgba(31, 51, 146, 0.8);
     }
-    
+
     .drop-down-field {
         height: 70px;
         font-size: 20px;
@@ -100,58 +100,63 @@
         appearance: none;
         background: white url(/img/down-arrow.png) no-repeat 98% center;
     }
-    
+
     .drop-down-field:hover {
         border: 2px solid rgba(31, 51, 146, 0.8);
     }
-    
+
     .drop-down-field:focus {
         border: 2px solid rgba(31, 51, 146, 0.8);
     }
-    
+
     .assigned-to {
         display: flex;
         align-items: center;
         height: 100px;
     }
-    
+
     #selectedUserContainer {
         margin-top: 20px;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
     }
-    
+
     .assigned-person {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 80px;
         height: 80px;
+        text-align: center;
     }
-    
+
     .assigned-person img {
         width: 60px;
         height: 60px;
         object-fit: cover;
     }
-    
+
     .assigned-person:hover {
         cursor: pointer;
     }
-    
+
     .assigned-to p {
+        width: 60px;
         font-weight: 700;
         align-items: center;
         font-size: 16px;
         margin: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
-    
+
     .assigned-to img {
         object-fit: cover;
         border-radius: 100%;
     }
-    
+
     .cancel-create-box {
         width: 100%;
         height: 70px;
@@ -160,7 +165,7 @@
         align-items: center;
         margin-top: 24px;
     }
-    
+
     .cancel-task {
         cursor: pointer;
         background-color: transparent;
@@ -173,23 +178,23 @@
         margin-right: 36px;
         transition: 250ms;
     }
-    
+
     .cancel-task a {
         text-decoration: none;
         color: black;
         transition: 250ms;
     }
-    
+
     .cancel-task:hover {
         background-color: rgba(0, 0, 0, 0.8);
         border: 2px solid rgba(0, 0, 0, 0.8);
         transition: 400ms;
     }
-    
+
     .cancel-task:hover a {
         color: white;
     }
-    
+
     .create-task {
         cursor: pointer;
         background: rgba(0, 0, 0, 0.6);
@@ -201,13 +206,13 @@
         height: 50px;
         transition: 500ms;
     }
-    
+
     .create-task:hover {
         border-color: black;
         background: rgba(0, 0, 0, 0.8);
         transition: 700ms;
     }
-    
+
     #confirmContainer {
         position: absolute;
         left: 50%;
@@ -231,19 +236,19 @@
         animation-direction: normal;
         animation-fill-mode: both;
     }
-    
+
     #userMessage {
         text-align: center;
         font-size: 24px;
     }
-    
+
     .confirmButtons {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         gap: 20px;
     }
-    
+
     .confirmButtons a {
         text-decoration: none;
         color: white;
@@ -254,34 +259,36 @@
         font-weight: 600;
         transition: 125ms;
     }
-    
+
     .confirmButtons a:hover {
         color: black;
         background: white;
         transition: 125ms;
     }
-    
+
     .d-none {
         display: none;
     }
-    
+
     .choose-user-container p {
         font-weight: 700;
         align-items: center;
         font-size: 16px;
         margin: 0;
     }
-    
+
     .choose-user-container img {
         object-fit: cover;
         border-radius: 100%;
     }
-    
+
     .choose-user-container {
         z-index: 99 !important;
         max-height: 650px;
         max-width: 320px;
-        padding-top: 80px;
+        /* padding-top: 80px; */
+        padding: 80px 16px 16px 16px;
+        box-sizing: border-box;
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 12px;
         color: white;
@@ -297,45 +304,55 @@
         animation-direction: normal;
         animation-fill-mode: both;
     }
-    
+
     @keyframes scale-up-center {
         0% {
             transform: scale(.2);
         }
+
         100% {
             transform: scale(1);
         }
     }
-    
+
     .choose-person {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
-        width: 300px;
+        justify-content: space-between;
+        max-width: 300px;
+        width: 100%;
         height: 100px;
         color: white;
+        box-sizing: border-box;
+   
     }
-    
+
     .choose-person p {
         cursor: pointer;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-sizing: border-box;
     }
-    
+
     .choose-person img {
         width: 80px;
         height: 80px;
         margin-right: 16px;
-        margin-left: 32px;
+        /* margin-left: 32px; */
         cursor: pointer;
+        box-sizing: border-box;
     }
-    
+
     .opacity0 {
         opacity: 0;
     }
-    
+
     .addBtn {
         cursor: pointer;
     }
-    
+
     .close-btn {
         position: absolute;
         top: 36px;
@@ -344,22 +361,24 @@
         transform: rotate(45deg);
         cursor: pointer;
     }
-    
+
     .checkimg {
+        display: flex;
+        justify-content: end;
         height: 40px;
     }
-    
+
     .checkimg img {
         height: 100%;
         width: auto;
     }
-    
+
     .checkmark {
         width: 24px !important;
         height: 24px !important;
         object-fit: cover;
     }
-    
+
     .hideall {
         z-index: 4;
         position: absolute;

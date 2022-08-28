@@ -98,7 +98,7 @@ function chooseUser(event) {
         let userName = users[i]["name"];
         let userImg = users[i]["img"];
         document.getElementById("chooseUserContainer").innerHTML += displayThePicturesOfTheUsers(userName, userImg, i);
-        dispalyTheHack(userName);
+        dispalyTheHook(userName);
     }
 }
 
@@ -129,7 +129,7 @@ function openChooseUser() {
 function displayThePicturesOfTheUsers(userName, userImg, i) {
     return /*html*/ `
         <div class="choose-person">
-            <div class="d-flex a-center">
+            <div class="d-flex j-space-betwen a-center">
                 <img onclick="addUser(${i}, '${userName}')" src="${userImg}">
                 <p onclick="addUser(${i}, '${userName}')">${userName}</p>
             </div>
@@ -143,11 +143,11 @@ function displayThePicturesOfTheUsers(userName, userImg, i) {
  * 
  * @param {string} userName - current user name
  */
-function dispalyTheHack(userName) {
+function dispalyTheHook(userName) {
     for (let index = 0; index < selectedUser.length; index++) {
         let selectedUserName = selectedUser[index].name;
         if (userName == selectedUserName) {
-            document.getElementById(`checked_${i}`).classList.remove('opacity0');
+            document.getElementById(`checked_${index}`).classList.remove('opacity0');
         }
     }
 }
